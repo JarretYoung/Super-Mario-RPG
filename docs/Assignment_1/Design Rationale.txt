@@ -1,0 +1,52 @@
+﻿Design Rationale 
+___________________________________________________
+This file contains the justification for each design choice made for each requirement
+
+
+
+
+Requirement 1:
+
+
+
+
+
+
+Requirement 2:
+
+
+
+
+
+
+Requirement 3:
+
+
+
+
+
+
+Requirement 4:
+
+
+
+
+
+
+Requirement 5:
+
+
+
+
+
+
+Requirement 6:
+
+
+
+
+
+
+
+
+Requirement 7:
