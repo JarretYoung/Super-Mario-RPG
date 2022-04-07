@@ -6,7 +6,10 @@ import edu.monash.fit2099.engine.items.Item;
 
 /**
  * Coins
- * Capabilities Picking up a coin should increase the Player's wallet balance.
+ * Capabilities: Picking up a coin should increase the Player's wallet balance. (have not implemented)
+ *
+ * @author Lup Hoong
+ * @version 1.0 5/4/2022
  */
 public class Coin extends Item {
 

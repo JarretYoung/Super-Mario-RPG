@@ -1,5 +1,13 @@
 package game;
 
+
+/**
+ *
+ * Sampling extends Tree
+ * @author Lup Hoong
+ * @version 1.0 5/4/2022
+ * comments:  all new methods
+ */
 public class Sampling extends Tree  {
     public Sampling() {
         super('t');

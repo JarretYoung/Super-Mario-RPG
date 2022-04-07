@@ -4,11 +4,10 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 
 /**
- * Trees have 3 stages
- * Tress grow into new stage every 10 turns
- *
+ * @author Lup Hoong
+ * @version 1.0 5/4/2022
+ * comments: converted Tree into abstract Class
  */
-
 public abstract class Tree extends Ground {
 
 
@@ -58,6 +57,10 @@ public abstract class Tree extends Ground {
 
     /**
      * Checks all action for each subclasses of Tree as specified
+     * (eg
+     * sprout might grow and spawn Goomba,
+     * sampling might grow and drop coin,
+     * mature might wither, spawn Koopa, grow new sprout randomlu)
      */
     abstract public void checkAction();
 
