@@ -35,6 +35,8 @@ public class PickUpItemAction extends Action {
 		return menuDescription(actor);
 	}
 
+
+
 	/**
 	 * Describe the action in a format suitable for displaying in the menu.
 	 *

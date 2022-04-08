@@ -1,5 +1,8 @@
-package game;
+package game.trees;
 
+
+import game.SpawnCapable;
+import game.trees.Tree;
 
 /**
  *
@@ -8,7 +11,7 @@ package game;
  * @version 1.0 5/4/2022
  * comments:  all new methods
  */
-public class Mature extends Tree implements SpawnCapable{
+public class Mature extends Tree implements SpawnCapable {
 
     public Mature() {
         super('T');

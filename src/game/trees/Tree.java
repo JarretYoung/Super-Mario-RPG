@@ -1,4 +1,4 @@
-package game;
+package game.trees;
 
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;

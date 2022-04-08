@@ -7,4 +7,6 @@ package game;
 public enum Status {
     HOSTILE_TO_ENEMY, // use this status to be considered hostile towards enemy (e.g., to be attacked by enemy)
     TALL, // use this status to tell that current instance has "grown".
+    SUPER, // used when actor has 100% jumping success rate with no fall damage
+    INVINCIBLE // used to make actor immune, walk over walls and have infinite damage for 10 rounds
 }

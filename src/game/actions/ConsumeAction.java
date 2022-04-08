@@ -1,4 +1,4 @@
-package game;
+package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -8,18 +8,19 @@ import edu.monash.fit2099.engine.positions.GameMap;
 
 import java.security.DrbgParameters;
 
-public class Consume extends Action {
+public class ConsumeAction extends Action {
     protected Item itemConsumed;
 
     protected Actor consumer;
 
-    public Consume(Item item, Actor actor)
+    public ConsumeAction(Item item, Actor actor)
     {
         this.itemConsumed = item;
         this.consumer = actor;
     }
     @Override
     public String execute(Actor actor, GameMap map) {
+
         String result = actor + " " + "eats" + " " + itemConsumed + " for ";
         if(actor.getInventory().contains(itemConsumed)){
             // Add item capability to actor

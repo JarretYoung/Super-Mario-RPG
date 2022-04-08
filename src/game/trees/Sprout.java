@@ -1,5 +1,7 @@
-package game;
+package game.trees;
 
+
+import game.SpawnCapable;
 
 /**
  *
@@ -8,7 +10,7 @@ package game;
  * @version 1.0 5/4/2022
  * comments:  all new methods
  */
-public class Sprout extends Tree implements SpawnCapable{
+public class Sprout extends Tree implements SpawnCapable {
 
 
     /**

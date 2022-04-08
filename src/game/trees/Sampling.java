@@ -1,4 +1,4 @@
-package game;
+package game.trees;
 
 
 /**
@@ -8,7 +8,7 @@ package game;
  * @version 1.0 5/4/2022
  * comments:  all new methods
  */
-public class Sampling extends Tree  {
+public class Sampling extends Tree {
     public Sampling() {
         super('t');
     }
