@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.displays.Menu;
 /**
  * Class representing the Player.
  */
-public class Player extends Actor  {
+public class Player extends Actor implements Resettable  {
 
 	private final Menu menu = new Menu();
 
@@ -39,5 +39,15 @@ public class Player extends Actor  {
 	@Override
 	public char getDisplayChar(){
 		return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
+	}
+
+	@Override
+	public void resetInstance() {
+		this.heal(getMaxHp());
+	}
+
+	@Override
+	public void registerInstance() {
+		Resettable.super.registerInstance();
 	}
 }

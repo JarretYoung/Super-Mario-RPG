@@ -1,6 +1,7 @@
 package game.trees;
 
 
+import game.Resettable;
 import game.SpawnCapable;
 import game.trees.Tree;
 
@@ -11,7 +12,7 @@ import game.trees.Tree;
  * @version 1.0 5/4/2022
  * comments:  all new methods
  */
-public class Mature extends Tree implements SpawnCapable {
+public class Mature extends Tree implements SpawnCapable, Resettable {
 
     public Mature() {
         super('T');
@@ -66,5 +67,15 @@ public class Mature extends Tree implements SpawnCapable {
         // every 5 turns, check for fertile squares
         // grow a new sprout (+) in one of the surrounding fertile squares
 
+    }
+
+    @Override
+    public void resetInstance() {
+        
+    }
+
+    @Override
+    public void registerInstance() {
+        Resettable.super.registerInstance();
     }
 }
