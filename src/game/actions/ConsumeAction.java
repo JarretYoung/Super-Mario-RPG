@@ -2,41 +2,33 @@ package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.capabilities.CapabilitySet;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
+import game.items.SpecialItem;
 
 import java.security.DrbgParameters;
 
-public class ConsumeAction extends Action {
-    protected Item itemConsumed;
+public abstract class ConsumeAction extends Action {
+    private SpecialItem itemConsumed;
+    private Location itemLocation;
+    private String direction;
 
-    protected Actor consumer;
+    public Location getItemLocation() {
+        return itemLocation;
+    }
 
-    public ConsumeAction(Item item, Actor actor)
+    public SpecialItem getItemConsumed() {
+        return itemConsumed;
+    }
+
+    public ConsumeAction(SpecialItem item, Location itemLocation, String direction)
     {
         this.itemConsumed = item;
-        this.consumer = actor;
+        this.itemLocation = itemLocation;
+        this.direction = direction;
     }
     @Override
-    public String execute(Actor actor, GameMap map) {
-
-        String result = actor + " " + "eats" + " " + itemConsumed + " for ";
-        if(actor.getInventory().contains(itemConsumed)){
-            // Add item capability to actor
-            for(int i = 0; i < itemConsumed.capabilitiesList().size(); i++)
-            {
-                actor.addCapability(itemConsumed.capabilitiesList().get(i));
-                result += itemConsumed.capabilitiesList().get(i) + " ";
-            }
-            // Remove item from inventory
-            actor.getInventory().remove(itemConsumed);
-        }
-        else  {
-            result = "Item not in inventory";
-        }
-        return result;
-    }
+    public abstract String execute(Actor actor, GameMap map);
 
     public String menuDescription(Actor actor) {
         return actor + " eats " + itemConsumed;
