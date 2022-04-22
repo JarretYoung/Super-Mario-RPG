@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 
 public class SpecialItem extends Item implements TradeableItem{
     private final CapabilitySet capabilitySet = new CapabilitySet();
+    private int value;
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -18,16 +19,16 @@ public class SpecialItem extends Item implements TradeableItem{
 
     @Override
     public int getValue() {
-        return 0;
+        return value;
     }
 
     @Override
-    public int setValue() {
-        return 0;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     @Override
-    public String traded(Actor actor, TradeableItem item, int value) {
+    public String traded(Actor actor) {
         return null;
     }
 }
