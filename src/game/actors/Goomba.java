@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Resettable;
 import game.actions.AttackAction;
+import game.actions.ResetAction;
 import game.behaviours.Behaviour;
 import game.Status;
 import game.behaviours.WanderBehaviour;
@@ -47,6 +48,11 @@ public class Goomba extends Actor implements Resettable {
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
 		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 			actions.add(new AttackAction(this,direction));
+
+
+
+			//This is for testing purposes only
+			actions.add(new ResetAction());
 		}
 		return actions;
 	}
