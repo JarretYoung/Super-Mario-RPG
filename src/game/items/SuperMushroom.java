@@ -5,10 +5,7 @@ import game.Status;
 
 public class SuperMushroom extends SpecialItem {
     /***
-     * Constructor.
-     * @param name the name of this Item
-     * @param displayChar the character to use to represent this item if it is on the ground
-     * @param actor
+     * Constructor
      */
     public SuperMushroom(Actor actor) {
         super("Super Mushroom", '^', actor);

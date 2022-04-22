@@ -13,15 +13,15 @@ public class PowerStar extends SpecialItem {
      */
     private int counter;
     private Actor actor;
-    public PowerStar(String name, char displayChar) {
-        super("Power Star", '*');
+    public PowerStar(Actor actor) {
+        super("Power Star", '*', actor);
         this.addCapability(Status.INVINCIBLE);
     }
 
     @Override
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
-        counter++;
+        counter += 1;
     }
 
     public int getCounter()
