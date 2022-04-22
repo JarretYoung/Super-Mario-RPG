@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Resettable;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.Status;
@@ -17,7 +18,7 @@ import java.util.Map;
 /**
  * A little fungus guy.
  */
-public class Goomba extends Actor {
+public class Goomba extends Actor implements Resettable {
 	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
 	/**
@@ -26,6 +27,9 @@ public class Goomba extends Actor {
 	public Goomba() {
 		super("Goomba", 'g', 20);
 		this.behaviours.put(10, new WanderBehaviour());
+
+		// Registering instance as a resettable object
+		this.registerInstance();
 	}
 
 	/**
@@ -64,5 +68,10 @@ public class Goomba extends Actor {
 	@Override
 	public boolean isConscious() {
 		return super.isConscious();
+	}
+
+	@Override
+	public void resetInstance() {
+		this.hurt(getMaxHp());
 	}
 }

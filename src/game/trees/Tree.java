@@ -2,13 +2,17 @@ package game.trees;
 
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.Resettable;
+
+import java.util.Random;
+
 
 /**
  * @author Lup Hoong
  * @version 1.0 5/4/2022
  * comments: converted Tree into abstract Class
  */
-public abstract class Tree extends Ground {
+public abstract class Tree extends Ground implements Resettable {
 
 
 
@@ -24,6 +28,8 @@ public abstract class Tree extends Ground {
      */
     public Tree(char displayChar) {
         super(displayChar);
+        // Registering instance as a resettable object
+        this.registerInstance();
     }
 
     /**
@@ -69,5 +75,11 @@ public abstract class Tree extends Ground {
      */
     abstract public void checkGrowth();
 
-
+    @Override
+    public void resetInstance() {
+        Random rand = new Random();
+        if (rand.nextInt(2) == 1) {
+            //Convert any tree into ground
+        }
+    }
 }

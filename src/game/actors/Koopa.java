@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Resettable;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.Status;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @version 1.0 7/4/2022
  * comments: req 1 requires Koopa class, duplicated directly from original Goomba class given in game
  */
-public class Koopa extends Actor {
+public class Koopa extends Actor implements Resettable {
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
     /**
@@ -28,6 +29,9 @@ public class Koopa extends Actor {
     public Koopa() {
         super("Koopa", 'K', 50); // Koopa hitpoints not specified, assume = 50
         this.behaviours.put(10, new WanderBehaviour());
+
+        // Registering instance as a resettable object
+        this.registerInstance();
     }
 
     /**
@@ -63,4 +67,8 @@ public class Koopa extends Actor {
         return new DoNothingAction();
     }
 
+    @Override
+    public void resetInstance() {
+        //Determine after properly implementing Task 3
+    }
 }

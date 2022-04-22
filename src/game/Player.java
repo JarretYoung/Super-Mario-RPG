@@ -24,6 +24,8 @@ public class Player extends Actor implements Resettable  {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		// Registering instance as a resettable object
+		this.registerInstance();
 	}
 
 	@Override
@@ -44,10 +46,11 @@ public class Player extends Actor implements Resettable  {
 	@Override
 	public void resetInstance() {
 		this.heal(getMaxHp());
+		if ( this.hasCapability(Status.SUPER) ) {
+			this.removeCapability(Status.SUPER);
+		} else if (this.hasCapability(Status.INVINCIBLE)) {
+			this.removeCapability(Status.INVINCIBLE);
+		}
 	}
 
-	@Override
-	public void registerInstance() {
-		Resettable.super.registerInstance();
-	}
 }

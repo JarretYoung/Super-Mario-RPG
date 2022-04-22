@@ -2,6 +2,9 @@ package game.currency;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
+import game.Resettable;
+
+import java.sql.ResultSet;
 
 
 /**
@@ -11,7 +14,7 @@ import edu.monash.fit2099.engine.items.Item;
  * @author Lup Hoong
  * @version 1.0 5/4/2022
  */
-public class Coin extends Item {
+public class Coin extends Item implements Resettable {
 
     /**
      * indicates the value of Coin instance
@@ -25,6 +28,8 @@ public class Coin extends Item {
     public Coin(int value) {
         super("coin", '$', true);
         this.value = value;
+        // Registering instance as a resettable object
+        this.registerInstance();
     }
 
     /**
@@ -33,5 +38,10 @@ public class Coin extends Item {
      */
     public int getAmount() {
         return value;
+    }
+
+    @Override
+    public void resetInstance() {
+        //Find a way to remove this object from the ground
     }
 }
