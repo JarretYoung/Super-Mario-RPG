@@ -9,5 +9,6 @@ public enum Status {
     TALL, // use this status to tell that current instance has "grown".
     SUPER, // used when actor has 100% jumping success rate with no fall damage
     INVINCIBLE, // used to make actor immune, walk over walls and have infinite damage for 10 rounds
-    RESET_AVAILABLE // used to indicate if a reset was available
+    RESET_AVAILABLE, // used to indicate if a reset was available
+    HAS_WRENCH // used to indicate if the player has a wrench
 }
