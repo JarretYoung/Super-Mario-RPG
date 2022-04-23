@@ -18,7 +18,7 @@ public class TradeAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        return item.traded(actor, item, item.getValue());
+        return item.traded(actor);
     }
 
     @Override

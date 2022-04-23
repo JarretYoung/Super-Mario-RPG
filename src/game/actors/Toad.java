@@ -14,6 +14,7 @@ public class Toad extends Actor {
      * Constructor.
      */
     public Toad() {
+
         super("Toad", '0', 10);
     }
 

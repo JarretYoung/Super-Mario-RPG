@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 public interface TradeableItem{
     int getValue();
 
-    int setValue();
+    void setValue(int value);
 
-    String traded(Actor actor, TradeableItem item, int value);
+    String traded(Actor actor);
 }
