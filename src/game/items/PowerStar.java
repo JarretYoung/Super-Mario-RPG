@@ -19,6 +19,16 @@ public class PowerStar extends SpecialItem {
     }
 
     @Override
+    public String eatenFromGround(Actor by) {
+        return super.eatenFromGround(by);
+    }
+
+    @Override
+    public String eatenFromInventory(Actor by) {
+        return super.eatenFromInventory(by);
+    }
+
+    @Override
     public void tick(Location currentLocation, Actor actor) {
         counter += 1;
         if(counter == 10) {
@@ -32,5 +42,9 @@ public class PowerStar extends SpecialItem {
     public int getCounter()
     {
         return this.counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }
