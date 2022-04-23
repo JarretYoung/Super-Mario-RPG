@@ -8,7 +8,7 @@ public class SuperMushroom extends SpecialItem {
      * Constructor
      */
     public SuperMushroom(Actor actor) {
-        super("Super Mushroom", '^', actor);
+        super("Super Mushroom", '^');
         this.addCapability(Status.TALL);
         this.addCapability(Status.SUPER);
     }

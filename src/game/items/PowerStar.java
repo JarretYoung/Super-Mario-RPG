@@ -12,16 +12,21 @@ public class PowerStar extends SpecialItem {
      * @param actor
      */
     private int counter;
-    private Actor actor;
-    public PowerStar(Actor actor) {
-        super("Power Star", '*', actor);
+    public PowerStar() {
+        super("Power Star", '*');
         this.addCapability(Status.INVINCIBLE);
+        counter = 0;
     }
 
     @Override
-    public void tick(Location currentLocation) {
-        super.tick(currentLocation);
+    public void tick(Location currentLocation, Actor actor) {
         counter += 1;
+        if(counter == 10) {
+            if(currentLocation.getItems().contains(this))
+                currentLocation.removeItem(this);
+            else if(actor.getInventory().contains(this))
+                actor.getInventory().remove(this);
+        }
     }
 
     public int getCounter()
