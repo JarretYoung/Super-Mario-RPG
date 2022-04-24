@@ -16,6 +16,7 @@ import game.behaviours.WanderBehaviour;
 
 import java.util.HashMap;
 import java.util.Map;
+
 /**
  * A little fungus guy.
  */
