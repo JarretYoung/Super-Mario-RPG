@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Resettable;
 import game.actions.AttackAction;
+import game.actions.BreakShellAction;
 import game.behaviours.Behaviour;
 import game.Status;
 import game.behaviours.WanderBehaviour;
@@ -24,11 +25,17 @@ public class Koopa extends Actor implements Resettable {
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
     /**
+     * Health (while active)
+     */
+    private int hitPoints_active;
+    /**
      * Constructor.
      */
     public Koopa() {
-        super("Koopa", 'K', 50); // Koopa hitpoints not specified, assume = 50
+        super("Koopa", 'K', 20); // Koopa hitpoints not specified, assume = 20
         this.behaviours.put(10, new WanderBehaviour());
+        this.hitPoints_active = 20; //This the Koopa's hp when it is in an active state
+        this.addCapability(Status.KOOPA_ACTIVE);
 
         // Registering instance as a resettable object
         this.registerInstance();
@@ -50,11 +57,38 @@ public class Koopa extends Actor implements Resettable {
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             actions.add(new AttackAction(this,direction));
         }
+        if (this.hasCapability(Status.KOOPA_DORMANT)) {
+            actions.add(new BreakShellAction(this,direction));
+        }
         return actions;
+    }
+
+    /** This method it used to reduce the hitPoints_active (hitpoints of the active Koopa)
+     *
+     * @param points number of hitpoints to deduct.
+     */
+    @Override
+    public void hurt(int points) {
+        hitPoints_active -= points;
+        if (hitPoints_active <= 0) {
+            this.setDisplayChar('D');
+            this.removeCapability(Status.KOOPA_ACTIVE);
+            this.addCapability(Status.KOOPA_DORMANT);
+        }
+    }
+
+    /** This method is used to finish off the Koopa during its dormant phase
+     *
+     */
+    public void destroyShell() {
+        super.hurt(super.getMaxHp()); //if not then change to number
     }
 
     /**
      * Figure out what to do next.
+     *
+     * might want to consider removing actor here
+     *
      * @see Actor#playTurn(ActionList, Action, GameMap, Display)
      */
     @Override

@@ -35,6 +35,7 @@ public class ResetAction extends Action {
 
         ResetManager itemsToBeReset = ResetManager.getInstance();
 
+        //YOU DID NOT REMOVE ACTOR (TRY CAPABILITY)
         itemsToBeReset.run();
 
         String result = "Map has been reset";
