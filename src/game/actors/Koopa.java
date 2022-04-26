@@ -32,9 +32,9 @@ public class Koopa extends Actor implements Resettable {
      * Constructor.
      */
     public Koopa() {
-        super("Koopa", 'K', 20); // Koopa hitpoints not specified, assume = 20
+        super("Koopa", 'K', 20);
         this.behaviours.put(10, new WanderBehaviour());
-        this.hitPoints_active = 20; //This the Koopa's hp when it is in an active state
+        this.hitPoints_active = 20; //This the Koopa's hp when it is in an active state, assume = 20
         this.addCapability(Status.KOOPA_ACTIVE);
 
         // Registering instance as a resettable object
@@ -54,7 +54,7 @@ public class Koopa extends Actor implements Resettable {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+        if ((otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) && !this.hasCapability(Status.KOOPA_DORMANT)) {
             actions.add(new AttackAction(this,direction));
         }
         if (this.hasCapability(Status.KOOPA_DORMANT)) {
@@ -74,6 +74,7 @@ public class Koopa extends Actor implements Resettable {
             this.setDisplayChar('D');
             this.removeCapability(Status.KOOPA_ACTIVE);
             this.addCapability(Status.KOOPA_DORMANT);
+            this.behaviours.remove(10);
         }
     }
 

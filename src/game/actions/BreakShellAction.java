@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Status;
 import game.actors.Koopa;
+import game.items.SuperMushroom;
 import game.items.Wrench;
 
 import java.util.Random;
@@ -58,6 +59,11 @@ public class BreakShellAction extends Action {
                 drop.execute(target, map);
             // remove actor
             map.removeActor(target);
+
+
+            dropActions.add(new SuperMushroom());
+            for (Action drop : dropActions)
+                drop.execute(target, map);
             result = target + " shell has been destroyed";
         }
 
