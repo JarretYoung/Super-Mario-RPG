@@ -10,8 +10,10 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.Resettable;
 import game.actions.AttackAction;
 import game.actions.ResetAction;
+import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.Status;
+import game.behaviours.SuicideBehaviour;
 import game.behaviours.WanderBehaviour;
 
 import java.util.HashMap;
@@ -29,6 +31,9 @@ public class Goomba extends Actor implements Resettable {
 	public Goomba() {
 		super("Goomba", 'g', 20);
 		this.behaviours.put(10, new WanderBehaviour());
+		// Do we need follow behaviour?
+		this.behaviours.put(9, new AttackBehaviour());
+		this.behaviours.put(8, new SuicideBehaviour(this));
 
 		// Registering instance as a resettable object
 		this.registerInstance();
@@ -64,9 +69,19 @@ public class Goomba extends Actor implements Resettable {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
+		if (this.hasCapability(Status.RESET_QUEUED)) {
+			this.hurt(20);
+			if (!this.isConscious()) {
+				map.removeActor(this);
+				System.out.println("hallo nerd");
+				return new DoNothingAction();
+			}
+		}
+
 		for(Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
-			if (action != null)
+			if ((action != null) && this.isConscious())
 				return action;
 		}
 		return new DoNothingAction();
@@ -79,6 +94,7 @@ public class Goomba extends Actor implements Resettable {
 
 	@Override
 	public void resetInstance() {
-		this.hurt(getMaxHp());
+		this.addCapability(Status.RESET_QUEUED);
+		System.out.println("Added RESET_QUEUED");
 	}
 }

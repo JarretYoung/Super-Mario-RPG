@@ -14,6 +14,10 @@ import game.items.Wrench;
 
 import java.util.Random;
 
+/** This class is used to destroy the shell of the Koopa
+ *
+ * @author Garret Yong Shern Min
+ */
 public class BreakShellAction extends Action {
     /**
      * The Actor that is to be attacked
@@ -39,13 +43,8 @@ public class BreakShellAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        Weapon weapon = actor.getWeapon();
-
         String result = "";
 
-//        if (weapon instanceof Wrench ) {
-//
-//        }
         if (actor.hasCapability(Status.HAS_WRENCH)) {
             target.destroyShell();
         }
@@ -60,11 +59,7 @@ public class BreakShellAction extends Action {
             // remove actor
             map.removeActor(target);
 
-
-            dropActions.add(new SuperMushroom());
-            for (Action drop : dropActions)
-                drop.execute(target, map);
-            result = target + " shell has been destroyed";
+            result = actor + " destroys " + target + "(dormant)";
         }
 
         return result;
@@ -72,7 +67,7 @@ public class BreakShellAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " destroy " + target + " shell";
+        return actor + " destroys " + target + "(dormant)";
     }
 }
 
