@@ -27,7 +27,7 @@ public class Toad extends Actor {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
        ActionList actions = new ActionList();
        actions.add(new TradeAction(this));
-       actions.add(new TalkAction(this));
+       actions.add(new TalkAction(otherActor));
        return actions;
     }
 }

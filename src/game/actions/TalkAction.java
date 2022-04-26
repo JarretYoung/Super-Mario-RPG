@@ -32,8 +32,9 @@ public class TalkAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
 
+
         Monologue monologue = new Monologue();
-        String result = monologue.speak(actor);
+        String result = monologue.speak(target);
 
         return result;
     }

@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.capabilities.CapabilitySet;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class Monologue {
 
     ArrayList<String> dialogue = new ArrayList<>();
@@ -25,16 +26,20 @@ public class Monologue {
         int mode = 0;
         if ((actor.hasCapability(Status.HAS_WRENCH)) && (actor.hasCapability(Status.INVINCIBLE))){
             return (this.dialogue.get(rand.nextInt(2)));
+
         } else if (actor.hasCapability(Status.HAS_WRENCH)) {
             int i = rand.nextInt(4);
-            while (i == 3) {
+            while (i == 2) {
                 i = rand.nextInt(4);
             }
             return (this.dialogue.get(i));
+
         } else if (actor.hasCapability(Status.INVINCIBLE)) {
             return (this.dialogue.get(rand.nextInt(3)));
+
         } else {
             return (this.dialogue.get(rand.nextInt(4)));
+
         }
 
 
