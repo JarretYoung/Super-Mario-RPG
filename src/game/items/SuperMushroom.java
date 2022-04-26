@@ -9,21 +9,23 @@ public class SuperMushroom extends SpecialItem {
     /***
      * Constructor
      */
-    public SuperMushroom(Actor actor) {
+    public SuperMushroom() {
         super("Super Mushroom", '^');
-        this.addCapability(Status.TALL);
-        this.addCapability(Status.SUPER);
     }
 
     @Override
     public String eatenFromGround(Actor by) {
         by.heal(MAX_HP_INCREASE);
+        this.addCapability(Status.TALL);
+        this.addCapability(Status.SUPER);
         return super.eatenFromGround(by);
     }
 
     @Override
     public String eatenFromInventory(Actor by) {
         by.heal(MAX_HP_INCREASE);
+        this.addCapability(Status.TALL);
+        this.addCapability(Status.SUPER);
         return super.eatenFromInventory(by);
     }
 }

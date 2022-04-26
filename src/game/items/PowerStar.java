@@ -14,17 +14,18 @@ public class PowerStar extends SpecialItem {
     private int counter;
     public PowerStar() {
         super("Power Star", '*');
-        this.addCapability(Status.INVINCIBLE);
         counter = 0;
     }
 
     @Override
     public String eatenFromGround(Actor by) {
+        this.addCapability(Status.INVINCIBLE);
         return super.eatenFromGround(by);
     }
 
     @Override
     public String eatenFromInventory(Actor by) {
+        this.addCapability(Status.INVINCIBLE);
         return super.eatenFromInventory(by);
     }
 

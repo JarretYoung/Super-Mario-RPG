@@ -12,6 +12,7 @@ import game.actions.BreakShellAction;
 import game.behaviours.Behaviour;
 import game.Status;
 import game.behaviours.WanderBehaviour;
+import game.items.SuperMushroom;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +40,8 @@ public class Koopa extends Actor implements Resettable {
 
         // Registering instance as a resettable object
         this.registerInstance();
+
+        this.addItemToInventory(new SuperMushroom());
     }
 
     /**
