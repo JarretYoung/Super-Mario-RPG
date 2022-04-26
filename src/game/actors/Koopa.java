@@ -9,18 +9,29 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.Resettable;
 import game.actions.AttackAction;
 import game.actions.BreakShellAction;
+import game.actions.ResetAction;
+import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.Status;
+import game.behaviours.SuicideBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.items.SuperMushroom;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Lup Hoong
- * @version 1.0 7/4/2022
- * comments: req 1 requires Koopa class, duplicated directly from original Goomba class given in game
+/**This class represents the Turtle enemy known as the Koopa which is a regular enemy in the Mario
+ * universe. This class acts as an enemy to the player and will engage in combat with the player
+ *
+ * This enemy has 2 phases, active and dormant. When active, this enemy will wander around, follow the player
+ * and attack the player. However, in dormant mode, no action can be performed by and on the Koopa.
+ *
+ * The only way to defeat a dormant Koopa is to possess a wrench item and conduct a BreakShellAction to fully
+ * kill the Koopa and to make it drop a SuperMushroom
+ *
+ * @author Lup Hoong, Garret Yong Shern Min
+ * @version 2.0 26/4/2022
+ *
  */
 public class Koopa extends Actor implements Resettable {
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
@@ -35,12 +46,16 @@ public class Koopa extends Actor implements Resettable {
     public Koopa() {
         super("Koopa", 'K', 20);
         this.behaviours.put(10, new WanderBehaviour());
+        this.behaviours.put(9, new AttackBehaviour());
+        this.behaviours.put(8, new SuicideBehaviour(this));
+
         this.hitPoints_active = 20; //This the Koopa's hp when it is in an active state, assume = 20
         this.addCapability(Status.KOOPA_ACTIVE);
 
         // Registering instance as a resettable object
         this.registerInstance();
 
+        // Giving a SuperMushroom to drop upon death
         this.addItemToInventory(new SuperMushroom());
     }
 
@@ -63,6 +78,10 @@ public class Koopa extends Actor implements Resettable {
         if (this.hasCapability(Status.KOOPA_DORMANT)) {
             actions.add(new BreakShellAction(this,direction));
         }
+
+        //This is for testing purposes only
+        actions.add(new ResetAction());
+
         return actions;
     }
 
@@ -97,9 +116,19 @@ public class Koopa extends Actor implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        if (this.hasCapability(Status.RESET_QUEUED)) {
+            this.destroyShell();
+            if (!this.isConscious()) {
+                map.removeActor(this);
+
+                // To be changed for string output is not appropriate
+                return new DoNothingAction();
+            }
+        }
+
         for(Behaviour Behaviour : behaviours.values()) {
             Action action = Behaviour.getAction(this, map);
-            if (action != null)
+            if ((action != null) && this.isConscious())
                 return action;
         }
         return new DoNothingAction();
@@ -107,6 +136,6 @@ public class Koopa extends Actor implements Resettable {
 
     @Override
     public void resetInstance() {
-        //Determine after properly implementing Task 3
+        this.addCapability(Status.RESET_QUEUED);
     }
 }
