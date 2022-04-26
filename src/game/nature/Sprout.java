@@ -1,4 +1,4 @@
-package game.trees;
+package game.nature;
 
 
 import game.SpawnCapable;

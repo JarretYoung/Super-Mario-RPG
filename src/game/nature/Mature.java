@@ -1,9 +1,8 @@
-package game.trees;
+package game.nature;
 
 
 import game.Resettable;
 import game.SpawnCapable;
-import game.trees.Tree;
 
 /**
  *

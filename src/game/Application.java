@@ -12,7 +12,7 @@ import game.actors.Goomba;
 import game.surfaces.Dirt;
 import game.surfaces.Floor;
 import game.surfaces.Wall;
-import game.trees.Sprout;
+import game.nature.Sprout;
 
 /**
  * The main class for the Mario World game.
