@@ -8,6 +8,7 @@ import game.actions.ConsumeAction;
 public class SpecialItem extends Item implements TradeableItem{
     private final CapabilitySet capabilitySet = new CapabilitySet();
     private int value;
+    private String statusMessage = "";
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -28,32 +29,42 @@ public class SpecialItem extends Item implements TradeableItem{
         this.value = value;
     }
 
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
+    }
+
     @Override
-    public String traded(Actor actor) {
-        return null;
+    public String traded(Actor customer) {
+        Actor actor = customer;
+        String result = "";
+        result = actor + " " + "buys" + " " + this + " for " + this.getValue();
+        actor.getInventory().add(this);
+        return result;
     }
 
     public String eatenFromGround(Actor by) {
         Actor actor = by;
-        String result = actor + " " + "eats" + " " + this + " for ";
+        String result = this.getStatusMessage();
             // Add item capability to actor
             for(int i = 0; i < this.capabilitiesList().size(); i++)
             {
                 actor.addCapability(this.capabilitiesList().get(i));
-                result += this.capabilitiesList().get(i) + " ";
             }
         return result;
     }
 
     public String eatenFromInventory(Actor by) {
         Actor actor = by;
-        String result = actor + " " + "eats" + " " + this + " for ";
+        String result = this.getStatusMessage();
         if(actor.getInventory().contains(this)){
             // Add item capability to actor
             for(int i = 0; i < this.capabilitiesList().size(); i++)
             {
                 actor.addCapability(this.capabilitiesList().get(i));
-                result += this.capabilitiesList().get(i) + " ";
             }
             // Remove item from inventory
             actor.getInventory().remove(this);

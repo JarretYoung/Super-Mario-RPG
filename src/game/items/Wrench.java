@@ -14,6 +14,7 @@ public class Wrench extends WeaponItem implements TradeableItem{
 
         super("wrench", '{', 50, "hits", 80);
         this.addCapability(Status.HAS_WRENCH);
+        this.setValue(200);
     }
 
     @Override
@@ -27,7 +28,11 @@ public class Wrench extends WeaponItem implements TradeableItem{
     }
 
     @Override
-    public String traded(Actor actor) {
-        return null;
+    public String traded(Actor customer) {
+        Actor actor = customer;
+        String result = "";
+        result = actor + " " + "buys" + " " + this + " for " + this.getValue();
+        actor.getInventory().add(this);
+        return result;
     }
 }

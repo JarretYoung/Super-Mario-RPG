@@ -40,7 +40,7 @@ public class Player extends Actor implements Resettable  {
 
 		// Check Status
 		if(this.hasCapability(Status.SUPER)) {
-			this.increaseMaxHp(50);
+
 		}
 
 		// return/print the console menu

@@ -15,6 +15,8 @@ public class PowerStar extends SpecialItem {
     public PowerStar() {
         super("Power Star", '*');
         counter = 0;
+        this.setValue(600);
+        this.setStatusMessage("Mario is INVINCIBLE!");
     }
 
     @Override
@@ -38,6 +40,9 @@ public class PowerStar extends SpecialItem {
             else if(actor.getInventory().contains(this))
                 actor.getInventory().remove(this);
         }
+       // if(actor.hasCapability(Status.INVINCIBLE)
+            
+
     }
 
     public int getCounter()

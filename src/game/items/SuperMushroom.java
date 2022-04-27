@@ -10,7 +10,9 @@ public class SuperMushroom extends SpecialItem {
      * Constructor
      */
     public SuperMushroom() {
+
         super("Super Mushroom", '^');
+        this.setValue(400);
     }
 
     @Override
