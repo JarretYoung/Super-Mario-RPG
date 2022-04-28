@@ -74,7 +74,6 @@ public class Goomba extends Actor implements Resettable {
 			this.hurt(20);
 			if (!this.isConscious()) {
 				map.removeActor(this);
-				System.out.println("hallo nerd");
 				return new DoNothingAction();
 			}
 		}
