@@ -24,11 +24,6 @@ public class Toad extends Npc {
         this.tradeManager = TradeManager.getInstance();
     }
 
-    @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        return null;
-    }
-
 
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
