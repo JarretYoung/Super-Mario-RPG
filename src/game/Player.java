@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.displays.Menu;
 import game.actions.AttackAction;
 import game.actions.ResetAction;
 
+
 /**
  * Class representing the Player.
  */
@@ -40,10 +41,26 @@ public class Player extends Actor implements Resettable  {
 
 		// Check Status
 		if(this.hasCapability(Status.SUPER)) {
-
+			this.increaseMaxHp(50);
 		}
 
-		// return/print the console menu
+		if (this.hasCapability(Status.RESET_AVAILABLE)) {
+			actions.add(new ResetAction());
+		}
+
+		if(this.hasCapability(Status.RESET_QUEUED)) {
+			this.heal(getMaxHp());
+			if ( this.hasCapability(Status.SUPER) ) {
+				this.removeCapability(Status.SUPER);
+			} else if (this.hasCapability(Status.INVINCIBLE)) {
+				this.removeCapability(Status.INVINCIBLE);
+			}
+
+			this.removeCapability(Status.RESET_AVAILABLE);
+		}
+
+
+
 		return menu.showMenu(this, actions, display);
 	}
 
@@ -60,24 +77,12 @@ public class Player extends Actor implements Resettable  {
 			actions.add(new AttackAction(this,direction));
 		}
 
-		//Testing not finalised yet (likely wrong)
-		if(this.hasCapability(Status.RESET_AVAILABLE)) {
-			actions.add(new ResetAction());
-		}
-
 		return actions;
 	}
 
 	@Override
 	public void resetInstance() {
-		this.heal(getMaxHp());
-		if ( this.hasCapability(Status.SUPER) ) {
-			this.removeCapability(Status.SUPER);
-		} else if (this.hasCapability(Status.INVINCIBLE)) {
-			this.removeCapability(Status.INVINCIBLE);
-		}
-
-		this.removeCapability(Status.RESET_AVAILABLE);
+		this.addCapability(Status.RESET_QUEUED);
 	}
 
 }

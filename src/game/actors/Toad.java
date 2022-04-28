@@ -32,7 +32,9 @@ public class Toad extends Npc {
         for(int i = 0; i < TradeManager.getInstance().getTradeableItems().size(); i++) {
            TradeableItem item = TradeManager.getInstance().getTradeableItems().get(i);
            actions.add(new TradeAction(this, item));
-       }
-       return actions;
+        }
+
+        actions.add(new TalkAction(this));
+        return actions;
     }
 }

@@ -94,6 +94,5 @@ public class Goomba extends Actor implements Resettable {
 	@Override
 	public void resetInstance() {
 		this.addCapability(Status.RESET_QUEUED);
-		System.out.println("Added RESET_QUEUED");
 	}
 }

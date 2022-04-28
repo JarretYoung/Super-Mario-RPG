@@ -3,6 +3,8 @@ package game.nature;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Resettable;
+import game.Status;
+import game.surfaces.Dirt;
 
 import java.util.Random;
 
@@ -55,6 +57,16 @@ public abstract class Tree extends Ground implements Resettable {
      */
     @Override
     public void tick(Location location) {
+
+
+        if(this.hasCapability(Status.RESET_QUEUED)) {
+            Random rand = new Random();
+            if (rand.nextInt(2) == 1) {
+                location.setGround(new Dirt());
+            }
+        }
+
+
         super.tick(location);
         age++;
         checkAction();
@@ -76,10 +88,5 @@ public abstract class Tree extends Ground implements Resettable {
     abstract public void checkGrowth();
 
     @Override
-    public void resetInstance() {
-        Random rand = new Random();
-        if (rand.nextInt(2) == 1) {
-            //Convert any tree into ground
-        }
-    }
+    public void resetInstance() {this.addCapability(Status.RESET_QUEUED); }
 }
