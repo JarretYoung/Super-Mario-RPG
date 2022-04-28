@@ -14,14 +14,13 @@ import game.items.SuperMushroom;
 import game.items.TradeableItem;
 import game.items.Wrench;
 
-public class Toad extends Actor {
+public class Toad extends Npc {
     /**
      * Constructor.
      */
     private TradeManager tradeManager;
     public Toad() {
-        super("Toad", '0', 10);
-        this.addCapability(Status.NPC);
+        super("Toad", '0');
         this.tradeManager = TradeManager.getInstance();
     }
 
@@ -33,8 +32,9 @@ public class Toad extends Actor {
 
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-       ActionList actions = new ActionList();
-       for(int i = 0; i < TradeManager.getInstance().getTradeableItems().size(); i++) {
+        ActionList actions = super.allowableActions(otherActor, direction, map);
+
+        for(int i = 0; i < TradeManager.getInstance().getTradeableItems().size(); i++) {
            TradeableItem item = TradeManager.getInstance().getTradeableItems().get(i);
            actions.add(new TradeAction(this, item));
        }
