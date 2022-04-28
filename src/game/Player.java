@@ -16,6 +16,8 @@ public class Player extends Actor implements Resettable  {
 
 	private final Menu menu = new Menu();
 
+	private int effectCounter;
+
 	/**
 	 * Constructor.
 	 *
@@ -39,8 +41,14 @@ public class Player extends Actor implements Resettable  {
 			return lastAction.getNextAction();
 
 		// Check Status
-		if(this.hasCapability(Status.SUPER)) {
+		if(this.hasCapability(Status.INVINCIBLE)) {
+			if(effectCounter == 10)
+				this.removeCapability(Status.INVINCIBLE);
+			effectCounter += 1;
+		}
 
+		if(!this.hasCapability(Status.INVINCIBLE)) {
+			effectCounter = 0;
 		}
 
 		// return/print the console menu

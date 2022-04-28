@@ -40,10 +40,9 @@ public class PowerStar extends SpecialItem {
                 currentLocation.removeItem(this);
             else if(actor.getInventory().contains(this))
                 actor.getInventory().remove(this);
+            else if(actor.hasCapability(Status.INVINCIBLE))
+                actor.removeCapability(Status.INVINCIBLE);
         }
-       // if(actor.hasCapability(Status.INVINCIBLE)
-            
-
     }
 
     public int getCounter()
