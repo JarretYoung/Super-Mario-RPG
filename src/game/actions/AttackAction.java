@@ -53,6 +53,8 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		if(!target.hasCapability(Status.NPC))
 			target.hurt(damage);
+		else if(target.hasCapability(Status.INVINCIBLE))
+			target.hurt(0);
 		if (!target.isConscious()) {
 			ActionList dropActions = new ActionList();
 			// drop all items
