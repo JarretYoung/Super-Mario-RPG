@@ -4,16 +4,16 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.TradeManager;
 import game.items.TradeableItem;
 
 public class TradeAction extends Action {
     private Actor target;
     private TradeableItem item;
-    private Location traderLocation;
 
-    public TradeAction(Actor target) {
+    public TradeAction(Actor target, TradeableItem item) {
         this.target = target;
-        //this.item = item;
+        this.item = item;
     }
 
     @Override
@@ -23,6 +23,6 @@ public class TradeAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-       return actor + " buys " + item + " for " + item.getValue() + "$";
+           return actor + " buys " + item + " for " +item.getValue() + "$";
     }
 }

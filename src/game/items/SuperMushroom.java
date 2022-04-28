@@ -13,6 +13,7 @@ public class SuperMushroom extends SpecialItem {
 
         super("Super Mushroom", '^');
         this.setValue(400);
+        this.addToTradeManager();
     }
 
     @Override

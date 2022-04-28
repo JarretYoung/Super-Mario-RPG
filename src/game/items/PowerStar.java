@@ -17,6 +17,7 @@ public class PowerStar extends SpecialItem {
         counter = 0;
         this.setValue(600);
         this.setStatusMessage("Mario is INVINCIBLE!");
+        this.addToTradeManager();
     }
 
     @Override
