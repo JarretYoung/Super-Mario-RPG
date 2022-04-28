@@ -5,10 +5,15 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Goomba;
+import game.actors.Toad;
+import game.items.PowerStar;
+import game.items.SuperMushroom;
+import game.items.Wrench;
 import game.surfaces.Dirt;
 import game.surfaces.Floor;
 import game.surfaces.Wall;
@@ -35,9 +40,9 @@ public class Application {
 				"................................................#...............................",
 				".................+................................#.............................",
 				".................................................##.............................",
-				"................................................##..............................",
-				".........+..............................+#____####.................+............",
-				".......................................+#_____###++.............................",
+				".......................###......................##..............................",
+				".........+.............#.#..............+#____####.................+............",
+				".......................###.............+#_____###++.............................",
 				".......................................+#______###..............................",
 				"........................................+#_____###..............................",
 				"........................+........................##.............+...............",
@@ -52,6 +57,12 @@ public class Application {
 
 			Actor mario = new Player("Player", 'm', 100);
 			world.addPlayer(mario, gameMap.at(42, 10));
+
+			Item superMushroom = new SuperMushroom();
+			Item powerStar = new PowerStar();
+			Item wrench = new Wrench();
+
+			gameMap.at(24,9).addActor(new Toad());
 
 			// FIXME: the Goomba should be generated from the Tree
 			gameMap.at(35, 10).addActor(new Goomba());
