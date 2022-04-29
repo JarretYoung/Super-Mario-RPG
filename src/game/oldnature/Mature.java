@@ -1,7 +1,6 @@
-package game.nature;
+package game.oldnature;
 
 
-import game.Resettable;
 import game.SpawnCapable;
 
 /**

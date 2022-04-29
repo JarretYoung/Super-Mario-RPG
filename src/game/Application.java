@@ -16,8 +16,7 @@ import game.items.SuperMushroom;
 import game.items.Wrench;
 import game.surfaces.Dirt;
 import game.surfaces.Floor;
-import game.surfaces.Wall;
-import game.nature.Sprout;
+//import game.oldnature.Sprout;
 
 /**
  * The main class for the Mario World game.
