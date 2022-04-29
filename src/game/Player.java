@@ -28,6 +28,7 @@ public class Player extends Actor implements Resettable  {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.RESET_AVAILABLE);
+		this.addCapability(Status.CAN_JUMP_ON_HIGH_GROUND);
 
 		// Registering instance as a resettable object
 		this.registerInstance();
