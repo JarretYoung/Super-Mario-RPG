@@ -1,9 +1,11 @@
-package game;
+package game.surfaces;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
+import game.surfaces.HighGround;
 
-public class Wall extends game.HighGround {
+
+public class Wall extends HighGround {
 
 	public Wall() {
 		super('#', "Wall",80, 20);

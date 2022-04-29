@@ -1,14 +1,10 @@
 package game.nature;
 
-import game.HighGround;
 
-public abstract class Tree extends HighGround  {
+import game.surfaces.HighGround;
 
-    /**
-     * Constructor.
-     *
-     * @param displayChar character to display for this type of terrain
-     */
+public abstract class Tree extends HighGround {
+
 
     private int age;
 

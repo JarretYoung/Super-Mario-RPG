@@ -4,33 +4,29 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import game.HighGround;
 import game.Status;
+import game.surfaces.HighGround;
 
 import java.util.Random;
 
 public class JumpAction extends Action {
 
-    private Actor jumper;
     /**
      * The Actor that is to be attacked
      */
-    private HighGround target;
+    private final HighGround target;
 
     /**
      * The direction of incoming attack.
      */
-    private String direction;
+    private final String direction;
 
     /**
      * Location of High Ground
      */
-    private Location high_ground_location;
+    private final Location high_ground_location;
 
-    private Random rand = new Random();
-
-    public JumpAction(Actor jumper, HighGround target, String direction, Location location) {
-        this.jumper = jumper;
+    public JumpAction(HighGround target, String direction, Location location) {
         this.target = target;
         this.direction = direction;
         this.high_ground_location = location;
@@ -39,6 +35,7 @@ public class JumpAction extends Action {
     @Override
     public String execute(Actor jumper, GameMap map) {
 
+        Random rand = new Random();
         String coordinates = " (" + high_ground_location.x() + ", " + high_ground_location.y() + " )";
         String success = jumper + " is now standing on " + target.getName() + coordinates + ". Look at all these angry Goombas. o.o ";
         String fail = jumper + " slipped and hurt himself for " + target.getJumpDamagePoints() + " hitpoints";

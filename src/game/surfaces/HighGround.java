@@ -1,9 +1,10 @@
-package game;
+package game.surfaces;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.Status;
 import game.actions.JumpAction;
 
 public abstract class HighGround extends Ground {
@@ -40,8 +41,8 @@ public abstract class HighGround extends Ground {
     public ActionList allowableActions(Actor actor, Location location, String direction){
         ActionList actions = new ActionList();
 
-        if (actor.hasCapability(Status.ACTOR_CAN_JUMP) && !(location.containsAnActor())){
-            actions.add(new JumpAction(actor, this, direction, location));
+        if (actor.hasCapability(Status.CAN_JUMP_ONTO_HIGH_GROUND) && !(location.containsAnActor())){
+            actions.add(new JumpAction(this, direction, location));
         }
 
        return actions;
