@@ -14,6 +14,7 @@ import game.actors.Toad;
 import game.items.PowerStar;
 import game.items.SuperMushroom;
 import game.items.Wrench;
+import game.oldnature.Sprout;
 import game.surfaces.Dirt;
 import game.surfaces.Floor;
 //import game.oldnature.Sprout;
@@ -28,7 +29,7 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout());
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new game.Wall(), new Floor(), new Sprout());
 
 			List<String> map = Arrays.asList(
 				"..........................................##..........+.........................",

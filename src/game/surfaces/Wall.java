@@ -3,7 +3,7 @@ package game;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 
-public class Wall extends HighGround {
+public class Wall extends game.HighGround {
 
 	public Wall() {
 		super('#', "Wall",80, 20);
