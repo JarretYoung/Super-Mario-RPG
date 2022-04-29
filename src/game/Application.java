@@ -14,10 +14,10 @@ import game.actors.Toad;
 import game.items.PowerStar;
 import game.items.SuperMushroom;
 import game.items.Wrench;
-import game.oldnature.Sprout;
+import game.nature.Sprout;
 import game.surfaces.Dirt;
 import game.surfaces.Floor;
-//import game.oldnature.Sprout;
+
 
 /**
  * The main class for the Mario World game.

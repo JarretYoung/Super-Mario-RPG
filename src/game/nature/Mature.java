@@ -2,9 +2,10 @@ package game.nature;
 
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
-import game.Dirt;
-import game.actor.Goomba;
-import game.actor.Koopa;
+
+import game.actors.Goomba;
+import game.actors.Koopa;
+import game.surfaces.Dirt;
 
 
 import java.util.ArrayList;

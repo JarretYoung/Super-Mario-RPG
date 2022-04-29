@@ -1,7 +1,7 @@
 package game.nature;
 
 import edu.monash.fit2099.engine.positions.Location;
-import game.items.Coin;
+import game.currency.Coin;
 
 import java.util.Random;
 
