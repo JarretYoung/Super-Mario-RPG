@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Status;
+import game.actors.Enemies;
 import game.actors.Koopa;
 import game.items.SuperMushroom;
 import game.items.Wrench;
@@ -22,7 +23,7 @@ public class BreakShellAction extends Action {
     /**
      * The Actor that is to be attacked
      */
-    protected Koopa target;
+    protected Enemies target;
 
     /**
      * The direction of incoming attack. (Subject to removal)
@@ -35,7 +36,7 @@ public class BreakShellAction extends Action {
      *
      * @param target the Actor to attack
      */
-    public BreakShellAction(Koopa target, String direction) {
+    public BreakShellAction(Enemies target, String direction) {
         this.target = target;
         this.direction = direction;
     }
@@ -43,8 +44,13 @@ public class BreakShellAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
 
+        Weapon weapon = actor.getWeapon();
+
         String result = "";
 
+//        if (weapon instanceof Wrench ) {
+//
+//        }
         if (actor.hasCapability(Status.HAS_WRENCH)) {
             target.destroyShell();
         }
@@ -59,7 +65,8 @@ public class BreakShellAction extends Action {
             // remove actor
             map.removeActor(target);
 
-            result = actor + " destroys " + target + "(dormant)";
+
+
         }
 
         return result;
@@ -67,7 +74,6 @@ public class BreakShellAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " destroys " + target + "(dormant)";
+        return actor + " destroy " + target + " shell";
     }
 }
-

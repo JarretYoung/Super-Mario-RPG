@@ -33,8 +33,7 @@ import java.util.Map;
  * @version 2.0 26/4/2022
  *
  */
-public class Koopa extends Actor implements Resettable {
-    private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+public class Koopa extends Enemies implements Resettable {
 
     /**
      * Health (while active)
@@ -44,19 +43,9 @@ public class Koopa extends Actor implements Resettable {
      * Constructor.
      */
     public Koopa() {
-        super("Koopa", 'K', 20);
-        this.behaviours.put(10, new WanderBehaviour());
-        this.behaviours.put(9, new AttackBehaviour());
-        this.behaviours.put(8, new SuicideBehaviour(this));
-
-        this.hitPoints_active = 20; //This the Koopa's hp when it is in an active state, assume = 20
+        super("Koopa", 'K', 20); // Koopa hitpoints not specified, assume = 20
+        this.hitPoints_active = 10; //This the Koopa's hp when it is in an active state
         this.addCapability(Status.KOOPA_ACTIVE);
-
-        // Registering instance as a resettable object
-        this.registerInstance();
-
-        // Giving a SuperMushroom to drop upon death
-        this.addItemToInventory(new SuperMushroom());
     }
 
     /**
@@ -78,10 +67,6 @@ public class Koopa extends Actor implements Resettable {
         if (this.hasCapability(Status.KOOPA_DORMANT)) {
             actions.add(new BreakShellAction(this,direction));
         }
-
-        //This is for testing purposes only
-        actions.add(new ResetAction());
-
         return actions;
     }
 
@@ -96,46 +81,10 @@ public class Koopa extends Actor implements Resettable {
             this.setDisplayChar('D');
             this.removeCapability(Status.KOOPA_ACTIVE);
             this.addCapability(Status.KOOPA_DORMANT);
-            this.behaviours.remove(10);
+            this.getBehaviour().clear();
         }
     }
 
-    /** This method is used to finish off the Koopa during its dormant phase
-     *
-     */
-    public void destroyShell() {
-        super.hurt(super.getMaxHp()); //if not then change to number
-    }
 
-    /**
-     * Figure out what to do next.
-     *
-     * might want to consider removing actor here
-     *
-     * @see Actor#playTurn(ActionList, Action, GameMap, Display)
-     */
-    @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        if (this.hasCapability(Status.RESET_QUEUED)) {
-            this.destroyShell();
-            if (!this.isConscious()) {
-                map.removeActor(this);
 
-                // To be changed for string output is not appropriate
-                return new DoNothingAction();
-            }
-        }
-
-        for(Behaviour Behaviour : behaviours.values()) {
-            Action action = Behaviour.getAction(this, map);
-            if ((action != null) && this.isConscious())
-                return action;
-        }
-        return new DoNothingAction();
-    }
-
-    @Override
-    public void resetInstance() {
-        this.addCapability(Status.RESET_QUEUED);
-    }
 }
