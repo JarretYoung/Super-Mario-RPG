@@ -44,13 +44,9 @@ public class BreakShellAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        Weapon weapon = actor.getWeapon();
 
         String result = "";
 
-//        if (weapon instanceof Wrench ) {
-//
-//        }
         if (actor.hasCapability(Status.HAS_WRENCH)) {
             target.destroyShell();
         }
@@ -64,8 +60,6 @@ public class BreakShellAction extends Action {
                 drop.execute(target, map);
             // remove actor
             map.removeActor(target);
-
-
 
         }
 
