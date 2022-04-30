@@ -1,92 +1,26 @@
 package game.nature;
 
-import edu.monash.fit2099.engine.positions.Ground;
-import edu.monash.fit2099.engine.positions.Location;
-import game.Resettable;
-import game.Status;
-import game.surfaces.Dirt;
 
-import java.util.Random;
+import game.surfaces.HighGround;
+
+public abstract class Tree extends HighGround {
 
 
-/**
- * @author Lup Hoong
- * @version 1.0 5/4/2022
- * comments: converted Tree into abstract Class
- */
-public abstract class Tree extends Ground implements Resettable {
-
-
-
-    /**
-     * indicates age of Tree
-     */
     private int age;
 
-    /**
-     * Constructor.
-     *
-     * @param displayChar character to display for this type of terrain
-     */
-    public Tree(char displayChar) {
-        super(displayChar);
-        // Registering instance as a resettable object
-        this.registerInstance();
+
+    public Tree(char displayChar, String name,  int jumpSuccessRate, int jumpDamagePoints) {
+        super(displayChar, name, jumpSuccessRate,jumpDamagePoints);
+        this.age = 0; // all new trees start with age 0
     }
 
-    /**
-     * Constructor.
-     *
-     */
-    public Tree(char displayChar, int age) {
-        super(displayChar);
-        this.age = age;
-    }
-
-    /**
-     * Getter for age
-     * @return overall age of Tree
-     */
     public int getAge() {
         return age;
     }
 
-    /**
-     * ticks Trees and check age for any growth
-     * @param location The location of the Ground
-     */
-    @Override
-    public void tick(Location location) {
-
-
-        if(this.hasCapability(Status.RESET_QUEUED)) {
-            Random rand = new Random();
-            if (rand.nextInt(2) == 1) {
-                location.setGround(new Dirt());
-            }
-        }
-
-
-        super.tick(location);
-        age++;
-        checkAction();
-
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    /**
-     * Checks all action for each subclasses of Tree as specified
-     * (eg
-     * sprout might grow and spawn Goomba,
-     * sampling might grow and drop coin,
-     * mature might wither, spawn Koopa, grow new sprout randomlu)
-     */
-    abstract public void checkAction();
 
-    /**
-     * Checks if subclasses of Tree will grow or wither(for Mature only)
-     */
-    abstract public void checkGrowth();
-
-    @Override
-    public void resetInstance() {this.addCapability(Status.RESET_QUEUED); }
 }

@@ -14,5 +14,7 @@ public enum Status {
     HAS_WRENCH, // used to indicate if the player has a wrench
     KOOPA_ACTIVE, // used to indicate if the Koopa is in an active state
     KOOPA_DORMANT, // used to indicate if the Koopa is in a dormant state
+    HIGH_GROUND, // used by grounds which are high grounds
+    CAN_JUMP_ONTO_HIGH_GROUND, // used by actors who can jump onto high ground
     NPC // used for actors that dont attack the player
 }
