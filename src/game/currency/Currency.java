@@ -10,7 +10,7 @@ public abstract class Currency extends Item {
     private int value;
     public Currency(String name, char displayChar, int value)
     {
-        super(name, displayChar, true);
+        super(name, displayChar, false);
         this.value = value;
         addAction(new PickUpCurrencyAction(this));
     }

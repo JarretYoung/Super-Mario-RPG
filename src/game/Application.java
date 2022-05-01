@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.positions.World;
 import game.actors.Goomba;
 import game.actors.Player;
 import game.actors.Toad;
+import game.currency.Coin;
 import game.items.PowerStar;
 import game.items.SuperMushroom;
 import game.items.Wrench;
@@ -64,10 +65,11 @@ public class Application {
 			Item superMushroom = new SuperMushroom();
 			Item powerStar = new PowerStar();
 			Item wrench = new Wrench();
+			Item coin = new Coin(10);
 
 			gameMap.at(42,9).addItem(superMushroom);
 			gameMap.at(42,9).addItem(powerStar);
-
+			gameMap.at(42,9).addItem(coin);
 			gameMap.at(24,9).addActor(new Toad());
 
 			// FIXME: the Goomba should be generated from the Tree

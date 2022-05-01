@@ -20,6 +20,7 @@ public abstract class CurrencyCollector extends Actor {
         this.wallet = new Wallet();
         this.addItemToInventory(this.wallet);
         WalletManager.getInstance().addWallet(this.wallet);
+        WalletManager.getInstance().addOwner(this);
     }
 
     public Wallet getWallet() {
