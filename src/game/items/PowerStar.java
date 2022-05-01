@@ -21,6 +21,11 @@ public class PowerStar extends SpecialItem {
     }
 
     @Override
+    public boolean temporaryEffect() {
+        return true;
+    }
+
+    @Override
     public String eatenFromGround(Actor by) {
         this.addCapability(Status.INVINCIBLE);
         return super.eatenFromGround(by);
@@ -28,13 +33,18 @@ public class PowerStar extends SpecialItem {
 
     @Override
     public String eatenFromInventory(Actor by) {
+        Actor actor = by;
+
         this.addCapability(Status.INVINCIBLE);
+        this.setCounter(0);
         return super.eatenFromInventory(by);
     }
 
     @Override
     public void tick(Location currentLocation, Actor actor) {
         counter += 1;
+        if(actor.hasCapability(Status.INVINCIBLE))
+            System.out.println(actor + " consumes Power Star - " + getCounter() + " turns remaining");
         if(counter == 10) {
             if(currentLocation.getItems().contains(this))
                 currentLocation.removeItem(this);

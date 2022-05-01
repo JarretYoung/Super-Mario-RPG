@@ -18,7 +18,8 @@ public class SuperMushroom extends SpecialItem {
 
     @Override
     public String eatenFromGround(Actor by) {
-        by.heal(MAX_HP_INCREASE);
+        Actor actor = by;
+        actor.increaseMaxHp(MAX_HP_INCREASE);
         this.addCapability(Status.TALL);
         this.addCapability(Status.SUPER);
         return super.eatenFromGround(by);
@@ -26,7 +27,8 @@ public class SuperMushroom extends SpecialItem {
 
     @Override
     public String eatenFromInventory(Actor by) {
-        by.heal(MAX_HP_INCREASE);
+        Actor actor = by;
+        actor.increaseMaxHp(MAX_HP_INCREASE);
         this.addCapability(Status.TALL);
         this.addCapability(Status.SUPER);
         return super.eatenFromInventory(by);

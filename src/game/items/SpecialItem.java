@@ -38,6 +38,10 @@ public class SpecialItem extends Item implements TradeableItem{
         this.statusMessage = statusMessage;
     }
 
+    public boolean temporaryEffect() {
+        return false;
+    }
+
     @Override
     public String traded(CurrencyCollector customer) {
         CurrencyCollector actor = customer;
@@ -60,6 +64,8 @@ public class SpecialItem extends Item implements TradeableItem{
             {
                 actor.addCapability(this.capabilitiesList().get(i));
             }
+            if(temporaryEffect())
+                actor.addItemToInventory(this);
         return result;
     }
 
@@ -73,7 +79,8 @@ public class SpecialItem extends Item implements TradeableItem{
                 actor.addCapability(this.capabilitiesList().get(i));
             }
             // Remove item from inventory
-            actor.getInventory().remove(this);
+            if(!this.temporaryEffect())
+                actor.getInventory().remove(this);
         }
         else  {
             result = "Item not in inventory";
