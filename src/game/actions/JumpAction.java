@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
+import game.currency.Coin;
+import game.surfaces.Dirt;
 import game.surfaces.HighGround;
 
 import java.util.Random;
@@ -34,7 +36,7 @@ public class JumpAction extends Action {
 
     @Override
     public String execute(Actor jumper, GameMap map) {
-
+        String ret = "";
         Random rand = new Random();
         String coordinates = " (" + high_ground_location.x() + ", " + high_ground_location.y() + " )";
         String success = jumper + " is now standing on " + target.getName() + coordinates + ". Look at all these angry Goombas. o.o ";
@@ -43,19 +45,25 @@ public class JumpAction extends Action {
         // else if actor has supermushroom jump with 100% + no damage
         if (jumper.hasCapability(Status.SUPER)){
             map.moveActor(jumper, high_ground_location);
-            return success;
+            ret = success;
+        }
+        else if(jumper.hasCapability(Status.INVINCIBLE)){
+            map.moveActor(jumper, high_ground_location);
+            map.at(high_ground_location.x(), high_ground_location.y()).setGround(new Dirt());
+            map.at(high_ground_location.x(), high_ground_location.y()).addItem(new Coin(5));
+            ret = success;
         }
         else {
             if ((rand.nextInt(100) <= target.getJumpSuccessRate())){
                 map.moveActor(jumper, high_ground_location);
-                return success;
+                ret = success;
             }
             else {
                 jumper.hurt(target.getJumpDamagePoints());
-                return fail;
+                ret = fail;
             }
         }
-
+        return ret;
 
     }
 
@@ -63,6 +71,11 @@ public class JumpAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " jumps onto " + direction + " " + target.getName() ;
+        String ret = "";
+        if(!actor.hasCapability(Status.INVINCIBLE))
+            ret = actor + " jumps onto " + direction + " " + target.getName() ;
+        else
+            ret = actor + " walks onto " + direction + " " + target.getName();
+        return ret;
     }
 }
