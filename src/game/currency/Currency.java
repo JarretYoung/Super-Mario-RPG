@@ -12,7 +12,7 @@ public abstract class Currency extends Item {
     {
         super(name, displayChar, true);
         this.value = value;
-        this.getAllowableActions().add(new PickUpCurrencyAction(this));
+        addAction(new PickUpCurrencyAction(this));
     }
 
     public int getValue() {
