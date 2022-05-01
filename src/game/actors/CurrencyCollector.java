@@ -18,7 +18,7 @@ public abstract class CurrencyCollector extends Actor {
     public CurrencyCollector(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.wallet = new Wallet();
-        this.getInventory().add(this.wallet);
+        this.addItemToInventory(this.wallet);
         WalletManager.getInstance().addWallet(this.wallet);
     }
 
