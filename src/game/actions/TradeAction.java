@@ -5,20 +5,25 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.TradeManager;
+import game.WalletManager;
+import game.actors.CurrencyCollector;
 import game.items.TradeableItem;
 
 public class TradeAction extends Action {
-    private Actor target;
+    private Actor trader;
     private TradeableItem item;
 
-    public TradeAction(Actor target, TradeableItem item) {
-        this.target = target;
+    public TradeAction(Actor actor, TradeableItem item) {
+        this.trader = actor;
         this.item = item;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        return item.traded(actor);
+        CurrencyCollector customer = null;
+        if(WalletManager.getInstance().getOwners().contains(actor))
+            customer = (CurrencyCollector) actor;
+        return item.traded(customer);
     }
 
     @Override

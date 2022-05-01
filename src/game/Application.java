@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Goomba;
+import game.actors.Player;
 import game.actors.Toad;
 import game.items.PowerStar;
 import game.items.SuperMushroom;

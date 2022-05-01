@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.capabilities.CapabilitySet;
 import edu.monash.fit2099.engine.items.Item;
 import game.actions.ConsumeAction;
+import game.actors.CurrencyCollector;
 
 public class SpecialItem extends Item implements TradeableItem{
     private final CapabilitySet capabilitySet = new CapabilitySet();
@@ -38,11 +39,16 @@ public class SpecialItem extends Item implements TradeableItem{
     }
 
     @Override
-    public String traded(Actor customer) {
-        Actor actor = customer;
+    public String traded(CurrencyCollector customer) {
+        CurrencyCollector actor = customer;
         String result = "";
-        result = actor + " " + "buys" + " " + this + " for " + this.getValue();
-        actor.getInventory().add(this);
+        if(customer.getWallet().getBalance() >= this.getValue()) {
+            result = actor + " " + "buys" + " " + this + " for " + this.getValue();
+            customer.getWallet().removeBalance(this.getValue());
+            actor.getInventory().add(this);
+        }
+        else
+            result = actor + " does not have sufficient fund for " + this;
         return result;
     }
 

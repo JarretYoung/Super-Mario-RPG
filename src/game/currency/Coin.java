@@ -2,6 +2,7 @@ package game.currency;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.items.PickUpItemAction;
 import game.Resettable;
 
 import java.sql.ResultSet;
@@ -14,30 +15,16 @@ import java.sql.ResultSet;
  * @author Lup Hoong
  * @version 1.0 5/4/2022
  */
-public class Coin extends Item implements Resettable {
+public class Coin extends Currency implements Resettable {
 
-    /**
-     * indicates the value of Coin instance
-     */
-    private final int value;
 
     /**
      * Constructor
      * @param value of coin object
      */
     public Coin(int value) {
-        super("coin", '$', true);
-        this.value = value;
-        // Registering instance as a resettable object
+        super("coin", '$', value);
         this.registerInstance();
-    }
-
-    /**
-     * Getter
-     * @return amount
-     */
-    public int getAmount() {
-        return value;
     }
 
     @Override
