@@ -16,7 +16,7 @@ public class Goomba extends Enemy implements Resettable {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20);
-		this.getBehaviour().put(7, new SuicideBehaviour(this));
+		this.getBehaviour().put(7, new SuicideBehaviour(this, 10));
 	}
 
 	@Override

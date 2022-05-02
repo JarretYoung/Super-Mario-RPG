@@ -14,20 +14,23 @@ import java.util.Random;
 
 public class SuicideBehaviour implements Behaviour{
 
-    private final Actor target;
+    private Actor target;
+
+    private int chance;
 
 
     /**
      * Constructor.
      */
-    public SuicideBehaviour(Actor subject) {
+    public SuicideBehaviour(Actor subject, int chances) {
         this.target = subject;
+        this.chance = chances;
     }
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Random rand = new Random();
-        if (rand.nextInt(10) == 0) {
+        if (rand.nextInt(this.chance) == 0) {
             actor.hurt(1000);
         }
 
