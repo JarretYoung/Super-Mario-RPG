@@ -5,11 +5,23 @@ import game.actors.Goomba;
 
 import java.util.Random;
 
+/**
+ * Tree's first stage
+ */
 public class Sprout extends Tree implements Growable{
 
+    /**
+     * chance for sprout to spawn goomba
+     */
     private double spawnGoombaChance;
+    /**
+     * age reached to grow into next stage
+     */
     private int maturityAge;
 
+    /**
+     * constructor for Sprout
+     */
     public Sprout(){
         super ('+', "Sprout",90,10); // displayChar, 90% jumpSuccessRate, -10 damage points
         this.spawnGoombaChance = 0.1;
@@ -17,17 +29,26 @@ public class Sprout extends Tree implements Growable{
 
     }
 
+    /**
+     * interface method by sprout, grow into sapling
+     * @param location locaton
+     */
     @Override
     public void grow(Location location) {
         location.setGround(new Sapling());
     }
 
+    /**
+     * sprout increase age each tick, spawns goomba
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
 
-        // Sprout ages
+        // increment Sprouts ages
         super.setAge(super.getAge() + 1);
 
+        // grow when maturity age reached
         if (super.getAge() > this.maturityAge){
             grow(location);
         }

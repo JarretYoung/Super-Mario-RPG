@@ -12,17 +12,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Tree's third stage
+ */
 public class Mature extends Tree implements Growable {
 
+    /**
+     * mature tree chance to wither each tick
+     */
     private double witherChance;
+    /**
+     * mature tree chance to spawn koopa each tick
+     */
     private double spawnKoopaChance;
 
+    /**
+     * constructor
+     */
     public Mature(){
         super ('T', "Mature Tree ",70,30);
         this.witherChance = 0.2;
         this.spawnKoopaChance = 0.15;
     }
 
+    /**
+     * interface implementation of Mature tree: withers will turn into dirt,
+     * every 5 turn spawn sprout in surrounding
+     * @param location
+     */
     @Override
     public void grow(Location location) {
 
@@ -44,6 +61,10 @@ public class Mature extends Tree implements Growable {
 
     }
 
+    /**
+     * Mature tree age, might spawn koopa, and grow
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
         super.setAge(super.getAge() + 1);

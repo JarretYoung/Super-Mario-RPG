@@ -7,6 +7,9 @@ import edu.monash.fit2099.engine.positions.Ground;
  */
 public class Dirt extends Ground {
 
+	/**
+	 * Constructor
+	 */
 	public Dirt() {
 		super('.');
 	}

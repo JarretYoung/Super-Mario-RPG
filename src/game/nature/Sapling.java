@@ -5,10 +5,26 @@ import game.currency.Coin;
 
 import java.util.Random;
 
+/**
+ * Tree's second stage
+ */
 public class Sapling extends Tree implements Growable{
+    /**
+     * sapling chance to spawn coin
+     */
     private double spawnCoinChance;
+    /**
+     * sapling spawned coin value
+     */
     private int spawnCoinValue;
+    /**
+     * sapling maturity age to grow to next tree stage
+     */
     private int maturityAge;
+
+    /**
+     * constructor
+     */
     public Sapling(){
 
         super ('t', "Sapling", 80,20 );
@@ -16,12 +32,19 @@ public class Sapling extends Tree implements Growable{
         this.spawnCoinValue = 20;
         this.maturityAge = 9;
     }
-
+    /**
+     * interface method by sprout
+     * @param location locaton
+     */
     @Override
     public void grow(Location location) {
         location.setGround(new Mature());
     }
 
+    /**
+     * Sapling age, spawn coin eahc tick
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
         super.setAge(super.getAge() + 1);

@@ -16,7 +16,13 @@ public abstract class HighGround extends Ground {
      * High Ground's name
      */
     private final String name;
+    /**
+     * Success rate of jumping onto high ground
+     */
     private int jumpSuccessRate;
+    /**
+     * Damage done onto jump for failed jumps. This is specific high ground child classes.
+     */
     private int jumpDamagePoints;
 
     /**
@@ -66,7 +72,7 @@ public abstract class HighGround extends Ground {
     }
 
     /**
-     * getter for junp succes rate
+     * getter for jump success rate
      * @return jump success rate
      */
     public int getJumpSuccessRate() {
@@ -74,7 +80,7 @@ public abstract class HighGround extends Ground {
     }
 
     /**
-     * getter for junp damage points
+     * getter for jump damage points
      * @return jump damage points
      */
     public int getJumpDamagePoints() {
