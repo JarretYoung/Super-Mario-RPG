@@ -4,8 +4,16 @@ import edu.monash.fit2099.engine.actors.Actor;
 import game.currency.WalletManager;
 import game.currency.Wallet;
 
+/**
+ * Class of currency collectors that extends Actor
+ * @author Jastej Gill
+ * @version 2.0 30/4/2022
+ */
 public abstract class CurrencyCollector extends Actor {
 
+    /**
+     * Wallet of currency collector
+     */
     private Wallet wallet;
     /**
      * Constructor.
@@ -22,6 +30,10 @@ public abstract class CurrencyCollector extends Actor {
         WalletManager.getInstance().addOwner(this);
     }
 
+    /**
+     * get wallet of currency collector
+     * @return wallet of currency collector
+     */
     public Wallet getWallet() {
         Wallet ret = null;
         int index = this.getInventory().indexOf(this.wallet);
