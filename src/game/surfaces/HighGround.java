@@ -34,7 +34,10 @@ public abstract class HighGround extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        return false;
+        boolean ret = false;
+        if(!actor.hasCapability(Status.INVINCIBLE))
+            ret = true;
+        return ret;
     }
 
     @Override
