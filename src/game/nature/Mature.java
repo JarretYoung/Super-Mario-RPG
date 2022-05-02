@@ -15,19 +15,19 @@ import java.util.Random;
 public class Mature extends Tree implements Growable {
 
     private double witherChance;
+    private double spawnKoopaChance;
 
     public Mature(){
         super ('T', "Mature Tree ",70,30);
         this.witherChance = 0.2;
+        this.spawnKoopaChance = 0.15;
     }
 
     @Override
     public void grow(Location location) {
 
-        // grow a new sprout (+) in one of the surrounding fertile squares, randomly.
+        // grow one new sprout (+) in one of the surrounding fertile squares, randomly.
         // If there is no available fertile square, it will stop growing sprouts. At the moment, the only fertile ground is Dirt.
-        // location.getExits()
-        // location.setGround(new Sprout());
         List<Exit> dirtExits = new ArrayList<>();
 
         // add exits which are Dirt to dirtExit
@@ -42,9 +42,6 @@ public class Mature extends Tree implements Growable {
         }
 
 
-
-
-
     }
 
     @Override
@@ -53,17 +50,17 @@ public class Mature extends Tree implements Growable {
 
         //It has a 15% chance to spawn Koopa in every turn. If an actor stands on it, it cannot spawn Koopa.
         if (!location.containsAnActor()){
-            if (new Random().nextDouble() <= 0.15){
+            if (new Random().nextDouble() <= this.spawnKoopaChance){
                 location.addActor(new Koopa());
             }
         }
-
 
         //20% to wither and die (becomes Dirt) in every turn.
         if (new Random().nextDouble() <= this.witherChance  ){
             location.setGround(new Dirt());
         }
 
+        // every 5 turns, grow sprouts on random squares around it
         if (super.getAge() > 5){
             super.setAge(0);
             grow(location);

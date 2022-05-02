@@ -7,9 +7,13 @@ import java.util.Random;
 
 public class Sprout extends Tree implements Growable{
 
+    private double spawnGoombaChance;
+    private int maturityAge;
+
     public Sprout(){
         super ('+', "Sprout",90,10); // displayChar, 90% jumpSuccessRate, -10 damage points
-
+        this.spawnGoombaChance = 0.1;
+        this.maturityAge = 9;
 
     }
 
@@ -24,13 +28,13 @@ public class Sprout extends Tree implements Growable{
         // Sprout ages
         super.setAge(super.getAge() + 1);
 
-        if (super.getAge() > 9){
+        if (super.getAge() > this.maturityAge){
             grow(location);
         }
 
         //It has a 10% chance to spawn Goomba on its position in every turn. If any actor stands on it, it cannot spawn Goomba.
         if (!location.containsAnActor()){
-            if (new Random().nextDouble() <= 0.1){
+            if (new Random().nextDouble() <= this.spawnGoombaChance){
                 location.addActor(new Goomba());
             }
         }
