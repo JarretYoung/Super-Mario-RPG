@@ -67,7 +67,7 @@ public class Application {
 			Item wrench = new Wrench();
 			Item coin = new Coin(10);
 
-
+			mario.addItemToInventory(wrench);
 
 			gameMap.at(42,9).addItem(superMushroom);
 			gameMap.at(42,9).addItem(powerStar);
