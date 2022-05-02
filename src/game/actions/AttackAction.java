@@ -45,16 +45,29 @@ public class AttackAction extends Action {
 
 		Weapon weapon = actor.getWeapon();
 
-		if (!(rand.nextInt(100) <= weapon.chanceToHit()) && !target.hasCapability(Status.INVINCIBLE)) {
+		final int MAX_DAMAGE = 9999;
+
+		if (!(rand.nextInt(100) <= weapon.chanceToHit()) && !actor.hasCapability(Status.INVINCIBLE)) {
 			return actor + " misses " + target + ".";
 		}
 
 		int damage = weapon.damage();
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-		if(!target.hasCapability(Status.NPC))
-			target.hurt(damage);
-		else if(target.hasCapability(Status.INVINCIBLE))
+
+		if(target.hasCapability(Status.INVINCIBLE))
 			target.hurt(0);
+
+		if(target.hasCapability(Status.NPC))
+			return "Can't hit " + actor +"!";
+
+		if(actor.hasCapability(Status.INVINCIBLE))
+			target.hurt(MAX_DAMAGE);
+
+		if(target.hasCapability(Status.SUPER)) {
+			target.removeCapability(Status.SUPER);
+			target.removeCapability(Status.TALL);
+		}
+
 		if (!target.isConscious()) {
 			ActionList dropActions = new ActionList();
 			// drop all items

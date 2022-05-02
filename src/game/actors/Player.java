@@ -65,7 +65,7 @@ public class Player extends CurrencyCollector implements Resettable {
 
 		System.out.println(this + this.printHp() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
 		System.out.println("wallet: $" + this.getWallet().getBalance());
-
+		System.out.println(this.getInventory());
 		return menu.showMenu(this, actions, display);
 	}
 

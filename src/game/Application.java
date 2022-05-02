@@ -67,10 +67,13 @@ public class Application {
 			Item wrench = new Wrench();
 			Item coin = new Coin(10);
 
+
+
 			gameMap.at(42,9).addItem(superMushroom);
 			gameMap.at(42,9).addItem(powerStar);
 			gameMap.at(42,9).addItem(coin);
 			gameMap.at(24,9).addActor(new Toad());
+
 
 			// FIXME: the Goomba should be generated from the Tree
 			gameMap.at(35, 10).addActor(new Goomba());
