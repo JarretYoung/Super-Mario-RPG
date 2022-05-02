@@ -59,6 +59,7 @@ public class Player extends CurrencyCollector implements Resettable {
 			actions.add(new ResetAction());
 		}
 
+		// If reset is queued, this instance of player would be healed to max hp and all statuses will be purged
 		if(this.hasCapability(Status.RESET_QUEUED)) {
 			this.heal(getMaxHp());
 			if ( this.hasCapability(Status.SUPER) ) {
