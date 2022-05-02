@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 
 import game.reset.Resettable;
-import game.actors.Koopa;
+import game.actors.enemies.Koopa;
 import game.surfaces.Dirt;
 
 

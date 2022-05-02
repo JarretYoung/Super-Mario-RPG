@@ -1,5 +1,7 @@
 package game.currency;
 
+import edu.monash.fit2099.engine.positions.Location;
+import game.Status;
 import game.reset.Resettable;
 
 
@@ -23,7 +25,16 @@ public class Coin extends Currency implements Resettable {
     }
 
     @Override
+    public void tick(Location currentLocation) {
+        super.tick(currentLocation);
+
+        if (this.hasCapability(Status.RESET_QUEUED)) {
+            currentLocation.removeItem(this);
+        }
+    }
+
+    @Override
     public void resetInstance() {
-        //Find a way to remove this object from the ground
+        this.addCapability(Status.RESET_QUEUED);
     }
 }

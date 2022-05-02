@@ -1,7 +1,8 @@
-package game.actors;
+package game.actors.enemies;
 
 
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.actors.enemies.Enemy;
 import game.reset.Resettable;
 import game.behaviours.*;
 

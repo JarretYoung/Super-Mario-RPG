@@ -1,15 +1,15 @@
-package game.actors;
+package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.actors.enemies.Enemy;
 import game.items.SuperMushroom;
 import game.reset.Resettable;
 import game.actions.AttackAction;
 import game.actions.BreakShellAction;
 import game.Status;
-import game.items.SuperMushroom;
 
 /**This class represents the Turtle enemy known as the Koopa which is a regular enemy in the Mario
  * universe. This class acts as an enemy to the player and will engage in combat with the player

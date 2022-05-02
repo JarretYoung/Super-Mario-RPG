@@ -2,7 +2,7 @@ package game.nature;
 
 import edu.monash.fit2099.engine.positions.Location;
 import game.reset.Resettable;
-import game.actors.Goomba;
+import game.actors.enemies.Goomba;
 
 import java.util.Random;
 

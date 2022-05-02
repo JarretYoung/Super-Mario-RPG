@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
-import game.actors.Enemy;
+import game.actors.enemies.Enemy;
 
 /** This class is used to destroy the shell of the Koopa
  *
