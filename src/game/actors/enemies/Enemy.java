@@ -72,6 +72,7 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
+        // If reset is queued then remove this instance of enemy from this location
         if (this.hasCapability(Status.RESET_QUEUED)) {
             map.removeActor(this);
 

@@ -28,6 +28,7 @@ public class Coin extends Currency implements Resettable {
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
 
+        // If reset is queued then remove this instance of coin from current location
         if (this.hasCapability(Status.RESET_QUEUED)) {
             currentLocation.removeItem(this);
         }
