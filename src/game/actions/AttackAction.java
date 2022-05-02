@@ -45,39 +45,43 @@ public class AttackAction extends Action {
 
 		Weapon weapon = actor.getWeapon();
 
+		String result;
+
 		final int MAX_DAMAGE = 9999;
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit()) && !actor.hasCapability(Status.INVINCIBLE)) {
-			return actor + " misses " + target + ".";
+			result = actor + " misses " + target + ".";
 		}
 
-		int damage = weapon.damage();
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		else {
+			int damage = weapon.damage();
+			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
-		if(target.hasCapability(Status.INVINCIBLE))
-			target.hurt(0);
+			if (target.hasCapability(Status.INVINCIBLE))
+				target.hurt(0);
 
-		if(target.hasCapability(Status.NPC))
-			return "Can't hit " + actor +"!";
+			else if (actor.hasCapability(Status.INVINCIBLE))
+				target.hurt(MAX_DAMAGE);
 
-		if(actor.hasCapability(Status.INVINCIBLE))
-			target.hurt(MAX_DAMAGE);
+			else
+				target.hurt(damage);
 
-		if(target.hasCapability(Status.SUPER)) {
-			target.removeCapability(Status.SUPER);
-			target.removeCapability(Status.TALL);
-		}
+			if (target.hasCapability(Status.SUPER)) {
+				target.removeCapability(Status.SUPER);
+				target.removeCapability(Status.TALL);
+			}
 
-		if (!target.isConscious()) {
-			ActionList dropActions = new ActionList();
-			// drop all items
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-			// remove actor
-			map.removeActor(target);
-			result += System.lineSeparator() + target + " is killed.";
+			if (!target.isConscious()) {
+				ActionList dropActions = new ActionList();
+				// drop all items
+				for (Item item : target.getInventory())
+					dropActions.add(item.getDropAction(actor));
+				for (Action drop : dropActions)
+					drop.execute(target, map);
+				// remove actor
+				map.removeActor(target);
+				result += System.lineSeparator() + target + " is killed.";
+			}
 		}
 
 		return result;
