@@ -19,6 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** This class is the generic class for an enemy class that would form the base for all enemies moving forwards
+ *
+ */
 public abstract class Enemy extends Actor implements Resettable {
 
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour

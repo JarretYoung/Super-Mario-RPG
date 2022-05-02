@@ -9,6 +9,9 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 
+/** This class represents the behaviour of wandering around aimlessly
+ *
+ */
 public class WanderBehaviour extends Action implements Behaviour {
 
 	private final Random random = new Random();

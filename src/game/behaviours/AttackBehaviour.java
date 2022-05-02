@@ -8,6 +8,9 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.actions.AttackAction;
 
+/**
+ * This class represents the behaviour to attack others around in the surrounding
+ */
 public class AttackBehaviour extends Action implements Behaviour{
 
     /**

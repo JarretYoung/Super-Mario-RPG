@@ -24,10 +24,10 @@ public class BreakShellAction extends Action {
     protected String direction;
 
 
-    /**
-     * Constructor.
+    /** This is the constructor for the BreakShellAction
      *
-     * @param target the Actor to attack
+     * @param target is the target of the breakShellAction
+     * @param direction is the direction that the target is at
      */
     public BreakShellAction(Enemy target, String direction) {
         this.target = target;
