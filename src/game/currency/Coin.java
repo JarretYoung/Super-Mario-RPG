@@ -6,11 +6,11 @@ import game.reset.Resettable;
 
 
 /**
- * Coins
- * Capabilities: Picking up a coin should increase the Player's wallet balance. (have not implemented)
+ * Coin class that extends abstract class currency
+ * Capabilities: Picking up a coin should increase the Player's wallet balance.
  *
  * @author Lup Hoong
- * @version 1.0 5/4/2022
+ * @version 1.0 21/4/2022
  */
 public class Coin extends Currency implements Resettable {
 
@@ -24,6 +24,10 @@ public class Coin extends Currency implements Resettable {
         this.registerInstance();
     }
 
+    /**
+     * Allows coin to be removed when reset is queued
+     * @param currentLocation The location of the ground on which we lie.
+     */
     @Override
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
@@ -33,6 +37,9 @@ public class Coin extends Currency implements Resettable {
         }
     }
 
+    /**
+     * Queues reset for coin
+     */
     @Override
     public void resetInstance() {
         this.addCapability(Status.RESET_QUEUED);

@@ -6,17 +6,31 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.items.SpecialItem;
 
+/**
+ * Consume action consumes special items
+ */
 public class ConsumeAction extends Action {
+    /**
+     * Item consumed by actor
+     */
     private SpecialItem itemConsumed;
 
-    public SpecialItem getItemConsumed() {
-        return itemConsumed;
-    }
 
+    /**
+     * Constructor
+     * @param item Item consumed by actor
+     */
     public ConsumeAction(SpecialItem item)
     {
         this.itemConsumed = item;
     }
+
+    /**
+     * Execution for ConsumeAction
+     * @param actor actor consumes special item
+     * @param map The map the actor is on.
+     * @return message
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         String ret = "";
@@ -30,6 +44,11 @@ public class ConsumeAction extends Action {
         return ret;
     }
 
+    /**
+     * Menu description shown to player
+     * @param actor The actor performing the action.
+     * @return String of option to perform action
+     */
     public String menuDescription(Actor actor) {
         return actor + " eats " + itemConsumed;
     }

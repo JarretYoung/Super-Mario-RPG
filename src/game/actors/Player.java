@@ -39,6 +39,15 @@ public class Player extends CurrencyCollector implements Resettable {
 	}
 
 	@Override
+	/**
+	 * Select and return an action to perform on the current turn.
+	 *
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return the Action to be performed
+	 */
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
@@ -67,11 +76,23 @@ public class Player extends CurrencyCollector implements Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
+	/**
+	 * Gets display character of the actor, capital M if player is tall
+	 * @return display character
+	 */
 	@Override
 	public char getDisplayChar(){
 		return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
 	}
 
+	/**
+	 * Returns a new collection of the Actions that the otherActor can do to the current Actor.
+	 *
+	 * @param otherActor the Actor that might be performing attack
+	 * @param direction  String representing the direction of the other Actor
+	 * @param map        current GameMap
+	 * @return A collection of Actions.
+	 */
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 		ActionList actions = new ActionList();
@@ -83,8 +104,9 @@ public class Player extends CurrencyCollector implements Resettable {
 		return actions;
 	}
 
-
-
+	/**
+	 * Allows player to be reset
+	 */
 	@Override
 	public void resetInstance() {
 		this.addCapability(Status.RESET_QUEUED);

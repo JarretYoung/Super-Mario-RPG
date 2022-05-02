@@ -86,7 +86,7 @@ public class JumpAction extends Action {
     /**
      * Menu description shown to player
      * @param actor The actor performing the action.
-     * @return
+     * @return String of option to perform action
      */
 
     @Override

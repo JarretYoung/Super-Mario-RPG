@@ -7,10 +7,24 @@ import edu.monash.fit2099.engine.items.Item;
 import game.actions.ConsumeAction;
 import game.actors.CurrencyCollector;
 
+/**Class of Special items that implements interface TradeableItem
+ * Items that give the consumer special capabilities
+ * @author Jastej Gill
+ * @version 2.0 29/4/2022
+ *
+ */
 public class SpecialItem extends Item implements TradeableItem{
-    private final CapabilitySet capabilitySet = new CapabilitySet();
+    /**
+     * Value of special item
+     */
     private int value;
+    /**
+     * Message returned when item is eaten
+     */
     private String statusMessage = "";
+    /**
+     * Action to consume special item
+     */
     private Action consumeAction;
     /***
      * Constructor.
@@ -23,34 +37,58 @@ public class SpecialItem extends Item implements TradeableItem{
         addAction(consumeAction);
     }
 
+    /**
+     * Accessor for value of special item
+     * @return integer value of special item
+     */
     @Override
     public int getValue() {
         return value;
     }
 
+    /**
+     * Mutator for value of special item
+     */
     @Override
     public void setValue(int value) {
         this.value = value;
     }
 
+    /**
+     * Accessor for status message of special item
+     * @return string of updated status of actor after consuming special item
+     */
     public String getStatusMessage() {
         return statusMessage;
     }
 
+    /**
+    * Mutator for status message of special item
+    */
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
     }
 
+    /**
+     * Set special item's effect is temporary or permanent
+     * @return false
+     */
     public boolean temporaryEffect() {
         return false;
     }
 
+    /**
+     * Remove ability to consume special item
+     */
     public void removeConsumability() {
         this.removeAction(consumeAction);
     }
 
-
-
+    /**
+     * Traded method called when trade action is performed on special item
+     * @param customer actor that purchases special item
+     * @return String to execute method of result of item being traded
+     */
     @Override
     public String traded(CurrencyCollector customer) {
         CurrencyCollector actor = customer;
@@ -65,6 +103,11 @@ public class SpecialItem extends Item implements TradeableItem{
         return result;
     }
 
+    /**
+     * Method called when consume action is performed on special item while item is on the ground
+     * @param by actor that eats special item
+     * @return String to execute method of result of item being eaten
+     */
     public String eatenFromGround(Actor by) {
         Actor actor = by;
         String result = this.getStatusMessage();
@@ -81,6 +124,11 @@ public class SpecialItem extends Item implements TradeableItem{
         return result;
     }
 
+    /**
+     * Method called when consume action is performed on special item while item is in inventory
+     * @param by actor that eats special item
+     * @return String to execute method of result of item being eaten
+     */
     public String eatenFromInventory(Actor by) {
         Actor actor = by;
         String result = this.getStatusMessage();
