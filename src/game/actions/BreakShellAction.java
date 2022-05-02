@@ -51,6 +51,10 @@ public class BreakShellAction extends Action {
             target.destroyShell();
         }
 
+        else if(!actor.hasCapability(Status.HAS_WRENCH)) {
+            System.out.println("Need a wrench to break Koopa's shell!");
+        }
+
         if (!target.isConscious()) {
             ActionList dropActions = new ActionList();
             // drop all items

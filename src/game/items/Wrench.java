@@ -36,7 +36,7 @@ public class Wrench extends WeaponItem implements TradeableItem{
         if(customer.getWallet().getBalance() >= this.getValue()) {
             result = actor + " " + "buys" + " " + this + " for " + this.getValue();
             customer.getWallet().removeBalance(this.getValue());
-            actor.getInventory().add(this);
+            actor.addItemToInventory(this);
         }
         else
             result = actor + " does not have sufficient fund for " + this;

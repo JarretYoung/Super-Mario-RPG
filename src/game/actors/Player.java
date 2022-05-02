@@ -43,9 +43,6 @@ public class Player extends CurrencyCollector implements Resettable {
 			return lastAction.getNextAction();
 
 		// Check Status
-		if(this.hasCapability(Status.SUPER)) {
-			this.increaseMaxHp(50);
-		}
 
 		if (this.hasCapability(Status.RESET_AVAILABLE)) {
 			actions.add(new ResetAction());
@@ -62,8 +59,9 @@ public class Player extends CurrencyCollector implements Resettable {
 			this.removeCapability(Status.RESET_AVAILABLE);
 		}
 
-
-
+		System.out.println(this + this.printHp() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
+		System.out.println("wallet: $" + this.getWallet().getBalance());
+		System.out.println(this.getInventory());
 		return menu.showMenu(this, actions, display);
 	}
 
@@ -82,6 +80,8 @@ public class Player extends CurrencyCollector implements Resettable {
 
 		return actions;
 	}
+
+
 
 	@Override
 	public void resetInstance() {

@@ -1,5 +1,6 @@
 package game.items;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.capabilities.CapabilitySet;
 import edu.monash.fit2099.engine.items.Item;
@@ -10,6 +11,8 @@ public class SpecialItem extends Item implements TradeableItem{
     private final CapabilitySet capabilitySet = new CapabilitySet();
     private int value;
     private String statusMessage = "";
+    private Action consumeAction;
+    private Actor consumer;
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -17,7 +20,8 @@ public class SpecialItem extends Item implements TradeableItem{
      */
     public SpecialItem(String name, char displayChar) {
         super(name, displayChar, true);
-        addAction(new ConsumeAction(this));
+        this.consumeAction = new ConsumeAction(this);
+        addAction(consumeAction);
     }
 
     @Override
@@ -38,6 +42,17 @@ public class SpecialItem extends Item implements TradeableItem{
         this.statusMessage = statusMessage;
     }
 
+    public boolean temporaryEffect() {
+        return false;
+    }
+
+    public void removeConsumability() {
+        this.removeAction(consumeAction);
+    }
+
+    public Actor getConsumer() { return consumer; }
+
+
     @Override
     public String traded(CurrencyCollector customer) {
         CurrencyCollector actor = customer;
@@ -45,7 +60,7 @@ public class SpecialItem extends Item implements TradeableItem{
         if(customer.getWallet().getBalance() >= this.getValue()) {
             result = actor + " " + "buys" + " " + this + " for " + this.getValue();
             customer.getWallet().removeBalance(this.getValue());
-            actor.getInventory().add(this);
+            actor.addItemToInventory(this);
         }
         else
             result = actor + " does not have sufficient fund for " + this;
@@ -60,6 +75,11 @@ public class SpecialItem extends Item implements TradeableItem{
             {
                 actor.addCapability(this.capabilitiesList().get(i));
             }
+            if(temporaryEffect()) {
+                actor.addItemToInventory(this);
+                this.togglePortability();
+                this.removeConsumability();
+            }
         return result;
     }
 
@@ -73,7 +93,13 @@ public class SpecialItem extends Item implements TradeableItem{
                 actor.addCapability(this.capabilitiesList().get(i));
             }
             // Remove item from inventory
-            actor.getInventory().remove(this);
+            if(!this.temporaryEffect())
+                actor.getInventory().remove(this);
+
+            else if(temporaryEffect()) {
+                this.togglePortability();
+                this.removeConsumability();
+            }
         }
         else  {
             result = "Item not in inventory";
