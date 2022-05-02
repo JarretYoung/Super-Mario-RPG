@@ -62,10 +62,6 @@ public class Koopa extends Enemy implements Resettable {
         return actions;
     }
 
-    @Override
-    public boolean isConscious() {
-        return hitPoints_active > 0;
-    }
 
     /** This method it used to reduce the hitPoints_active (hitpoints of the active Koopa)
      *
