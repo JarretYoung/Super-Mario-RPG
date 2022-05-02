@@ -1,6 +1,4 @@
-package game;
-
-import game.items.TradeableItem;
+package game.items;
 
 import java.util.ArrayList;
 
