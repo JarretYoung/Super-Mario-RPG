@@ -8,6 +8,8 @@ import game.actors.CurrencyCollector;
 public interface TradeableItem{
     /**
      *Interface methods to be implemented
+     *
+     * @return the value of the Tradeable item
      */
     int getValue();
 
