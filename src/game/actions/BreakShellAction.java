@@ -5,15 +5,8 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.Weapon;
-import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Status;
-import game.actors.Enemies;
-import game.actors.Koopa;
-import game.items.SuperMushroom;
-import game.items.Wrench;
-
-import java.util.Random;
+import game.actors.Enemy;
 
 /** This class is used to destroy the shell of the Koopa
  *
@@ -23,7 +16,7 @@ public class BreakShellAction extends Action {
     /**
      * The Actor that is to be attacked
      */
-    protected Enemies target;
+    protected Enemy target;
 
     /**
      * The direction of incoming attack. (Subject to removal)
@@ -36,7 +29,7 @@ public class BreakShellAction extends Action {
      *
      * @param target the Actor to attack
      */
-    public BreakShellAction(Enemies target, String direction) {
+    public BreakShellAction(Enemy target, String direction) {
         this.target = target;
         this.direction = direction;
     }

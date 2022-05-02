@@ -1,24 +1,12 @@
 package game.actors;
 
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Resettable;
 import game.actions.AttackAction;
 import game.actions.BreakShellAction;
-import game.actions.ResetAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
 import game.Status;
-import game.behaviours.SuicideBehaviour;
-import game.behaviours.WanderBehaviour;
-import game.items.SuperMushroom;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**This class represents the Turtle enemy known as the Koopa which is a regular enemy in the Mario
  * universe. This class acts as an enemy to the player and will engage in combat with the player
@@ -33,7 +21,7 @@ import java.util.Map;
  * @version 2.0 26/4/2022
  *
  */
-public class Koopa extends Enemies implements Resettable {
+public class Koopa extends Enemy implements Resettable {
 
     /**
      * Health (while active)

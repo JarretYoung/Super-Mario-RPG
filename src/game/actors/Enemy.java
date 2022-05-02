@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.capabilities.CapabilitySet;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -16,12 +15,11 @@ import game.actions.AttackAction;
 import game.actions.BreakShellAction;
 import game.behaviours.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Enemies extends Actor implements Resettable {
+public abstract class Enemy extends Actor implements Resettable {
 
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
@@ -32,7 +30,7 @@ public abstract class Enemies extends Actor implements Resettable {
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints the Actor's starting hit points
      */
-    public Enemies(String name, char displayChar, int hitPoints) {
+    public Enemy(String name, char displayChar, int hitPoints) {
         super(name,displayChar,hitPoints);
 
         // Adding standard behaviours to the enemy
