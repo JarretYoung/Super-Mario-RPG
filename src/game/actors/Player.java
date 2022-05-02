@@ -48,10 +48,6 @@ public class Player extends CurrencyCollector implements Resettable {
 			actions.add(new ResetAction());
 		}
 
-		if (this.hasCapability(Status.RESET_AVAILABLE)) {
-			actions.add(new ResetAction());
-		}
-
 		if(this.hasCapability(Status.RESET_QUEUED)) {
 			this.heal(getMaxHp());
 			if ( this.hasCapability(Status.SUPER) ) {
