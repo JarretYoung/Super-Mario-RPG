@@ -21,7 +21,7 @@ public abstract class Tree extends HighGround implements Resettable {
 
     /**
      * constructor for tree
-     * @param displayChar
+     * @param displayChar is the character to be displayed on the map
      * @param name tree name
      * @param jumpSuccessRate tree jump Success Rate
      * @param jumpDamagePoints  tree jump Success Rate

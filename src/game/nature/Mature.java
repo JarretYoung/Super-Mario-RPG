@@ -38,7 +38,7 @@ public class Mature extends Tree implements Growable, Resettable {
     /**
      * interface implementation of Mature tree: withers will turn into dirt,
      * every 5 turn spawn sprout in surrounding
-     * @param location
+     * @param location is the location of this instance of Mature class
      */
     @Override
     public void grow(Location location) {

@@ -9,7 +9,7 @@ import java.util.List;
  * A3: Think about how will you improve this implementation in the future assessment.
  * What could be the drawbacks of this implementation?
  *
- * @editor Garret Yong Shern Min
+ * @author Garret Yong Shern Min
  */
 public class ResetManager {
     /**
@@ -53,6 +53,8 @@ public class ResetManager {
 
     /**
      * Add the Resettable instance to the list
+     *
+     * @param reset is the instance that needs to be registered as a resettable object
      */
     public void appendResetInstance(Resettable reset){
         this.resettableList.add(reset);

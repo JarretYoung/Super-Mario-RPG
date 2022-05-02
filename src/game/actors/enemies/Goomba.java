@@ -9,7 +9,7 @@ import game.behaviours.*;
 /**
  * A little fungus guy.
  *
- * @editor Garret Yong Shern Min
+ * @author  Garret Yong Shern Min
  */
 public class Goomba extends Enemy implements Resettable {
 

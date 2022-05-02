@@ -15,9 +15,13 @@ import game.items.TradeableItem;
  */
 public class Toad extends NPC {
     /**
-     * Constructor
+     * Trade manager for Toad
      */
     private TradeManager tradeManager;
+
+    /**
+     * Constructor for the Toad class
+     */
     public Toad() {
         super("Toad", '0');
         this.tradeManager = TradeManager.getInstance();

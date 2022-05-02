@@ -64,6 +64,8 @@ public class SpecialItem extends Item implements TradeableItem{
 
     /**
     * Mutator for status message of special item
+     *
+     * @param statusMessage is the message for the status applied to an Actor
     */
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;

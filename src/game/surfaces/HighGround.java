@@ -25,9 +25,9 @@ public abstract class HighGround extends Ground {
      */
     private int jumpDamagePoints;
 
-    /**
+    /** This is the constructor for the HighGround class
      *
-     * @param displayChar
+     * @param displayChar is the character to be displayed on the map
      * @param name name of high ground
      * @param jumpSuccessRate high ground jump success rate
      * @param jumpDamagePoints high ground failed jump damage done to actor
