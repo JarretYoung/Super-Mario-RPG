@@ -3,6 +3,7 @@ package game.nature;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 
+import game.Resettable;
 import game.actors.Goomba;
 import game.actors.Koopa;
 import game.surfaces.Dirt;
@@ -15,7 +16,7 @@ import java.util.Random;
 /**
  * Tree's third stage
  */
-public class Mature extends Tree implements Growable {
+public class Mature extends Tree implements Growable, Resettable {
 
     /**
      * mature tree chance to wither each tick
@@ -67,6 +68,7 @@ public class Mature extends Tree implements Growable {
      */
     @Override
     public void tick(Location location) {
+        super.tick(location);
         super.setAge(super.getAge() + 1);
 
         //It has a 15% chance to spawn Koopa in every turn. If an actor stands on it, it cannot spawn Koopa.

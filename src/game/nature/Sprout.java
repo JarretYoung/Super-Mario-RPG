@@ -1,14 +1,16 @@
 package game.nature;
 
 import edu.monash.fit2099.engine.positions.Location;
+import game.Resettable;
 import game.actors.Goomba;
 
+import java.sql.ResultSet;
 import java.util.Random;
 
 /**
  * Tree's first stage
  */
-public class Sprout extends Tree implements Growable{
+public class Sprout extends Tree implements Growable, Resettable {
 
     /**
      * chance for sprout to spawn goomba
@@ -44,7 +46,7 @@ public class Sprout extends Tree implements Growable{
      */
     @Override
     public void tick(Location location) {
-
+        super.tick(location);
         // increment Sprouts ages
         super.setAge(super.getAge() + 1);
 

@@ -15,27 +15,22 @@ import java.util.Random;
 
 /**
  * Special Action for Resetting the map.
+ *
+ * @author Garret Yong Shern Min
  */
 public class ResetAction extends Action {
 
-//    /**
-//     * List of resettable items
-//     */
-//    private ArrayList<Resettable> itemsToBeReset = new ArrayList<>();
-
     /**
-     * Constructor.
+     * Constructor for ResetAction
      */
     public ResetAction() {}
 
-    //this.itemsToBeReset = ResetManager.getInstance()
 
     @Override
     public String execute(Actor actor, GameMap map) {
 
         ResetManager itemsToBeReset = ResetManager.getInstance();
 
-        //YOU DID NOT REMOVE ACTOR (TRY CAPABILITY)
         itemsToBeReset.run();
 
         String result = "Map has been reset";

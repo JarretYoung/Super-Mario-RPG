@@ -1,6 +1,7 @@
 package game.nature;
 
 import edu.monash.fit2099.engine.positions.Location;
+import game.Resettable;
 import game.currency.Coin;
 
 import java.util.Random;
@@ -8,7 +9,7 @@ import java.util.Random;
 /**
  * Tree's second stage
  */
-public class Sapling extends Tree implements Growable{
+public class Sapling extends Tree implements Growable, Resettable {
     /**
      * sapling chance to spawn coin
      */
@@ -48,6 +49,7 @@ public class Sapling extends Tree implements Growable{
     @Override
     public void tick(Location location) {
         super.setAge(super.getAge() + 1);
+        super.tick(location);
 
         // grow every 10 turns
         if (super.getAge() > this.maturityAge){

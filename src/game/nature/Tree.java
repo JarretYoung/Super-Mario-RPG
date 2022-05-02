@@ -1,12 +1,18 @@
 package game.nature;
 
 
+import edu.monash.fit2099.engine.positions.Location;
+import game.Resettable;
+import game.Status;
+import game.surfaces.Dirt;
 import game.surfaces.HighGround;
+
+import java.util.Random;
 
 /**
  * Tree parent class to sprout, sapling, mature
  */
-public abstract class Tree extends HighGround {
+public abstract class Tree extends HighGround implements Resettable {
 
     /**
      * Age of tree, used for tree growth
@@ -24,6 +30,17 @@ public abstract class Tree extends HighGround {
     public Tree(char displayChar, String name,  int jumpSuccessRate, int jumpDamagePoints) {
         super(displayChar, name, jumpSuccessRate,jumpDamagePoints);
         this.age = 0; // all new trees start with age 0
+
+        this.registerInstance();
+    }
+
+    @Override
+    public void tick(Location location) {
+        Random rand = new Random();
+        super.tick(location);
+        if((this.hasCapability(Status.RESET_QUEUED)) && ( rand.nextInt(2) == 0 ) )  {
+            location.setGround(new Dirt());
+        }
     }
 
     /**
@@ -42,5 +59,11 @@ public abstract class Tree extends HighGround {
         this.age = age;
     }
 
-
+    /**
+     * Method to queue a reset for all children extending the Tree class
+     */
+    @Override
+    public void resetInstance() {
+        this.addCapability(Status.RESET_QUEUED);
+    }
 }
