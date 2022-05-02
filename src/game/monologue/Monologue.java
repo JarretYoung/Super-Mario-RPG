@@ -1,12 +1,16 @@
-package game;
+package game.monologue;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.capabilities.CapabilitySet;
+import game.Status;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-
+/**This class represents the Monologue delivered by the Toad class to the player
+ *
+ * @author Garret Yong Shern Min
+ */
 public class Monologue {
 
     ArrayList<String> dialogue = new ArrayList<>();
