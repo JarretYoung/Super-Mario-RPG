@@ -1,7 +1,6 @@
-package game;
+package game.currency;
 
 import game.actors.CurrencyCollector;
-import game.currency.Wallet;
 
 import java.util.ArrayList;
 
