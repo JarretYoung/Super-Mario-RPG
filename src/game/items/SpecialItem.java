@@ -12,7 +12,6 @@ public class SpecialItem extends Item implements TradeableItem{
     private int value;
     private String statusMessage = "";
     private Action consumeAction;
-    private Actor consumer;
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -50,7 +49,6 @@ public class SpecialItem extends Item implements TradeableItem{
         this.removeAction(consumeAction);
     }
 
-    public Actor getConsumer() { return consumer; }
 
 
     @Override

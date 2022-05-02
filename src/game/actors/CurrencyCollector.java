@@ -1,8 +1,7 @@
 package game.actors;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
-import game.WalletManager;
+import game.currency.WalletManager;
 import game.currency.Wallet;
 
 public abstract class CurrencyCollector extends Actor {
