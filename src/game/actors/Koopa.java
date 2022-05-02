@@ -7,6 +7,7 @@ import game.Resettable;
 import game.actions.AttackAction;
 import game.actions.BreakShellAction;
 import game.Status;
+import game.items.SuperMushroom;
 
 /**This class represents the Turtle enemy known as the Koopa which is a regular enemy in the Mario
  * universe. This class acts as an enemy to the player and will engage in combat with the player
@@ -34,6 +35,7 @@ public class Koopa extends Enemy implements Resettable {
         super("Koopa", 'K', 20); // Koopa hitpoints not specified, assume = 20
         this.hitPoints_active = 10; //This the Koopa's hp when it is in an active state
         this.addCapability(Status.KOOPA_ACTIVE);
+        this.addItemToInventory(new SuperMushroom());
     }
 
     /**
