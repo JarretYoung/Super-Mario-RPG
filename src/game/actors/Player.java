@@ -14,6 +14,8 @@ import game.actions.ResetAction;
 
 /**
  * Class representing the Player.
+ *
+ * @editor Garret Yong Shern Min
  */
 public class Player extends CurrencyCollector implements Resettable {
 

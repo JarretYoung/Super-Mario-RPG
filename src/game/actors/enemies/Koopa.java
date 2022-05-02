@@ -78,6 +78,10 @@ public class Koopa extends Enemy implements Resettable {
         }
     }
 
+    /** This method is used to assign a new intrinsic weapon to the Goomba
+     *
+     * @return a new instance of intrinsic weapon
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(30, "punch");

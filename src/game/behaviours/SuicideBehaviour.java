@@ -11,22 +11,39 @@ import edu.monash.fit2099.engine.positions.Location;
 
 import java.util.Random;
 
-
+/** This class represents the suicidal tendency that can be incorporated into an Actor to cause random instant death
+ *
+ * @author Garret Yong Shern Min
+ */
 public class SuicideBehaviour implements Behaviour{
 
+    /**
+     * Target about to suicide
+     */
     private Actor target;
 
+    /**
+     * Chances for the target to suicide ( 1 / chance )
+     */
     private int chance;
 
 
-    /**
-     * Constructor.
+    /** Constructor for suicide behaviour
+     *
+     * @param subject is the target about to suicide
+     * @param chances is the chance, 1 / chance , for the target to suicide
      */
     public SuicideBehaviour(Actor subject, int chances) {
         this.target = subject;
         this.chance = chances;
     }
 
+    /** This is the method to return the action borne from the Behaviour
+     *
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return null
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Random rand = new Random();

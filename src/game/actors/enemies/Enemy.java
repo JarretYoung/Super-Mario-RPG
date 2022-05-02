@@ -87,6 +87,7 @@ public abstract class Enemy extends Actor implements Resettable {
         return new DoNothingAction();
     }
 
+
     @Override
     public boolean isConscious() {
         return super.isConscious();
@@ -167,17 +168,24 @@ public abstract class Enemy extends Actor implements Resettable {
         return super.capabilitiesList();
     }
 
+    /** This method is used to return the list of behaviours that is associated with this instance of enemy
+     *
+     * @return the list of behaviours that is associated with this instance of enemy
+     */
     public Map<Integer, Behaviour> getBehaviour() {
         return this.behaviours;
     }
 
-    /** This method is used to finish off an enemy with a shell during its dormant phase
-     *
+    /**
+     * This method is used to finish off an enemy with a shell during its dormant phase
      */
     public void destroyShell() {
         super.hurt(super.getMaxHp()); //if not then change to number
     }
 
+    /**
+     * Method to queue a reset for all children extending the Tree class
+     */
     @Override
     public void resetInstance() {
         this.addCapability(Status.RESET_QUEUED);
