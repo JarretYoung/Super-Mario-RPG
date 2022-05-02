@@ -7,45 +7,34 @@ import game.Status;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**This class represents the Monologue delivered by the Toad class to the player
+/**This class represents the generic Monologue that is used to deliver speech lines
  *
  * @author Garret Yong Shern Min
  */
-public class Monologue {
+public abstract class Monologue {
+    /**
+     * Is the list of statements
+     */
+    private ArrayList<String> dialogue = new ArrayList<>();
 
-    ArrayList<String> dialogue = new ArrayList<>();
+    /**
+     * Is the constructor of the Monologue class
+     */
+    public Monologue() {}
 
-    public Monologue() {
-        this.dialogue.add("The Princess is depending on you! You are our only hope.");
-        this.dialogue.add("Being imprisoned in these walls can drive a fungus crazy :(");
-        this.dialogue.add("You might need a wrench to smash Koopa's hard shells.");
-        this.dialogue.add("You better get back to finding the Power Stars.");
+    /** This is the generic method to return a random statement from the selection of dialogue provided in the
+     *  constructor based on certain requirements
+     *
+     * @param actor an Actor whom is the target the dialogue is meant to be directed at
+     * @return a string statement from the constructor
+     */
+    public abstract String speak(Actor actor);
 
-    }
-
-    public String speak(Actor actor) {
-
-        Random rand = new Random();
-
-        int mode = 0;
-        if ((actor.hasCapability(Status.HAS_WRENCH)) && (actor.hasCapability(Status.INVINCIBLE))){
-            return (this.dialogue.get(rand.nextInt(2)));
-
-        } else if (actor.hasCapability(Status.HAS_WRENCH)) {
-            int i = rand.nextInt(4);
-            while (i == 2) {
-                i = rand.nextInt(4);
-            }
-            return (this.dialogue.get(i));
-
-        } else if (actor.hasCapability(Status.INVINCIBLE)) {
-            return (this.dialogue.get(rand.nextInt(3)));
-
-        } else {
-            return (this.dialogue.get(rand.nextInt(4)));
-
-        }
-
-
+    /** A getter for the list of dialogue
+     *
+     * @return a ArrayList of all the dialogue put into the class
+     */
+    public ArrayList<String> getDialogue() {
+        return dialogue;
     }
 }

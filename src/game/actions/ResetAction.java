@@ -49,7 +49,7 @@ public class ResetAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + "reset the map";
+        return actor + " reset the map";
     }
 }
 
