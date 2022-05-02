@@ -2,16 +2,9 @@ package game.actions;
 
 
 import edu.monash.fit2099.engine.actions.Action;
-import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.Weapon;
-import game.ResetManager;
-import game.Resettable;
-
-import java.util.ArrayList;
-import java.util.Random;
+import game.reset.ResetManager;
 
 /**
  * Special Action for Resetting the map.

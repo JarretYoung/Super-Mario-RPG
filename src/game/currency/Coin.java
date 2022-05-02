@@ -1,11 +1,6 @@
 package game.currency;
 
-import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.items.PickUpItemAction;
-import game.Resettable;
-
-import java.sql.ResultSet;
+import game.reset.Resettable;
 
 
 /**

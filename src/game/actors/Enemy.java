@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
-import game.Resettable;
+import game.reset.Resettable;
 import game.Status;
 import game.actions.AttackAction;
 import game.actions.BreakShellAction;

@@ -1,7 +1,8 @@
 package game.actors;
 
 
-import game.Resettable;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.reset.Resettable;
 import game.behaviours.*;
 
 /**
@@ -17,5 +18,8 @@ public class Goomba extends Enemy implements Resettable {
 		this.getBehaviour().put(7, new SuicideBehaviour(this));
 	}
 
-
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(10, "kick");
+	}
 }

@@ -3,7 +3,9 @@ package game.actors;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.Resettable;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.items.SuperMushroom;
+import game.reset.Resettable;
 import game.actions.AttackAction;
 import game.actions.BreakShellAction;
 import game.Status;
@@ -31,9 +33,10 @@ public class Koopa extends Enemy implements Resettable {
      * Constructor.
      */
     public Koopa() {
-        super("Koopa", 'K', 20); // Koopa hitpoints not specified, assume = 20
-        this.hitPoints_active = 10; //This the Koopa's hp when it is in an active state
+        super("Koopa", 'K', 20);
+        this.hitPoints_active = 100; //This the Koopa's hp when it is in an active state
         this.addCapability(Status.KOOPA_ACTIVE);
+        this.addItemToInventory(new SuperMushroom());
     }
 
     /**
@@ -58,6 +61,11 @@ public class Koopa extends Enemy implements Resettable {
         return actions;
     }
 
+    @Override
+    public boolean isConscious() {
+        return hitPoints_active > 0;
+    }
+
     /** This method it used to reduce the hitPoints_active (hitpoints of the active Koopa)
      *
      * @param points number of hitpoints to deduct.
@@ -73,6 +81,8 @@ public class Koopa extends Enemy implements Resettable {
         }
     }
 
-
-
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(30, "punch");
+    }
 }
