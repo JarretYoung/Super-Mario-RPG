@@ -7,6 +7,8 @@ import game.items.TradeManager;
 import game.actions.TalkAction;
 import game.actions.TradeAction;
 import game.items.TradeableItem;
+import game.monologue.Monologue_Toad;
+
 /**Class of  a Toad that extends NPC class
  *
  * @author Jastej Gill
@@ -44,7 +46,7 @@ public class Toad extends NPC {
            actions.add(new TradeAction(item));
         }
 
-        actions.add(new TalkAction(this));
+        actions.add(new TalkAction(this, new Monologue_Toad()));
         return actions;
     }
 }

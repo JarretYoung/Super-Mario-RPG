@@ -36,8 +36,6 @@ public abstract class NPC extends Actor {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
 
-        actions.add(new TalkAction(otherActor));
-
         return actions;
     }
 

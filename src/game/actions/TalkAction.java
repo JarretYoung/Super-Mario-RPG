@@ -30,8 +30,9 @@ public class TalkAction extends Action {
      *
      * @param target is the actor that is meant to be talked to
      */
-    public TalkAction(Actor target) {
+    public TalkAction(Actor target, Monologue monologue) {
         this.target = target;
+        this.monologue = monologue;
     }
 
     /** Is the method that is meant to execute the talk action
@@ -45,13 +46,7 @@ public class TalkAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        if (target instanceof Toad ) {
-            monologue = new Monologue_Toad();
-            String result = monologue.speak(target);
-            return result;
-        } else {
-            return "yabadabadooooo";
-        }
+        return monologue.speak(target);
 
     }
 

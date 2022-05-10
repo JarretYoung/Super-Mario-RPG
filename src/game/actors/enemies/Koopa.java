@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.actors.enemies.Enemy;
 import game.items.SuperMushroom;
 import game.reset.Resettable;
 import game.actions.AttackAction;
@@ -36,7 +35,7 @@ public class Koopa extends Enemy implements Resettable {
     public Koopa() {
         super("Koopa", 'K', 20);
         this.hitPoints_active = 100; //This the Koopa's hp when it is in an active state
-        this.addCapability(Status.KOOPA_ACTIVE);
+        this.addCapability(Status.ACTIVE);
         this.addItemToInventory(new SuperMushroom());
     }
 
@@ -53,10 +52,10 @@ public class Koopa extends Enemy implements Resettable {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-        if ((otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) && !this.hasCapability(Status.KOOPA_DORMANT)) {
+        if ((otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) && !this.hasCapability(Status.DORMANT)) {
             actions.add(new AttackAction(this,direction));
         }
-        if (this.hasCapability(Status.KOOPA_DORMANT)) {
+        if (this.hasCapability(Status.DORMANT)) {
             actions.add(new BreakShellAction(this,direction));
         }
         return actions;
@@ -72,13 +71,13 @@ public class Koopa extends Enemy implements Resettable {
         hitPoints_active -= points;
         if (hitPoints_active <= 0) {
             this.setDisplayChar('D');
-            this.removeCapability(Status.KOOPA_ACTIVE);
-            this.addCapability(Status.KOOPA_DORMANT);
+            this.removeCapability(Status.ACTIVE);
+            this.addCapability(Status.DORMANT);
             this.getBehaviour().clear();
         }
     }
 
-    /** This method is used to assign a new intrinsic weapon to the Goomba
+    /** This method is used to assign a new intrinsic weapon to the Koopa
      *
      * @return a new instance of intrinsic weapon
      */

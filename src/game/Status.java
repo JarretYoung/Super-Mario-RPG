@@ -12,9 +12,11 @@ public enum Status {
     RESET_AVAILABLE, // used to indicate if a reset was available
     RESET_QUEUED, // used to indicate if a reset was requested and this entity was queued for reset action
     HAS_WRENCH, // used to indicate if the player has a wrench
-    KOOPA_ACTIVE, // used to indicate if the Koopa is in an active state
-    KOOPA_DORMANT, // used to indicate if the Koopa is in a dormant state
+    ACTIVE, // used to indicate if an Enemy is in an active state
+    DORMANT, // used to indicate if an Enemy is in a dormant state
     HIGH_GROUND, // used by grounds which are high grounds
     CAN_JUMP_ONTO_HIGH_GROUND, // used by actors who can jump onto high ground
-    NPC // used for actors that dont attack the player
+    NPC, // used for actors that dont attack the player
+    FINAL_BOSS_CLEARED, // used to indicate that the final boss (Bowser has been defeated and the game can be ended)
+    GAME_COMPLETE // used to indicate that the Princess is saved and the game is over
 }
