@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Status;
+import game.items.Crippleable;
 
 /**
  * Special Action for attacking other Actors.
@@ -57,6 +58,14 @@ public class AttackAction extends Action {
 		else {
 			int damage = weapon.damage();
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+
+			if (actor.hasCapability(Status.CRIPPLE_WEAPON)) {
+				Crippleable crippleWeapon = (Crippleable) weapon;
+				if ((rand.nextInt(100)) <= crippleWeapon.getChanceToCripple()) {
+					this.target.addCapability(Status.CRIPPLED);
+				}
+				result += System.lineSeparator() + target + " is crippled.";
+			}
 
 			if (target.hasCapability(Status.INVINCIBLE))
 				target.hurt(0);
