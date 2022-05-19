@@ -25,7 +25,7 @@ import game.Status;
  * @version 2.0 26/4/2022
  *
  */
-public class Koopa extends Enemy implements Resettable {
+abstract public class Koopa extends Enemy implements Resettable {
 
     /**
      * Health (while active)
@@ -34,8 +34,8 @@ public class Koopa extends Enemy implements Resettable {
     /**
      * Constructor.
      */
-    public Koopa() {
-        super("Koopa", 'K', 20);
+    public Koopa(String name, char displayChar, int hitPoints) {
+        super(name, displayChar, hitPoints);
         this.hitPoints_active = 100; //This the Koopa's hp when it is in an active state
         this.addCapability(Status.ACTIVE);
         this.addItemToInventory(new SuperMushroom());
@@ -81,6 +81,18 @@ public class Koopa extends Enemy implements Resettable {
             this.addCapability(Status.DORMANT);
             this.getBehaviour().clear();
         }
+    }
+
+    /** This method is used to get the active hit points
+     *
+     * @return
+     */
+    public int getHitPoints_active() {
+        return hitPoints_active;
+    }
+
+    public void setHitPoints_active(int hitPoints_active) {
+        this.hitPoints_active = hitPoints_active;
     }
 
     /** This method is used to assign a new intrinsic weapon to the Koopa

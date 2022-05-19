@@ -67,6 +67,16 @@ public class Bowser extends Enemy implements Resettable {
             map.moveActor(this, new Location(map, this.SpawnLocation.get(0), this.SpawnLocation.get(1)));
             this.heal(this.getMaxHp());
 
+            if (this.hasCapability(Status.CRIPPLED)) {
+                // This line is to clear off all statuses
+                this.removeCapability(Status.CRIPPLED);
+            } else {
+                // This line is to ensure that the RESET_QUEUED status is removed
+                this.removeCapability(Status.RESET_QUEUED);
+            }
+
+
+
             // To be changed for string output is not appropriate
             return new DoNothingAction();
         }

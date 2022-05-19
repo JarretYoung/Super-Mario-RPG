@@ -22,7 +22,7 @@ public class Medpack extends SpecialItem {
      */
     public Medpack() {
 
-        super("Medpack", '#');
+        super("Medpack", 'H');
         this.setValue(350);
         this.addToTradeManager();
     }

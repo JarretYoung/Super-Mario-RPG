@@ -3,6 +3,8 @@ package game.nature;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 
+import game.actors.enemies.DefaultKoopa;
+import game.actors.enemies.FlyingKoopa;
 import game.reset.Resettable;
 import game.actors.enemies.Koopa;
 import game.surfaces.Dirt;
@@ -73,7 +75,12 @@ public class Mature extends Tree implements Growable, Resettable {
         //It has a 15% chance to spawn Koopa in every turn. If an actor stands on it, it cannot spawn Koopa.
         if (!location.containsAnActor()){
             if (new Random().nextDouble() <= this.spawnKoopaChance){
-                location.addActor(new Koopa());
+                if ( new Random().nextDouble() <= 0.5 ) {
+                    location.addActor(new DefaultKoopa());
+                } else {
+                    location.addActor(new FlyingKoopa());
+                }
+
             }
         }
 
