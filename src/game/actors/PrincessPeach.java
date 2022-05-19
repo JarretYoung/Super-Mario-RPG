@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
+import game.actions.EndGameAction;
 import game.actions.TalkAction;
 import game.monologue.Monologue;
 import game.monologue.Monologue_Peach;
@@ -22,7 +23,9 @@ public class PrincessPeach extends NPC{
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         if (otherActor.hasCapability(Status.FINAL_BOSS_CLEARED)) {
-            actions.add(new TalkAction(otherActor, new Monologue_Peach()));
+            // We should consider to remove this monologue
+//            actions.add(new TalkAction(otherActor, new Monologue_Peach()));
+            actions.add(new EndGameAction(this));
         }
         return actions;
     }

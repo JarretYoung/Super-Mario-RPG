@@ -53,7 +53,12 @@ public class Player extends CurrencyCollector implements Resettable {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
+
+
 		// Check Status
+		if (this.hasCapability(Status.GAME_COMPLETE)) {
+			map.removeActor(this);
+		}
 
 		if (this.hasCapability(Status.RESET_AVAILABLE)) {
 			actions.add(new ResetAction());
@@ -69,6 +74,7 @@ public class Player extends CurrencyCollector implements Resettable {
 			}
 
 			this.removeCapability(Status.RESET_AVAILABLE);
+			this.removeCapability(Status.RESET_QUEUED);
 		}
 
 		System.out.println(this + this.printHp() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
