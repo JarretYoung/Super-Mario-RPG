@@ -12,6 +12,7 @@ import game.actions.BreakShellAction;
 import game.actions.OpenMimicAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.items.RendingScissors;
 
 public class Mimic extends Enemy{
     /**
@@ -22,7 +23,7 @@ public class Mimic extends Enemy{
      * @param hitPoints   the Actor's starting hit points
      */
     public Mimic(String name, char displayChar, int hitPoints) {
-        super("Mimic", 'R', 200);
+        super("Mimic", 'C', 200);
         this.addCapability(Status.DORMANT);
     }
 
@@ -50,7 +51,7 @@ public class Mimic extends Enemy{
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         if (this.hasCapability(Status.ACTIVE)) {
-            this.setDisplayChar('{');
+            this.setDisplayChar('R');
             this.getBehaviour().put(10, new WanderBehaviour());
             this.getBehaviour().put(9, new AttackBehaviour());
         }
@@ -60,8 +61,7 @@ public class Mimic extends Enemy{
     @Override
     public boolean isConscious() {
         if (super.isConscious() == false) {
-            // Uncomment this after creation of new weapon
-//            this.addItemToInventory(new OversizedScissors);
+            this.addItemToInventory(new RendingScissors());
         }
         return super.isConscious();
     }

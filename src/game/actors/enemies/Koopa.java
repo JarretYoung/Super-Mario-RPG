@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.items.SuperMushroom;
 import game.reset.Resettable;
 import game.actions.AttackAction;
@@ -37,6 +39,10 @@ public class Koopa extends Enemy implements Resettable {
         this.hitPoints_active = 100; //This the Koopa's hp when it is in an active state
         this.addCapability(Status.ACTIVE);
         this.addItemToInventory(new SuperMushroom());
+
+        // Adding standard behaviours to the enemy
+        this.getBehaviour().put(10, new WanderBehaviour());
+        this.getBehaviour().put(9, new AttackBehaviour());
     }
 
     /**
