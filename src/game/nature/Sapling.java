@@ -1,8 +1,8 @@
 package game.nature;
 
 import edu.monash.fit2099.engine.positions.Location;
+import game.currency.Coin;
 import game.reset.Resettable;
-import game.items.currency.Coin;
 
 import java.util.Random;
 
