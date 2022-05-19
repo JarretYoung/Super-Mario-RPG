@@ -21,29 +21,18 @@ public interface TradeableItem{
     void setValue(int value);
 
     /**
-     * Traded method called when trade action is performed on special item
-     * @param customer actor that purchases special item
-     * @return String to execute method of result of item being traded
-     */
-    public default String traded(CurrencyCollector customer) {
-        CurrencyCollector actor = customer;
-        String result = "";
-        if(customer.getWallet().getBalance() >= this.getValue()) {
-            result = actor + " " + "buys" + " " + this + " for " + this.getValue();
-            customer.getWallet().removeBalance(this.getValue());
-            actor.addItemToInventory((Item) this);
-        }
-        else
-            result = actor + " does not have sufficient fund for " + this;
-        return result;
-    }
-
-    /**
      * Adds tradeable item to TradeManager
      */
     default void addToTradeManager(){
         TradeManager.getInstance().addTradeableItem(this);
     }
+
+    /**
+     * Traded method called when trade action is performed on special item
+     * @param customer actor that purchases special item
+     * @return String to execute method of result of item being traded
+     */
+    public String traded(CurrencyCollector customer);
 
 
 }

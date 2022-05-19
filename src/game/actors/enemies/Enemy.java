@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actors.Buffable;
 import game.reset.Resettable;
 import game.Status;
 import game.actions.AttackAction;
@@ -24,10 +25,11 @@ import java.util.Map;
 /** This class is the generic class for an enemy class that would form the base for all enemies moving forwards
  *
  */
-public abstract class Enemy extends Actor implements Resettable {
+public abstract class Enemy extends Actor implements Resettable, Buffable{
 
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
+    private int damage = 5;
 
     /**
      * Constructor.
@@ -42,7 +44,7 @@ public abstract class Enemy extends Actor implements Resettable {
         // New edit: I think we should remove this
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(9, new AttackBehaviour());
-
+        this.makeBuffable();
 
         // Registering instance as a resettable object
         this.registerInstance();
@@ -103,87 +105,6 @@ public abstract class Enemy extends Actor implements Resettable {
         return new DoNothingAction();
     }
 
-
-    @Override
-    public boolean isConscious() {
-        return super.isConscious();
-    }
-
-    @Override
-    public void increaseMaxHp(int points) {
-        super.increaseMaxHp(points);
-    }
-
-    @Override
-    public void resetMaxHp(int hitPoints) {
-        super.resetMaxHp(hitPoints);
-    }
-
-    @Override
-    public void heal(int points) {
-        super.heal(points);
-    }
-
-    @Override
-    public void hurt(int points) {
-        super.hurt(points);
-    }
-
-    @Override
-    public Weapon getWeapon() {
-        return super.getWeapon();
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
-    public char getDisplayChar() {
-        return super.getDisplayChar();
-    }
-
-    @Override
-    public void addItemToInventory(Item item) {
-        super.addItemToInventory(item);
-    }
-
-    @Override
-    public void removeItemFromInventory(Item item) {
-        super.removeItemFromInventory(item);
-    }
-
-    @Override
-    public List<Item> getInventory() {
-        return super.getInventory();
-    }
-
-    @Override
-    protected IntrinsicWeapon getIntrinsicWeapon() {
-        return super.getIntrinsicWeapon();
-    }
-
-    @Override
-    public boolean hasCapability(Enum<?> capability) {
-        return super.hasCapability(capability);
-    }
-
-    @Override
-    public void addCapability(Enum<?> capability) {
-        super.addCapability(capability);
-    }
-
-    @Override
-    public void removeCapability(Enum<?> capability) {
-        super.removeCapability(capability);
-    }
-
-    @Override
-    public List<Enum<?>> capabilitiesList() {
-        return super.capabilitiesList();
-    }
-
     /** This method is used to return the list of behaviours that is associated with this instance of enemy
      *
      * @return the list of behaviours that is associated with this instance of enemy
@@ -205,5 +126,25 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public void resetInstance() {
         this.addCapability(Status.RESET_QUEUED);
+    }
+
+    @Override
+    public int getDamage() {
+        return damage;
+    }
+
+    @Override
+    public void addDamage(int addedDamage) {
+        damage += addedDamage;
+    }
+
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(damage, "punches");
+    }
+
+    @Override
+    public void makeBuffable() {
+        this.addCapability(Status.BUFFABLE);
     }
 }

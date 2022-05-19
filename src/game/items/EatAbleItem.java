@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 import game.actions.EatAction;
 import game.actions.DrinkAction;
 
-public class ConsumableItem extends Item {
+public class EatAbleItem extends Item {
     /**
      * Message returned when item is eaten
      */
@@ -17,25 +17,17 @@ public class ConsumableItem extends Item {
      */
     private Action consumeAction;
 
-    public boolean isLiquidContainer;
-
     /***
      * Constructor.
      *  @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
      * @param portable true if and only if the Item can be picked up
      */
-    public ConsumableItem(String name, char displayChar, boolean portable, boolean isLiquid) {
+    public EatAbleItem(String name, char displayChar, boolean portable) {
         super(name, displayChar, portable);
-        if(!isLiquidContainer){
-            setConsumeAction(new EatAction(this));
-            addAction(getConsumeAction());
-        }
-        else if(isLiquidContainer){
-            setConsumeAction(new DrinkAction(this));
-            addAction(getConsumeAction());
-        }
 
+        setConsumeAction(new EatAction(this));
+        addAction(getConsumeAction());
     }
 
     public Action getConsumeAction() {
@@ -127,8 +119,4 @@ public class ConsumableItem extends Item {
         }
         return result;
     }
-
-//    public String drinkedFrom(Actor actor, WaterContainer container) {
-//
-//    }
 }
