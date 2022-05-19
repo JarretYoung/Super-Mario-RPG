@@ -75,7 +75,20 @@ public class Fountain extends Ground implements WaterStorage {
             ret = by + " drinks from " + this + getCapacity() + magicalWaterStack.pop().drinked(by);
         }
         else
-            ret = "Bottle's empty!";
+            ret = "Fountain's empty!";
+        return ret;
+    }
+
+    public String FilledUpFrom(Buffable by, WaterStorage container){
+        String ret = "";
+
+        if(!isEmpty()){
+            MagicalWater water = magicalWaterStack.pop();
+            container.filled(by, water);
+            ret = by + " fills up from " + this + getCapacity() + water.drinked(by);
+        }
+        else
+            ret = "Fountain's empty!";
         return ret;
     }
 
@@ -100,6 +113,15 @@ public class Fountain extends Ground implements WaterStorage {
 
     public String getCapacity(){
         String ret = "(" + magicalWaterStack.size() + "/" + MAX_CAPACITY + ")";
+        return ret;
+    }
+
+    public String peek(){
+        String ret = "";
+        if(!isEmpty())
+            ret = this.magicalWaterStack.peek() + "";
+        else
+            ret = "nothing";
         return ret;
     }
 

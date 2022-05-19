@@ -3,6 +3,9 @@ package game.actors;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Status;
+import game.actions.GetItemAction;
+import game.items.Bottle;
 import game.items.TradeManager;
 import game.actions.TalkAction;
 import game.actions.TradeAction;
@@ -22,11 +25,18 @@ public class Toad extends NPC {
     private TradeManager tradeManager;
 
     /**
+     * Bottle for toad
+     */
+    private Bottle bottle;
+
+    /**
      * Constructor for the Toad class
      */
     public Toad() {
         super("Toad", '0');
         this.tradeManager = TradeManager.getInstance();
+        this.bottle = new Bottle();
+        this.getInventory().add(bottle);
     }
 
 
@@ -45,6 +55,8 @@ public class Toad extends NPC {
            TradeableItem item = TradeManager.getInstance().getTradeableItems().get(i);
            actions.add(new TradeAction(item));
         }
+        if(otherActor.hasCapability(Status.BUFFABLE) && this.hasCapability(Status.HAS_BOTTLE))
+            actions.add(new GetItemAction(bottle, this));
 
         actions.add(new TalkAction(this, new Monologue_Toad()));
         return actions;

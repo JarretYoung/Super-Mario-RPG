@@ -5,4 +5,6 @@ import game.actors.Buffable;
 
 public interface WaterStorage {
     public String DrinkedFrom(Buffable by);
+
+    public String filled(Buffable by, MagicalWater water);
 }
