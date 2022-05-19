@@ -18,6 +18,10 @@ public class Goomba extends Enemy implements Resettable {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20);
+
+		// Adding standard behaviours to the enemy
+		this.getBehaviour().put(10, new WanderBehaviour());
+		this.getBehaviour().put(9, new AttackBehaviour());
 		this.getBehaviour().put(7, new SuicideBehaviour(this, 10));
 	}
 

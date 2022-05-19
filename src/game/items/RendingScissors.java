@@ -23,9 +23,9 @@ public class RendingScissors extends WeaponItem implements Crippleable{
      */
     public RendingScissors() {
 
-        super("Rending Scissors", 'Y', 40, "snips", 85);
+        super("Rending Scissors", 'V', 40, "snips", 85);
         this.addCapability(Status.CRIPPLE_WEAPON);
-        this.setChanceToCripple(60);
+        this.setChanceToCripple(15);
     }
 
 
