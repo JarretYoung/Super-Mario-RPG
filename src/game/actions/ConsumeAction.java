@@ -4,24 +4,25 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import game.actors.Buffable;
-import game.items.ConsumableItem;
-import game.items.water.MagicalWater;
-import game.items.water.WaterContainer;
-import game.surfaces.fountains.Fountain;
+import game.items.SpecialItem;
 
-public class DrinkAction extends Action {
+/**
+ * Consume action consumes special items
+ */
+public class ConsumeAction extends Action {
     /**
      * Item consumed by actor
      */
-    private MagicalWater water;
+    private SpecialItem itemConsumed;
+
+
     /**
      * Constructor
-     * @param water water that the actor drinks
+     * @param item Item consumed by actor
      */
-    public DrinkAction(MagicalWater water)
+    public ConsumeAction(SpecialItem item)
     {
-        this.water = water;
+        this.itemConsumed = item;
     }
 
     /**
@@ -33,8 +34,13 @@ public class DrinkAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         String ret = "";
-        if(actor instanceof Buffable)
-            ret = water.drinked((Buffable) actor);
+        if(map.locationOf(actor).getItems().contains(itemConsumed)) {
+            ret = itemConsumed.eatenFromGround(actor);
+            Location location = map.locationOf(actor);
+            location.removeItem(itemConsumed);
+        } else if(actor.getInventory().contains(itemConsumed)) {
+            ret = itemConsumed.eatenFromInventory(actor);
+        }
         return ret;
     }
 
@@ -44,6 +50,6 @@ public class DrinkAction extends Action {
      * @return String of option to perform action
      */
     public String menuDescription(Actor actor) {
-        return actor + " drinks " + water;
+        return actor + " eats " + itemConsumed;
     }
 }

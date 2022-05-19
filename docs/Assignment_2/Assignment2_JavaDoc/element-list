@@ -2,7 +2,7 @@ game.actions
 game.actors
 game.actors.enemies
 game.behaviours
-game.items.currency
+game.currency
 game.items
 game.monologue
 game.nature

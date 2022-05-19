@@ -1,15 +1,15 @@
 package game.actors;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import game.items.currency.WalletManager;
-import game.items.currency.Wallet;
+import game.currency.WalletManager;
+import game.currency.Wallet;
 
 /**
  * Class of currency collectors that extends Actor
  * @author Jastej Gill
  * @version 2.0 30/4/2022
  */
-public abstract class CurrencyCollector extends Buffable {
+public abstract class CurrencyCollector extends Actor {
 
     /**
      * Wallet of currency collector
