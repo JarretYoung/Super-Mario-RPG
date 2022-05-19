@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.reset.Resettable;
 import game.Status;
 import game.actions.AttackAction;
@@ -17,8 +18,8 @@ import game.actions.ResetAction;
  *
  * @author Garret Yong Shern Min
  */
-public class Player extends CurrencyCollector implements Resettable {
-
+public class Player extends CurrencyCollector implements Resettable, Buffable {
+	private int damage = 5;
 	private final Menu menu = new Menu();
 
 	/**
@@ -33,7 +34,6 @@ public class Player extends CurrencyCollector implements Resettable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.RESET_AVAILABLE);
 		this.addCapability(Status.CAN_JUMP_ONTO_HIGH_GROUND);
-
 		// Registering instance as a resettable object
 		this.registerInstance();
 	}
@@ -119,4 +119,23 @@ public class Player extends CurrencyCollector implements Resettable {
 		this.addCapability(Status.RESET_QUEUED);
 	}
 
+	@Override
+	public int getDamage() {
+		return damage;
+	}
+
+	@Override
+	public void addDamage(int addedDamage) {
+		damage += addedDamage;
+	}
+
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(damage, "punches");
+	}
+
+	@Override
+	public void makeBuffable() {
+		this.addCapability(Status.BUFFABLE);
+	}
 }

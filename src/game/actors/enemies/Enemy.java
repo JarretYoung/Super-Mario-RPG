@@ -38,6 +38,12 @@ public abstract class Enemy extends Actor implements Resettable {
     public Enemy(String name, char displayChar, int hitPoints) {
         super(name,displayChar,hitPoints);
 
+        // Adding standard behaviours to the enemy
+        // New edit: I think we should remove this
+        this.behaviours.put(10, new WanderBehaviour());
+        this.behaviours.put(9, new AttackBehaviour());
+
+
         // Registering instance as a resettable object
         this.registerInstance();
     }
@@ -80,30 +86,14 @@ public abstract class Enemy extends Actor implements Resettable {
             return new DoNothingAction();
         }
 
-
-        if (!this.hasCapability(Status.CRIPPLED))
-            for (Exit exit : map.locationOf(this).getExits()) {
-                Location destination = exit.getDestination();
-                if (destination.containsAnActor()) {
-                    if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                        this.behaviours.put(7, new FollowBehaviour(destination.getActor()));
-                    }
+        for (Exit exit : map.locationOf(this).getExits()) {
+            Location destination = exit.getDestination();
+            if (destination.containsAnActor()) {
+                if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                    this.behaviours.put(7, new FollowBehaviour(destination.getActor()));
                 }
             }
-        else {
-            // Checks to see if the Enemy has WandererBehaviour
-            if (this.getBehaviour().containsKey(10)) {
-                // Removes WandererBehaviour
-                this.getBehaviour().remove(10);
-            }
-            // Checks to see if the Enemy have FollowBehavior
-            if (this.getBehaviour().containsKey(7)) {
-                // Removes FollowBehaviour
-                this.getBehaviour().remove(7);
-            }
         }
-
-
 
         for(Behaviour Behaviour : behaviours.values()) {
             Action action = Behaviour.getAction(this, map);
