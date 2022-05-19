@@ -113,6 +113,4 @@ public class Player extends CurrencyCollector implements Resettable {
 		this.addCapability(Status.RESET_QUEUED);
 	}
 
-
-
 }

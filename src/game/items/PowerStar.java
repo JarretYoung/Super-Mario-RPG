@@ -3,7 +3,7 @@ package game.items;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
-
+import game.actions.ConsumeAction;
 /**
  * PowerStar class that extends abstract class SpecialItem
  * Capabilities: Makes consumer Invincible

@@ -1,4 +1,4 @@
-package game.actors.npc;
+package game.actors;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -14,14 +14,14 @@ import game.actions.TalkAction;
  * @version 2.0 30/4/2022
  *
  */
-public abstract class npc extends Actor {
+public abstract class NPC extends Actor {
 
     /**
      * Constructor.
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      */
-    public npc(String name, char displayChar) {
+    public NPC(String name, char displayChar) {
         super(name, displayChar, 9999);
         this.addCapability(Status.NPC);
     }
