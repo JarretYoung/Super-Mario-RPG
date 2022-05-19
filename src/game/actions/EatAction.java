@@ -14,7 +14,7 @@ public class EatAction extends Action {
     /**
      * Item consumed by actor
      */
-    private SpecialItem itemConsumed;
+    private ConsumableItem itemConsumed;
 
 
     /**

@@ -31,7 +31,7 @@ public class SpecialItem extends ConsumableItem implements TradeableItem{
      * @param displayChar the character to use to represent this item if it is on the ground
      */
     public SpecialItem(String name, char displayChar) {
-        super(name, displayChar, true);
+        super(name, displayChar, true, false);
     }
 
     /**
