@@ -4,12 +4,13 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.items.ConsumableItem;
 import game.items.SpecialItem;
 
 /**
  * Consume action consumes special items
  */
-public class ConsumeAction extends Action {
+public class EatAction extends Action {
     /**
      * Item consumed by actor
      */
@@ -20,7 +21,7 @@ public class ConsumeAction extends Action {
      * Constructor
      * @param item Item consumed by actor
      */
-    public ConsumeAction(SpecialItem item)
+    public EatAction(ConsumableItem item)
     {
         this.itemConsumed = item;
     }

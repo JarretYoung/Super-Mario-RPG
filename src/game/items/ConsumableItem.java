@@ -4,51 +4,46 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import game.actions.EatAction;
-import game.actors.CurrencyCollector;
+import game.actions.DrinkAction;
 
-/**Class of Special items that implements interface TradeableItem
- * Items that give the consumer special capabilities
- * @author Jastej Gill
- * @version 2.0 29/4/2022
- *
- */
-public class SpecialItem extends ConsumableItem implements TradeableItem{
-    /**
-     * Value of special item
-     */
-    private int value;
+public class ConsumableItem extends Item {
     /**
      * Message returned when item is eaten
      */
     private String statusMessage = "";
+
     /**
      * Action to consume special item
      */
     private Action consumeAction;
+
+    public boolean isLiquidContainer;
+
     /***
      * Constructor.
      *  @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
+     * @param portable true if and only if the Item can be picked up
      */
-    public SpecialItem(String name, char displayChar) {
-        super(name, displayChar, true);
+    public ConsumableItem(String name, char displayChar, boolean portable, boolean isLiquid) {
+        super(name, displayChar, portable);
+        if(!isLiquidContainer){
+            setConsumeAction(new EatAction(this));
+            addAction(getConsumeAction());
+        }
+        else if(isLiquidContainer){
+            setConsumeAction(new DrinkAction(this));
+            addAction(getConsumeAction());
+        }
+
     }
 
-    /**
-     * Accessor for value of special item
-     * @return integer value of special item
-     */
-    @Override
-    public int getValue() {
-        return value;
+    public Action getConsumeAction() {
+        return consumeAction;
     }
 
-    /**
-     * Mutator for value of special item
-     */
-    @Override
-    public void setValue(int value) {
-        this.value = value;
+    public void setConsumeAction(Action consumeAction) {
+        this.consumeAction = consumeAction;
     }
 
     /**
@@ -60,10 +55,10 @@ public class SpecialItem extends ConsumableItem implements TradeableItem{
     }
 
     /**
-    * Mutator for status message of special item
+     * Mutator for status message of special item
      *
      * @param statusMessage is the message for the status applied to an Actor
-    */
+     */
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
     }
@@ -84,25 +79,6 @@ public class SpecialItem extends ConsumableItem implements TradeableItem{
     }
 
     /**
-     * Traded method called when trade action is performed on special item
-     * @param customer actor that purchases special item
-     * @return String to execute method of result of item being traded
-     */
-    @Override
-    public String traded(CurrencyCollector customer) {
-        CurrencyCollector actor = customer;
-        String result = "";
-        if(customer.getWallet().getBalance() >= this.getValue()) {
-            result = actor + " " + "buys" + " " + this + " for " + this.getValue();
-            customer.getWallet().removeBalance(this.getValue());
-            actor.addItemToInventory(this);
-        }
-        else
-            result = actor + " does not have sufficient fund for " + this;
-        return result;
-    }
-
-    /**
      * Method called when consume action is performed on special item while item is on the ground
      * @param by actor that eats special item
      * @return String to execute method of result of item being eaten
@@ -110,16 +86,16 @@ public class SpecialItem extends ConsumableItem implements TradeableItem{
     public String eatenFromGround(Actor by) {
         Actor actor = by;
         String result = this.getStatusMessage();
-            // Add item capability to actor
-            for(int i = 0; i < this.capabilitiesList().size(); i++)
-            {
-                actor.addCapability(this.capabilitiesList().get(i));
-            }
-            if(temporaryEffect()) {
-                actor.addItemToInventory(this);
-                this.togglePortability();
-                this.removeConsumability();
-            }
+        // Add item capability to actor
+        for(int i = 0; i < this.capabilitiesList().size(); i++)
+        {
+            actor.addCapability(this.capabilitiesList().get(i));
+        }
+        if(temporaryEffect()) {
+            actor.addItemToInventory(this);
+            this.togglePortability();
+            this.removeConsumability();
+        }
         return result;
     }
 
@@ -152,4 +128,7 @@ public class SpecialItem extends ConsumableItem implements TradeableItem{
         return result;
     }
 
+//    public String drinkedFrom(Actor actor, WaterContainer container) {
+//
+//    }
 }
