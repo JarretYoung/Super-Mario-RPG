@@ -1,6 +1,5 @@
 package game.items;
 
-import edu.monash.fit2099.engine.items.Item;
 import game.actors.CurrencyCollector;
 
 /**
@@ -20,23 +19,12 @@ public interface TradeableItem{
      */
     void setValue(int value);
 
-    /**
-     * Traded method called when trade action is performed on special item
-     * @param customer actor that purchases special item
-     * @return String to execute method of result of item being traded
+    /** Method that runs when TradeAction is executed
+     *
+     * @param customer is the customer that will purchase the new item
+     * @return a string value of the result of traded() method
      */
-    public default String traded(CurrencyCollector customer) {
-        CurrencyCollector actor = customer;
-        String result = "";
-        if(customer.getWallet().getBalance() >= this.getValue()) {
-            result = actor + " " + "buys" + " " + this + " for " + this.getValue();
-            customer.getWallet().removeBalance(this.getValue());
-            actor.addItemToInventory((Item) this);
-        }
-        else
-            result = actor + " does not have sufficient fund for " + this;
-        return result;
-    }
+    public String traded(CurrencyCollector customer);
 
     /**
      * Adds tradeable item to TradeManager
