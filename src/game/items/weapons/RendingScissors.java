@@ -1,8 +1,8 @@
-package game.items;
+package game.items.weapons;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Status;
-import game.actors.CurrencyCollector;
+import game.items.Crippleable;
 
 /**
  * Wrench class that extends abstract class SpecialItem
@@ -11,7 +11,7 @@ import game.actors.CurrencyCollector;
  * @author Garret Yong Shern Min
  * @version 1.0 30/4/2022
  */
-public class RendingScissors extends WeaponItem implements Crippleable{
+public class RendingScissors extends WeaponItem implements Crippleable {
 
     /**
      * Chance to cripple of RendingScissor

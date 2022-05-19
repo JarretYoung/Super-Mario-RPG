@@ -13,6 +13,7 @@ public enum Status {
     CRIPPLE_WEAPON, // used to indicate if a weapon is able to cripple an enemy
     CRIPPLED, // used to apply a status effect on an actor to imply they cannot move
     RESET_QUEUED, // used to indicate if a reset was requested and this entity was queued for reset action
+    HAS_BOTTLE, // used to indicate if a reset was requested and this entity was queued for reset action
     HAS_WRENCH, // used to indicate if the player has a wrench
     ACTIVE, // used to indicate if an Enemy is in an active state
     DORMANT, // used to indicate if an Enemy is in a dormant state

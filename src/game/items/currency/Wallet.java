@@ -1,4 +1,4 @@
-package game.currency;
+package game.items.currency;
 
 import edu.monash.fit2099.engine.items.Item;
 

@@ -1,8 +1,9 @@
-package game.actors;
+package game.actors.npc;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actors.npc.npc;
 import game.items.TradeManager;
 import game.actions.TalkAction;
 import game.actions.TradeAction;
@@ -15,7 +16,7 @@ import game.monologue.Monologue_Toad;
  * @version 2.0 30/4/2022
  *
  */
-public class Toad extends NPC {
+public class Toad extends npc {
     /**
      * Trade manager for Toad
      */
