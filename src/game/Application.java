@@ -74,12 +74,12 @@ public class Application {
 
 
         // Adding Second Map
-        FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Ground[]{new Dirt(), new Wall(), new Sprout(), new Floor(), new Lava()});
+        FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Wall(), new Sprout(), new Floor(), new Lava());
         List<String> map2 = Arrays.asList(
                 "......................................................................",
                 "......................................................................",
                 "......................................................................",
-                "......................................................................",
+                "LLLL..................................................................",
                 "......................................................................",
                 "......................................................................",
                 "......................................................................",
@@ -106,18 +106,20 @@ public class Application {
         WarpPipe wp1gm1 = new WarpPipe();
         WarpPipe wp2gm1 = new WarpPipe();
 
-        // Set teleport Action for game map 1 warp pipes
-        //TeleportAction parameters:sourceLocation, destinationLocation, sourceWarpPipe, destinationWarpPipe
-        wp1gm1.setTeleportAction( new TeleportAction( gameMap.at(42,5), gameMap2.at(0,0),wp1gm1,wp1gm2));
-        wp2gm1.setTeleportAction( new TeleportAction( gameMap.at(42,8), gameMap2.at(0,0),wp2gm1,wp1gm2));
+        // Set teleport Action
+        // TeleportAction parameters:sourceLocation, destinationLocation, sourceWarpPipe, destinationWarpPipe
+        // game map 1
+        wp1gm1.setTeleportAction( new TeleportAction( gameMap.at(42,8), gameMap2.at(0,0),wp1gm1,wp1gm2));
+        wp2gm1.setTeleportAction( new TeleportAction( gameMap.at(42,16), gameMap2.at(0,0),wp2gm1,wp1gm2));
 
+        // game map 2
         // initialise 2nd map's default teleport destination to Warp Pipe 1 in game map 1
-        wp1gm2.setTeleportAction( new TeleportAction( gameMap2.at(0,0),gameMap.at(42,5),wp1gm2,wp1gm1));
+        wp1gm2.setTeleportAction( new TeleportAction( gameMap2.at(0,0),gameMap.at(42,8),wp1gm2,wp1gm1));
 
         // Placing warp pipes into respective maps
         gameMap2.at(0,0).setGround(wp1gm2);
-        gameMap.at(42,5).setGround(wp1gm1);
-        gameMap.at(42,8).setGround(wp2gm1);
+        gameMap.at(42,8).setGround(wp1gm1);
+        gameMap.at(42,16).setGround(wp2gm1);
 
 
         world.run();

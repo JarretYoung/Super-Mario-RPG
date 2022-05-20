@@ -11,14 +11,34 @@ import game.surfaces.WarpPipe;
  */
 public class TeleportAction extends Action {
 
+    /**
+     * Source location
+     */
     private Location sourceLocation;
+
+    /**
+     * Destination location
+     */
     private Location destinationLocation;
 
+    /**
+     * Source WarpPipe
+     */
     private WarpPipe sourceWarpPipe;
+
+    /**
+     * Destination WarpPipe
+     */
     private WarpPipe destinationWarpPipe;
 
 
-
+    /**
+     * Constructor
+     * @param source source location
+     * @param destination destination location
+     * @param sourceWarpPipe source warp pipe
+     * @param destinationWarpPipe destination warp pipe
+     */
     public TeleportAction(Location source, Location destination, WarpPipe sourceWarpPipe, WarpPipe destinationWarpPipe) {
         this.sourceLocation = source;
         this.destinationLocation = destination;
@@ -27,7 +47,12 @@ public class TeleportAction extends Action {
     }
 
 
-
+    /**
+     * Sets new destination, and teleports player
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return Successful teleportation message
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
 
