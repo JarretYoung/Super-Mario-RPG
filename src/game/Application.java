@@ -53,7 +53,7 @@ public class Application {
                 ".......................................................##.......................");
 
         GameMap gameMap = new GameMap(groundFactory, map);
-        //world.addGameMap(gameMap);
+        world.addGameMap(gameMap);
 
         Actor mario = new Player("Player", 'm', 100);
         //world.addPlayer(mario, gameMap.at(42, 10));
@@ -106,9 +106,13 @@ public class Application {
         WarpPipe wp1gm1 = new WarpPipe();
         WarpPipe wp2gm1 = new WarpPipe();
 
+        // Set teleport Action for game map 1 warp pipes
         //TeleportAction parameters:sourceLocation, destinationLocation, sourceWarpPipe, destinationWarpPipe
         wp1gm1.setTeleportAction( new TeleportAction( gameMap.at(42,5), gameMap2.at(0,0),wp1gm1,wp1gm2));
-        wp1gm2.setTeleportAction( new TeleportAction( gameMap.at(43,5), gameMap2.at(0,0),wp1gm2,wp1gm2));
+        wp2gm1.setTeleportAction( new TeleportAction( gameMap.at(43,5), gameMap2.at(0,0),wp2gm1,wp1gm2));
+
+        // default
+        wp1gm2.setTeleportAction( new TeleportAction( gameMap2.at(0,0),gameMap.at(42,5),wp1gm2,wp1gm1));
 
         // Placing warp pipes into respective maps
         gameMap2.at(0,0).setGround(wp1gm2);

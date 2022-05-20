@@ -31,7 +31,7 @@ public class TeleportAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         // teleport player from source map location to destination map and location
-        this.sourceLocation.map().moveActor(actor, destinationLocation );
+        map.moveActor(actor, destinationLocation );
 
         // make sure player teleports back to the same source WarpPipe
         destinationWarpPipe.setTeleportAction( new TeleportAction(this.destinationLocation, this.sourceLocation, this.destinationWarpPipe, this.sourceWarpPipe));
@@ -43,6 +43,6 @@ public class TeleportAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Player Teleports";
     }
 }

@@ -56,7 +56,7 @@ public abstract class Enemy extends Actor implements Resettable {
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
      * @return list of actions
-     * @see Status#HOSTILE_TO_ENEMY
+     * @see Status #HOSTILE_TO_ENEMY
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
@@ -65,9 +65,9 @@ public abstract class Enemy extends Actor implements Resettable {
         if ((otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) && !this.hasCapability(Status.DORMANT)) {
             actions.add(new AttackAction(this,direction));
         }
-        if (this.hasCapability(Status.DORMANT)) {
-            actions.add(new BreakShellAction(this,direction));
-        }
+//        if (this.hasCapability(Status.DORMANT)) {
+//            actions.add(new BreakShellAction(this,direction));
+//        }
         return actions;
     }
 
@@ -84,6 +84,9 @@ public abstract class Enemy extends Actor implements Resettable {
 
             // To be changed for string output is not appropriate
             return new DoNothingAction();
+        }
+        else if (!this.isConscious()){
+            map.removeActor(this);
         }
 
         for (Exit exit : map.locationOf(this).getExits()) {
