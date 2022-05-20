@@ -23,5 +23,5 @@ public enum Status {
     CAN_JUMP_ONTO_HIGH_GROUND, // used by actors who can jump onto high ground
     NPC, // used for actors that don't attack the player
     FINAL_BOSS_CLEARED, // used to indicate that the final boss (Bowser has been defeated and the game can be ended)
-    GAME_COMPLETE // used to indicate that the Princess is saved and the game is over
+    DROP_FIRE_WHEN_ATTACK, GAME_COMPLETE // used to indicate that the Princess is saved and the game is over
 }

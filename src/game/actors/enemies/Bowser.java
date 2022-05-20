@@ -14,6 +14,7 @@ import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
+import game.items.HandCuffKey;
 import game.items.SuperMushroom;
 import game.reset.Resettable;
 
@@ -32,8 +33,11 @@ public class Bowser extends Enemy implements Resettable {
     public Bowser(int spawn_x_coord, int spawn_y_coord) {
         super("Bowser", 'B', 200);
 
-        // Adding standard behaviours to the enemy
+        // add key to Bowser's inventory
+        this.addItemToInventory(new HandCuffKey());
+        this.addCapability(Status.DROP_FIRE_WHEN_ATTACK);
         this.getBehaviour().put(9, new AttackBehaviour());
+        this.getBehaviour().remove(10); // removing WanderBehabiour for Bowser
 
         SpawnLocation.add(0,spawn_x_coord);
         SpawnLocation.add(1,spawn_y_coord);
