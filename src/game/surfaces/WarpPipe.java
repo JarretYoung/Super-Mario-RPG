@@ -85,13 +85,12 @@ public class WarpPipe extends HighGround  {
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         ActionList actions = new ActionList();
 
-        // if piranha plant is killed/removed from map, and
 
-        if (location.containsAnActor() && location.getActor().hasCapability(Status.HOSTILE_TO_ENEMY) ){ // if player is on warp pipe
-            //add teleport action
+        // if player is on warp pipe
+        if (location.containsAnActor() && location.getActor().hasCapability(Status.HOSTILE_TO_ENEMY) ){
             actions.add(this.teleportAction);
 
-        }
+        } // if player defeats piranha plant
         else if (actor.hasCapability(Status.CAN_JUMP_ONTO_HIGH_GROUND) && !(location.containsAnActor()) && (this.piranhaPlant != null)){
             actions.add(new JumpAction(this, direction, location));
         }
