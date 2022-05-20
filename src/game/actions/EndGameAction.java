@@ -33,9 +33,9 @@ public class EndGameAction extends Action {
         String result;
 
         if ( actor.hasCapability(Status.FINAL_BOSS_CLEARED) ) {
-            result = "You have defeated Bowser and saved Princess Peach";
-            result += System.lineSeparator() + "Congratulations " + actor + ", you saved the Mushroom Kingdom";
-            result += System.lineSeparator() + "And most importantly, thank YOU player, for playing";
+            result = "You have defeated Bowser and saved Princess Peach. :D";
+            result += System.lineSeparator() + "Congratulations " + actor + ", you saved the Mushroom Kingdom! ";
+            result += System.lineSeparator() + "And most importantly, thank YOU player, for playing! <3";
 
             actor.addCapability(Status.GAME_COMPLETE);
         } else {
@@ -48,6 +48,6 @@ public class EndGameAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " free " + usher;
+        return actor + " unlock and frees " + usher + "!";
     }
 }
