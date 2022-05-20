@@ -59,14 +59,7 @@ public class AttackAction extends Action {
 			int damage = weapon.damage();
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
-			if (actor.hasCapability(Status.CRIPPLE_WEAPON)) {
-				Crippleable crippleWeapon = (Crippleable) weapon;
-				if ((rand.nextInt(100)) <= crippleWeapon.getChanceToCripple()) {
-					this.target.addCapability(Status.CRIPPLED);
-				}
-				result += System.lineSeparator() + target + " is crippled.";
-			}
-
+			// non-crippling attack
 			if (target.hasCapability(Status.INVINCIBLE))
 				target.hurt(0);
 
@@ -75,6 +68,17 @@ public class AttackAction extends Action {
 
 			else
 				target.hurt(damage);
+
+			// cripple weapon attack action
+			if (actor.hasCapability(Status.CRIPPLE_WEAPON)) {
+				Crippleable crippleWeapon = (Crippleable) weapon;
+				if ((rand.nextInt(100)) <= crippleWeapon.getChanceToCripple()) {
+					this.target.addCapability(Status.CRIPPLED);
+				}
+				result += System.lineSeparator() + target + " is crippled.";
+			}
+
+
 
 			if (target.hasCapability(Status.SUPER)) {
 				target.removeCapability(Status.SUPER);

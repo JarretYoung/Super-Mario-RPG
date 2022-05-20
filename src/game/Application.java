@@ -10,16 +10,14 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.World;
+import game.actions.TeleportAction;
 import game.actors.Player;
 import game.currency.Coin;
 import game.items.PowerStar;
 import game.items.SuperMushroom;
 import game.items.Wrench;
 import game.nature.Sprout;
-import game.surfaces.Dirt;
-import game.surfaces.Floor;
-import game.surfaces.Lava;
-import game.surfaces.Wall;
+import game.surfaces.*;
 
 
 /**
@@ -57,7 +55,7 @@ public class Application {
         GameMap gameMap = new GameMap(groundFactory, map);
         //world.addGameMap(gameMap);
 
-        Actor mario = new Player("Player", 'm', 15);
+        Actor mario = new Player("Player", 'm', 100);
         //world.addPlayer(mario, gameMap.at(42, 10));
 
 
@@ -73,19 +71,21 @@ public class Application {
         gameMap.at(42, 9).addItem(coin);
         //gameMap.at(24,9).addActor(new Toad());
 
+
+
         // Adding Second Map
         FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Ground[]{new Dirt(), new Wall(), new Sprout(), new Floor(), new Lava()});
         List<String> map2 = Arrays.asList(
-                "......................................................+...............",
-                "............+............+............................................",
-                "......................................................................",
-                "....................................................................+.",
                 "......................................................................",
                 "......................................................................",
-                ".................+....................................................",
+                "......................................................................",
+                "......................................................................",
+                "......................................................................",
+                "......................................................................",
+                "......................................................................",
                 "......................................................................",
                 "....................LLLL..............................................",
-                ".........+........LLLL.....................____.......................",
+                "..................LLLL.....................____.......................",
                 ".........................................._____.......................",
                 "..........................................______......................",
                 "......................................................................",
@@ -96,7 +96,25 @@ public class Application {
                 "......................................................................");
         GameMap gameMap2 = new GameMap(groundFactory2, map2);
         world.addGameMap(gameMap2);
-        world.addPlayer(mario, gameMap2.at(15, 15));
+        world.addPlayer(mario, gameMap2.at(0, 1));
+
+
+        //Adding Warp Pipe in Second  map
+        WarpPipe wp1gm2 = new WarpPipe();
+
+        //Adding Warp Pipe in First Main map
+        WarpPipe wp1gm1 = new WarpPipe();
+        WarpPipe wp2gm1 = new WarpPipe();
+
+        //TeleportAction parameters:sourceLocation, destinationLocation, sourceWarpPipe, destinationWarpPipe
+        wp1gm1.setTeleportAction( new TeleportAction( gameMap.at(42,5), gameMap2.at(0,0),wp1gm1,wp1gm2));
+        wp1gm2.setTeleportAction( new TeleportAction( gameMap.at(43,5), gameMap2.at(0,0),wp1gm2,wp1gm2));
+
+        // Placing warp pipes into respective maps
+        gameMap2.at(0,0).setGround(wp1gm2);
+        gameMap.at(42,5).setGround(wp1gm1);
+        gameMap.at(43,5).setGround(wp2gm1);
+
 
         world.run();
 
