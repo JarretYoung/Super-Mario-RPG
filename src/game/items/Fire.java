@@ -18,13 +18,14 @@ public class Fire extends Item {
 
     @Override
     public void tick(Location location) {
-        this.turnCounter += 1;
-        if (this.turnCounter <3){
+
+        if (this.turnCounter < numTurnsLast){
+            this.turnCounter += 1;
             if(location.containsAnActor()){
                 location.getActor().hurt(this.damage);
             }
         }
-        else{
+        else if (this.turnCounter == numTurnsLast){
             location.removeItem(this);
         }
     }

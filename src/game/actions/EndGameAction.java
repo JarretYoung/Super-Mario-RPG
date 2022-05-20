@@ -42,12 +42,12 @@ public class EndGameAction extends Action {
             result = "Ayy, you have not completed the game, what bug did you find?";
         }
 
-
+        map.removeActor(actor);
         return result;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " talks to " + usher;
+        return actor + " free " + usher;
     }
 }
