@@ -53,6 +53,7 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
+		// if player is hitpoints < 0
 
 
 		// Check Status
