@@ -68,8 +68,11 @@ public class Bowser extends Enemy implements Resettable {
 
         // If reset is queued then remove this instance of enemy from this location
         if (this.hasCapability(Status.RESET_QUEUED)) {
-            map.moveActor(this, new Location(map, this.SpawnLocation.get(0), this.SpawnLocation.get(1)));
-            this.heal(this.getMaxHp());
+            if (!map.at(this.SpawnLocation.get(0), this.SpawnLocation.get(1)).containsAnActor()){
+                map.moveActor(this, new Location(map, this.SpawnLocation.get(0), this.SpawnLocation.get(1)));
+                this.heal(this.getMaxHp());
+            }
+
 
             if (this.hasCapability(Status.CRIPPLED)) {
                 // This line is to clear off all statuses

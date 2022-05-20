@@ -38,8 +38,8 @@ public abstract class Tree extends HighGround implements Resettable {
     public void tick(Location location) {
         Random rand = new Random();
         super.tick(location);
-        // If reset is queued then convert this instance of Tree into an instance of Dirt
-        if((this.hasCapability(Status.RESET_QUEUED)) && ( rand.nextInt(2) == 0 ) )  {
+        // If reset is queued then convert this instance of Tree into an instance of Dirt, with 50% chance
+        if((this.hasCapability(Status.RESET_QUEUED)) && ( rand.nextInt(100) < 50 ) )  {
             location.setGround(new Dirt());
         }
     }

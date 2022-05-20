@@ -7,18 +7,21 @@ import game.Status;
 import game.actions.JumpAction;
 import game.actions.TeleportAction;
 import game.actors.enemies.PiranhaPlant;
+import game.reset.Resettable;
 
 /**
  * Warp Pipe Class
  * Teleports Player from source location to destination location
  * Piranha Plant needs to be killed for player to jump onto, and then teleport
  */
-public class WarpPipe extends HighGround  {
+public class WarpPipe extends HighGround implements Resettable {
 
 
     /**
-     * An attribute to check if the Game is reset
-     * Resetting the game results in warp pipe spawning a Piranha Plant on its location
+     * An attribute to check when to intialise PiranhaPlant
+     * True when game starts -> only initialise Piranha PLant on second turn
+     * True when game resets
+     * False upon initialised
      */
     private boolean resetted;
 
@@ -41,6 +44,7 @@ public class WarpPipe extends HighGround  {
         this.resetted = true;
         this.teleportAction = null;
         this.piranhaPlant = null;
+        registerInstance();
 
     }
 
@@ -68,7 +72,14 @@ public class WarpPipe extends HighGround  {
             this.piranhaPlant = new PiranhaPlant();
             location.addActor(this.piranhaPlant);
             this.resetted = false;
+        }else if (this.hasCapability(Status.RESET_QUEUED)){
+            if (!location.containsAnActor()){
+                this.resetted = true;
+                this.removeCapability(Status.RESET_QUEUED);
+            }
+
         }
+
 
     }
 
@@ -105,5 +116,11 @@ public class WarpPipe extends HighGround  {
      */
     public PiranhaPlant getPiranhaPlant() {
         return piranhaPlant;
+    }
+
+    @Override
+    public void resetInstance() {
+        this.addCapability(Status.RESET_QUEUED);
+
     }
 }
