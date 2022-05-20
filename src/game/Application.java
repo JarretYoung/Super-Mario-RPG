@@ -12,6 +12,8 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.World;
 import game.actions.TeleportAction;
 import game.actors.Player;
+import game.actors.PrincessPeach;
+import game.actors.enemies.Bowser;
 import game.currency.Coin;
 import game.items.PowerStar;
 import game.items.SuperMushroom;
@@ -98,6 +100,11 @@ public class Application {
         world.addGameMap(gameMap2);
         //world.addPlayer(mario, gameMap2.at(0, 1));
 
+        // Adding Princess Peach and Bowser
+        gameMap2.at(0,6).addActor(new PrincessPeach());
+        gameMap2.at(1,6).addActor(new Bowser(1,6));
+
+        //------------------- Adding Warp Pipes -------------------------//
 
         //Adding Warp Pipe in Second  map
         WarpPipe wp1gm2 = new WarpPipe();
