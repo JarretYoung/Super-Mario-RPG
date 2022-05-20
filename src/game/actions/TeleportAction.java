@@ -30,11 +30,15 @@ public class TeleportAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        // teleport player from source map location to destination map and location
-        map.moveActor(actor, destinationLocation );
 
         // make sure player teleports back to the same source WarpPipe
         destinationWarpPipe.setTeleportAction( new TeleportAction(this.destinationLocation, this.sourceLocation, this.destinationWarpPipe, this.sourceWarpPipe));
+        destinationLocation.map().removeActor(destinationWarpPipe.getPiranhaPlant());
+
+
+        // teleport player from source map location to destination map and location
+        map.moveActor(actor, destinationLocation );
+
 
         return ("Bzz. Player has teleported!");
 

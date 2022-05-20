@@ -65,9 +65,9 @@ public abstract class Enemy extends Actor implements Resettable {
         if ((otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) && !this.hasCapability(Status.DORMANT)) {
             actions.add(new AttackAction(this,direction));
         }
-//        if (this.hasCapability(Status.DORMANT)) {
-//            actions.add(new BreakShellAction(this,direction));
-//        }
+        if (this.hasCapability(Status.DORMANT)) {
+            actions.add(new BreakShellAction(this,direction));
+        }
         return actions;
     }
 

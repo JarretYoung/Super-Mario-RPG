@@ -56,7 +56,7 @@ public class Application {
         world.addGameMap(gameMap);
 
         Actor mario = new Player("Player", 'm', 100);
-        //world.addPlayer(mario, gameMap.at(42, 10));
+        world.addPlayer(mario, gameMap.at(42, 10));
 
 
         Item superMushroom = new SuperMushroom();
@@ -96,7 +96,7 @@ public class Application {
                 "......................................................................");
         GameMap gameMap2 = new GameMap(groundFactory2, map2);
         world.addGameMap(gameMap2);
-        world.addPlayer(mario, gameMap2.at(0, 1));
+        //world.addPlayer(mario, gameMap2.at(0, 1));
 
 
         //Adding Warp Pipe in Second  map
@@ -109,15 +109,15 @@ public class Application {
         // Set teleport Action for game map 1 warp pipes
         //TeleportAction parameters:sourceLocation, destinationLocation, sourceWarpPipe, destinationWarpPipe
         wp1gm1.setTeleportAction( new TeleportAction( gameMap.at(42,5), gameMap2.at(0,0),wp1gm1,wp1gm2));
-        wp2gm1.setTeleportAction( new TeleportAction( gameMap.at(43,5), gameMap2.at(0,0),wp2gm1,wp1gm2));
+        wp2gm1.setTeleportAction( new TeleportAction( gameMap.at(42,8), gameMap2.at(0,0),wp2gm1,wp1gm2));
 
-        // default
+        // initialise 2nd map's default teleport destination to Warp Pipe 1 in game map 1
         wp1gm2.setTeleportAction( new TeleportAction( gameMap2.at(0,0),gameMap.at(42,5),wp1gm2,wp1gm1));
 
         // Placing warp pipes into respective maps
         gameMap2.at(0,0).setGround(wp1gm2);
         gameMap.at(42,5).setGround(wp1gm1);
-        gameMap.at(43,5).setGround(wp2gm1);
+        gameMap.at(42,8).setGround(wp2gm1);
 
 
         world.run();
