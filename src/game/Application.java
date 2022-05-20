@@ -102,7 +102,7 @@ public class Application {
 
         // Adding Princess Peach and Bowser
         gameMap2.at(0,6).addActor(new PrincessPeach());
-        gameMap2.at(1,6).addActor(new Bowser(1,6));
+        gameMap2.at(1,6).addActor(new Bowser(gameMap2,1,6));
 
         //------------------- Adding Warp Pipes -------------------------//
 

@@ -38,12 +38,6 @@ public abstract class Enemy extends Actor implements Resettable {
     public Enemy(String name, char displayChar, int hitPoints) {
         super(name,displayChar,hitPoints);
 
-        // Adding standard behaviours to the enemy
-        // New edit: I think we should remove this
-        this.behaviours.put(10, new WanderBehaviour());
-        this.behaviours.put(9, new AttackBehaviour());
-
-
         // Registering instance as a resettable object
         this.registerInstance();
     }

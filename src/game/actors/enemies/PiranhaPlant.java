@@ -22,7 +22,8 @@ public class PiranhaPlant extends Enemy implements Resettable {
      */
     public PiranhaPlant() {
         super("PiranhaPlant", 'Y', 150);
-        this.getBehaviour().remove(10);
+        // Adding standard behaviours to the enemy
+        this.getBehaviour().put(9, new AttackBehaviour());
     }
 
     /**

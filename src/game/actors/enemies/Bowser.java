@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Bowser extends Enemy implements Resettable {
 
-    private ArrayList<Integer> SpawnLocation = new ArrayList<>(); // Spawn Location
+    private Location SpawnLocation;
 
     /**
      * Constructor for the Bowser class
@@ -30,17 +30,16 @@ public class Bowser extends Enemy implements Resettable {
      * @param spawn_x_coord is the x_coordinate where the Bowser is meant to be spawned
      * @param spawn_y_coord is the y_coordinate where the Bowser is meant to be spawned
      */
-    public Bowser(int spawn_x_coord, int spawn_y_coord) {
+    public Bowser(GameMap map, int spawn_x_coord, int spawn_y_coord) {
         super("Bowser", 'B', 200);
 
         // add key to Bowser's inventory
         this.addItemToInventory(new HandCuffKey());
         this.addCapability(Status.DROP_FIRE_WHEN_ATTACK);
         this.getBehaviour().put(9, new AttackBehaviour());
-        this.getBehaviour().remove(10); // removing WanderBehabiour for Bowser
 
-        SpawnLocation.add(0,spawn_x_coord);
-        SpawnLocation.add(1,spawn_y_coord);
+        // Instantiating the spawn location of this Actor
+        SpawnLocation = new Location(map, spawn_x_coord, spawn_y_coord);
     }
 
     /**
@@ -68,21 +67,26 @@ public class Bowser extends Enemy implements Resettable {
 
         // If reset is queued then remove this instance of enemy from this location
         if (this.hasCapability(Status.RESET_QUEUED)) {
-            if (!map.at(this.SpawnLocation.get(0), this.SpawnLocation.get(1)).containsAnActor()){
-                map.moveActor(this, new Location(map, this.SpawnLocation.get(0), this.SpawnLocation.get(1)));
-                this.heal(this.getMaxHp());
-            }
+            // Relocate this actor to their spawn location
+            map.moveActor(this, SpawnLocation);
 
+            // Heals this Actor
+            this.heal(this.getMaxHp());
 
+            //Remove Cripple debuff
             if (this.hasCapability(Status.CRIPPLED)) {
                 // This line is to clear off all statuses
                 this.removeCapability(Status.CRIPPLED);
-            } else {
-                // This line is to ensure that the RESET_QUEUED status is removed
-                this.removeCapability(Status.RESET_QUEUED);
             }
 
+            // Checks to see if the Enemy have FollowBehavior
+            if (this.getBehaviour().containsKey(7)) {
+                // Removes FollowBehaviour
+                this.getBehaviour().remove(7);
+            }
 
+            // This line is to ensure that the RESET_QUEUED status is removed
+            this.removeCapability(Status.RESET_QUEUED);
 
             // To be changed for string output is not appropriate
             return new DoNothingAction();
