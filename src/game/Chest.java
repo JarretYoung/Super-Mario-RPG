@@ -2,8 +2,10 @@ package game;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actions.AttackAction;
 import game.actions.JumpAction;
 import game.actions.OpenChestAction;
 import game.currency.Coin;
@@ -24,8 +26,9 @@ public class Chest extends Ground {
      * @param displayChar character to display for this type of terrain
      */
     public Chest(char displayChar) {
-        super('C');
+        super('G');
         this.name = "Chest";
+        this.addCapability(Status.CHEST_CLOSED);
     }
 
     /**
@@ -46,10 +49,18 @@ public class Chest extends Ground {
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction){
         ActionList actions = new ActionList();
-
-        if (!(location.containsAnActor())){
-            actions.add(new OpenChestAction(this, location));
+        if (this.hasCapability(Status.CHEST_CLOSED)) {
+            for (Exit exit : location.getExits()) {
+                Location destination = exit.getDestination();
+                if (destination.containsAnActor()) {
+                    actions.add(new OpenChestAction(this, location));
+                }
+            }
         }
+
+//        if ( location.containsAnActor() ){
+//            actions.add(new OpenChestAction(this, location));
+//        }
 
         return actions;
 
@@ -65,6 +76,11 @@ public class Chest extends Ground {
         return false;
     }
 
+    /**
+     * Method to randomly drop an item
+     * @param location
+     * @return
+     */
     public String dropItems(Location location) {
         Random rand = new Random();
         int chance = rand.nextInt(4);
@@ -88,6 +104,8 @@ public class Chest extends Ground {
             return "Chest dropped a Power Star";
         }
 
+        this.setDisplayChar('L');
+        this.removeCapability(Status.CHEST_CLOSED);
         return null;
     }
 }

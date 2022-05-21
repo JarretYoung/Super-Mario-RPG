@@ -1,17 +1,12 @@
-package game.actors;
+package game.actors.npc;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
 import game.actions.EndGameAction;
-import game.actions.TalkAction;
-import game.monologue.Monologue;
-import game.monologue.Monologue_Peach;
 
-import java.nio.file.StandardCopyOption;
-
-public class PrincessPeach extends NPC{
+public class PrincessPeach extends NPC {
     /**
      * Constructor.
      */

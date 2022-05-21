@@ -1,10 +1,11 @@
-package game.actors;
+package game.actors.npc;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
 import game.actions.GetItemAction;
+import game.actors.npc.NPC;
 import game.items.Bottle;
 import game.items.TradeManager;
 import game.actions.TalkAction;
