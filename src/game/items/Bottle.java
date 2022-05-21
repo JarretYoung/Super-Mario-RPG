@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class Bottle extends Item implements WaterStorage{
-    private final int MAX_CAPACITY;
+
     private Stack<MagicalWater> magicalWaterStack;
     /***
      * Constructor.
@@ -22,17 +22,18 @@ public class Bottle extends Item implements WaterStorage{
         super("Bottle", 'b', false);
         addCapability(Status.HAS_BOTTLE);
         magicalWaterStack = new Stack<>();
-        MAX_CAPACITY = 10;
     }
 
     public String filled(Buffable actor, MagicalWater water){
         String ret = "";
-        if(!isFull()){
-            refill(water);
-            ret = actor + " has filled up their bottle with " + water + " (" + magicalWaterStack.size() + "/" + MAX_CAPACITY + ")";
+        if(magicalWaterStack.size() == 0){
+           magicalWaterStack.push(water);
+            ret = actor + " has filled up their bottle with " + water;
         }
-        else{
-            ret = "Bottle is full!";
+        else if(magicalWaterStack.size() > 0){
+            magicalWaterStack.pop();
+            magicalWaterStack.push(water);
+            ret = actor + " has filled up their bottle with " + water;
         }
         return ret;
     }
@@ -41,8 +42,8 @@ public class Bottle extends Item implements WaterStorage{
         String ret = "";
 
         if(!isEmpty()){
-            MagicalWater water = magicalWaterStack.pop();
-            ret = by + " drinks from " + this + getCapacity() + water.drinked(by);
+            MagicalWater water = magicalWaterStack.peek();
+            ret = by + " drinks from " + this + water.drinked(by);
         }
         else
             ret = "Bottle's empty!";
@@ -55,33 +56,9 @@ public class Bottle extends Item implements WaterStorage{
         return flag;
     }
 
-    public boolean isFull(){
-        boolean flag = false;
-        if(magicalWaterStack.size() ==  MAX_CAPACITY){
-            flag = true;
-        }
-        return flag;
-    }
-
-    private void refill(MagicalWater water) {
-        for(int i = magicalWaterStack.size(); i < MAX_CAPACITY; i++)
-            magicalWaterStack.push(water);
-    }
-
-    public String getCapacity(){
-        String ret = "(" + magicalWaterStack.size() + "/" + MAX_CAPACITY + ")";
-        return ret;
-    }
-
     public String getStack(){
         return this.magicalWaterStack.toString();
     }
 
-    @Override
-    public void tick(Location currentLocation, Actor actor) {
-        if(isFull())
-            this.addCapability(Status.HAS_FULL_BOTTLE);
-        super.tick(currentLocation, actor);
-    }
 
 }
