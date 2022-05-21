@@ -13,15 +13,21 @@ public enum Status {
     RESET_QUEUED, // used to indicate if a reset was requested and this entity was queued for reset action
     CRIPPLE_ATTACK, // used to indicate if the attack is able to cripple an enemy
     CRIPPLED, // used to apply a status effect on an actor to imply they cannot move
-    INK_ATTACK, // used to indicate that an enemt can drop ink on the ground
+    INK_ATTACK, // used to indicate that an enemy can drop ink on the ground
     HEAL_OVER_TIME, // used to indicate an actor will heal over time
     HAS_WRENCH, // used to indicate if the player has a wrench
     HAS_BOTTLE, // used to indicate if the player has a bottle
+    HAS_FULL_BOTTLE, // used to indicate player has full bottle
     BUFFABLE, // used to indicate if an actor is buffable
+    FOUNTAIN, //used to indicate fountain
     ACTIVE, // used to indicate if an Enemy is in an active state
     DORMANT, // used to indicate if an Enemy is in a dormant state
     HIGH_GROUND, // used by grounds which are high grounds
     CAN_JUMP_ONTO_HIGH_GROUND, // used by actors who can jump onto high ground
+    SWIMMABLE_ENEMY, // used to indicate swimmable enemies
+    AMPHIBIOUS, // used to indicate player can eneter water without drowning
+    DROWNABLE, // used to indicate player can't swim
+    CHEST_CLOSED, // used to indicate closed chest
     NPC, // used for actors that don't attack the player
     FINAL_BOSS_CLEARED, // used to indicate that the final boss (Bowser has been defeated and the game can be ended)
     DROP_FIRE_WHEN_ATTACK, PLAYER, TELEPORTATION_GROUND, GAME_COMPLETE // used to indicate that the Princess is saved and the game is over
