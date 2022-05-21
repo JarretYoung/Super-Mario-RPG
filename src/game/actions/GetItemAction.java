@@ -17,8 +17,8 @@ public class GetItemAction extends Action {
     public String execute(Actor receiver, GameMap map) {
         String ret = "";
         if(owner.getInventory().contains(received)){
-            receiver.addItemToInventory(received);
-            owner.removeItemFromInventory(received);
+            receiver.getInventory().add(received);
+            owner.getInventory().remove(received);
             ret = receiver + " gets " + received + " from " + owner;
         }
         return ret;

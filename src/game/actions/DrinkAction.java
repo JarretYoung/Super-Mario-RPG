@@ -17,13 +17,13 @@ public class DrinkAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         String str = "";
-        if(actor.hasCapability(Status.BUFFABLE) || actor.hasCapability(Status.HAS_BOTTLE))
+        if(actor.hasCapability(Status.BUFFABLE))
             str =  source.DrinkedFrom((Buffable) actor);
         return str;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Player drinks from " + source;
+        return null;
     }
 }

@@ -19,7 +19,7 @@ public class FillUpAction extends Action {
     public String execute(Actor actor, GameMap map) {
         Bottle bottle = null;
         String ret = "";
-        if(actor.hasCapability(Status.HAS_BOTTLE) && !actor.hasCapability(Status.HAS_FULL_BOTTLE)) {
+        if(actor.hasCapability(Status.HAS_BOTTLE)) {
             for(int i = 0; i < actor.getInventory().size(); i++){
                 if (actor.getInventory().get(i).hasCapability(Status.HAS_BOTTLE))
                     bottle = (Bottle) actor.getInventory().get(i);

@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Status;
 import game.items.Crippleable;
+import game.items.Fire;
 
 /**
  * Special Action for attacking other Actors.
@@ -69,7 +70,12 @@ public class AttackAction extends Action {
 
 		final int MAX_DAMAGE = 9999;
 
-		if (!(rand.nextInt(100) <= weapon.chanceToHit()) && !actor.hasCapability(Status.INVINCIBLE)) {
+		int chanceToHitUpperBound = 100;
+
+		if(actor.hasCapability(Status.INK_ATTACK))
+			chanceToHitUpperBound += 50;
+
+		if (!(rand.nextInt(chanceToHitUpperBound) <= weapon.chanceToHit()) && !actor.hasCapability(Status.INVINCIBLE)) {
 			result = actor + " misses " + target + ".";
 		}
 
