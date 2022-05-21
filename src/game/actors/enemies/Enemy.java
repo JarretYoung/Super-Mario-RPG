@@ -26,6 +26,9 @@ import java.util.Map;
  */
 public abstract class Enemy extends Actor implements Resettable {
 
+    /**
+     * This is the list of behaviours that the enemy harbours
+     */
     private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
 

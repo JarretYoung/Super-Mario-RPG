@@ -2,7 +2,6 @@ package game.items;
 
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Status;
-import game.actors.CurrencyCollector;
 
 /**
  * Wrench class that extends abstract class SpecialItem
@@ -24,7 +23,7 @@ public class RendingScissors extends WeaponItem implements Crippleable{
     public RendingScissors() {
 
         super("Rending Scissors", 'V', 40, "snips", 85);
-        this.addCapability(Status.CRIPPLE_WEAPON);
+        this.addCapability(Status.CRIPPLE_ATTACK);
         this.setChanceToCripple(15);
     }
 

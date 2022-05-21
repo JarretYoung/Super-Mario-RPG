@@ -10,6 +10,8 @@ public class MagicalWater {
         this.source = source;
     }
 
+    public Fountain getSource() { return source; }
+
     public MagicalWater(Fountain fountain){
         setSource(fountain);
     }
@@ -24,6 +26,15 @@ public class MagicalWater {
             actor.addDamage(15);
             ret = ", " + actor + " has increased intrinsic damage by 15";
         }
+        return ret;
+    }
+
+    public String toString(){
+        String ret = "";
+        if(source.getName().equals("Health Fountain"))
+            ret = "Health Water";
+        else if(source.getName().equals("Power Fountain"))
+            ret = "Power Water";
         return ret;
     }
 }

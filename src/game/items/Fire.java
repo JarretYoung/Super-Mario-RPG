@@ -9,11 +9,11 @@ public class Fire extends Item {
     private int turnCounter;
     private int numTurnsLast;
 
-    public Fire(){
+    public Fire(int damage, int numTurnsLast){
         super("Fire", 'v', false);
-        this.damage = 20;
+        this.damage = damage;
         this.turnCounter = 0;
-        this.numTurnsLast = 3;
+        this.numTurnsLast = numTurnsLast;
     }
 
     @Override

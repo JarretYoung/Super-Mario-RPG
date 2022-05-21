@@ -13,6 +13,7 @@ import edu.monash.fit2099.engine.positions.World;
 import game.actions.TeleportAction;
 import game.actors.Player;
 import game.actors.PrincessPeach;
+import game.actors.Toad;
 import game.actors.enemies.Bowser;
 import game.currency.Coin;
 import game.items.PowerStar;
@@ -66,11 +67,16 @@ public class Application {
         Item wrench = new Wrench();
         Item coin = new Coin(10);
 
+        Toad toad = new Toad();
+
         mario.addItemToInventory(wrench);
 
         gameMap.at(42, 9).addItem(superMushroom);
         gameMap.at(42, 9).addItem(powerStar);
         gameMap.at(42, 9).addItem(coin);
+        gameMap.at(41,9).addActor(toad);
+        gameMap.at(41,10).setGround(new HealthFountain());
+        gameMap.at(40,10).setGround(new PowerFountain());
         //gameMap.at(24,9).addActor(new Toad());
 
 

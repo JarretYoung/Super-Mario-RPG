@@ -2,16 +2,30 @@ package game.behaviours;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.actions.AttackAction;
+import game.items.Fire;
 
 /**
  * This class represents the behaviour to attack others around in the surrounding
  */
 public class AttackBehaviour extends Action implements Behaviour{
+
+    /**
+     * The Special Effect left on the ground after attacking
+     */
+    protected Item specialAttackEffect = null;
+
+    public AttackBehaviour() {
+    }
+
+    public AttackBehaviour(Item specialAttackEffect) {
+        this.specialAttackEffect = specialAttackEffect;
+    }
 
     /**
      * Returns a MoveAction to wander to a random location, if possible.
@@ -31,8 +45,11 @@ public class AttackBehaviour extends Action implements Behaviour{
                 Location destination = exit.getDestination();
                 if (destination.containsAnActor()) {
                     if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                        action = new AttackAction(destination.getActor(), exit.getName());
-
+                        if (this.specialAttackEffect != null) {
+                            action = new AttackAction(destination.getActor(), exit.getName(),this.specialAttackEffect);
+                        } else {
+                            action = new AttackAction(destination.getActor(), exit.getName());
+                        }
                     }
                 }
             }

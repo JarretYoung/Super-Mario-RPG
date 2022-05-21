@@ -14,6 +14,7 @@ import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
+import game.items.Fire;
 import game.items.HandCuffKey;
 import game.items.SuperMushroom;
 import game.reset.Resettable;
@@ -38,8 +39,8 @@ public class Bowser extends Enemy implements Resettable {
 
         // add key to Bowser's inventory
         this.addItemToInventory(new HandCuffKey());
-        this.addCapability(Status.DROP_FIRE_WHEN_ATTACK);
-        this.getBehaviour().put(9, new AttackBehaviour());
+        // add the relevant Behaviors
+        this.getBehaviour().put(9, new AttackBehaviour(new Fire(20, 3)));
 
         // Instantiating the spawn location of this Actor
         SpawnLocation = new Location(map, spawn_x_coord, spawn_y_coord);
@@ -125,6 +126,6 @@ public class Bowser extends Enemy implements Resettable {
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(80, "punch");
+        return new IntrinsicWeapon(80, "punches");
     }
 }
