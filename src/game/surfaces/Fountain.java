@@ -30,6 +30,7 @@ public class Fountain extends Ground implements WaterStorage {
     public String getName() {
         return name;
     }
+
     /**
      * Constructor.
      *
@@ -99,7 +100,7 @@ public class Fountain extends Ground implements WaterStorage {
         return ret;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         boolean flag = false;
         flag = magicalWaterStack.isEmpty();
         return flag;
@@ -152,6 +153,10 @@ public class Fountain extends Ground implements WaterStorage {
         if(actor.hasCapability(Status.SWIMMABLE_ENEMY))
             return false;
         return true;
+    }
+
+    public String getStack(){
+        return this.magicalWaterStack.toString();
     }
 
 

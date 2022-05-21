@@ -90,6 +90,7 @@ public class EatAbleItem extends SpecialItem {
         return result;
     }
 
+
     /**
      * Method called when consume action is performed on special item while item is in inventory
      * @param by actor that eats special item
@@ -106,7 +107,7 @@ public class EatAbleItem extends SpecialItem {
             }
             // Remove item from inventory
             if(!this.temporaryEffect())
-                actor.getInventory().remove(this);
+                actor.removeItemFromInventory(this);
 
             else if(temporaryEffect()) {
                 this.togglePortability();
