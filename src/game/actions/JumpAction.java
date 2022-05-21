@@ -64,7 +64,12 @@ public class JumpAction extends Action {
         } // if actor is invincible, walk over and drop coin
         else if(jumper.hasCapability(Status.INVINCIBLE)){
             map.moveActor(jumper, high_ground_location);
-            map.at(high_ground_location.x(), high_ground_location.y()).setGround(new Dirt());
+
+            // to ensure that Warp Pipe does not get set to Dirt
+            if (!this.target.hasCapability(Status.TELEPORTATION_GROUND)){
+                map.at(high_ground_location.x(), high_ground_location.y()).setGround(new Dirt());
+            }
+
             map.at(high_ground_location.x(), high_ground_location.y()).addItem(new Coin(5));
             ret = success;
         }
