@@ -11,11 +11,15 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actions.TeleportAction;
 import game.actors.Player;
+import game.actors.enemies.Enemy;
+import game.actors.enemies.Shark;
+import game.actors.enemies.Squid;
 import game.actors.npc.PrincessPeach;
 import game.actors.npc.Toad;
 import game.actors.enemies.Bowser;
 import game.currency.Coin;
 import game.items.PowerStar;
+import game.items.Snorkel;
 import game.items.SuperMushroom;
 import game.items.Wrench;
 import game.nature.Sprout;
@@ -35,10 +39,10 @@ public class Application {
 
         List<String> map = Arrays.asList(
                 "..........................................##..........+.........................",
-                "............+............+..................#...................................",
+                ".........................+..................#...................................",
                 "............................................#...................................",
                 ".............................................##......................+..........",
-                ".....+.........................................#................................",
+                "...............................................#................................",
                 "................................................#........+......................",
                 ".................+................................#.............................",
                 ".................................................##.............................",
@@ -64,11 +68,20 @@ public class Application {
         Item superMushroom = new SuperMushroom();
         Item powerStar = new PowerStar();
         Item wrench = new Wrench();
-        Item coin = new Coin(10);
+        Item coin = new Coin(10000);
+        Item snorkel = new Snorkel();
 
         Toad toad = new Toad();
 
-        mario.addItemToInventory(wrench);
+        Squid squid = new Squid();
+
+        // Creating water area
+        for(int y = 0; y<9; y++){
+            for (int x =0; x<16; x++){
+                gameMap.at(x,y).setGround(new WaterArea());
+            }
+        }
+
 
         gameMap.at(42, 9).addItem(superMushroom);
         gameMap.at(42, 9).addItem(powerStar);
@@ -76,6 +89,18 @@ public class Application {
         gameMap.at(41,9).addActor(toad);
         gameMap.at(41,10).setGround(new HealthFountain());
         gameMap.at(40,10).setGround(new PowerFountain());
+
+        // Adding aquatic enemies
+
+        gameMap.at(8,3).addActor(squid);
+        gameMap.at(15,4).addActor(new Shark());
+        gameMap.at(0,6).addActor(new Shark());
+        gameMap.at(7,7).addActor(new Shark());
+        gameMap.at(15,7).addActor(new Shark());
+        gameMap.at(10,2).addActor(new Shark());
+        gameMap.at(6,2).addActor(new Shark());
+        gameMap.at(6,3).addActor(new Shark());
+        gameMap.at(4,7).addActor(new Shark());
         //gameMap.at(24,9).addActor(new Toad());
 
 
