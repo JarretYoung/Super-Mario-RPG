@@ -10,7 +10,7 @@ public class Ink extends Item {
     private int numTurnsLast;
 
     public Ink(){
-        super("Ink", '%', false);
+        super("Ink", '`', false);
         this.turnCounter = 0;
         this.numTurnsLast = 5;
     }
