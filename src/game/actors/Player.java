@@ -37,6 +37,7 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		this.addCapability(Status.DROWNABLE);
 		// Registering instance as a resettable object
 		this.registerInstance();
+		this.makeBuffable();
 	}
 
 	@Override
