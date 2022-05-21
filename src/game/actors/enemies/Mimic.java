@@ -11,15 +11,24 @@ import game.actions.AttackAction;
 import game.actions.BreakShellAction;
 import game.actions.OpenMimicAction;
 import game.behaviours.AttackBehaviour;
+import game.behaviours.DrinkBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.items.RendingScissors;
 
 public class Mimic extends Enemy{
+
+    /**
+     * Damage
+     */
+    private int damage;
+
     /**
      * Constructor.
      */
     public Mimic() {
         super("Mimic", 'G', 200);
+        damage = 50;
+        this.makeBuffable();
         this.addCapability(Status.DORMANT);
     }
 
@@ -49,7 +58,8 @@ public class Mimic extends Enemy{
         if (this.hasCapability(Status.ACTIVE)) {
             this.setDisplayChar('R');
             this.getBehaviour().put(10, new WanderBehaviour());
-            this.getBehaviour().put(9, new AttackBehaviour());
+            this.getBehaviour().put(9, new DrinkBehaviour());
+            this.getBehaviour().put(8, new AttackBehaviour());
         }
         return super.playTurn(actions, lastAction, map, display);
     }
@@ -62,12 +72,20 @@ public class Mimic extends Enemy{
         return super.isConscious();
     }
 
-    /** This method is used to assign a new intrinsic weapon to the Koopa
-     *
-     * @return a new instance of intrinsic weapon
-     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(50, "chomp");
+        return new IntrinsicWeapon(damage, "chomp");
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void addDamage(int addedDamage) {
+        damage += addedDamage;
+    }
+
+    public void makeBuffable() {
+        this.addCapability(Status.BUFFABLE);
     }
 }

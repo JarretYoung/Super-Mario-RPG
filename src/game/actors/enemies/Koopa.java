@@ -4,7 +4,9 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.actors.Buffable;
 import game.behaviours.AttackBehaviour;
+import game.behaviours.DrinkBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.items.SuperMushroom;
 import game.reset.Resettable;
@@ -25,12 +27,17 @@ import game.Status;
  * @version 2.0 26/4/2022
  *
  */
-abstract public class Koopa extends Enemy implements Resettable {
+abstract public class Koopa extends Enemy implements Resettable, Buffable {
 
     /**
      * Health (while active)
      */
     private int hitPoints_active;
+
+    /**
+     * Damage (while active)
+     */
+    private int damage;
     /**
      * Constructor.
      */
@@ -39,10 +46,13 @@ abstract public class Koopa extends Enemy implements Resettable {
         this.hitPoints_active = 100; //This the Koopa's hp when it is in an active state
         this.addCapability(Status.ACTIVE);
         this.addItemToInventory(new SuperMushroom());
+        damage = 30;
+        this.makeBuffable();
 
         // Adding standard behaviours to the enemy
         this.getBehaviour().put(10, new WanderBehaviour());
-        this.getBehaviour().put(9, new AttackBehaviour());
+        this.getBehaviour().put(9, new DrinkBehaviour());
+        this.getBehaviour().put(8, new AttackBehaviour());
     }
 
     /**
@@ -95,12 +105,27 @@ abstract public class Koopa extends Enemy implements Resettable {
         this.hitPoints_active = hitPoints_active;
     }
 
-    /** This method is used to assign a new intrinsic weapon to the Koopa
+    /** This method is used to assign a new intrinsic weapon to the Goomba
      *
      * @return a new instance of intrinsic weapon
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(30, "punch");
+        return new IntrinsicWeapon(damage, "punch");
+    }
+
+    @Override
+    public int getDamage() {
+        return damage;
+    }
+
+    @Override
+    public void addDamage(int addedDamage) {
+        damage += addedDamage;
+    }
+
+    @Override
+    public void makeBuffable() {
+        this.addCapability(Status.BUFFABLE);
     }
 }

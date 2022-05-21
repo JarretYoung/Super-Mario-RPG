@@ -1,6 +1,8 @@
 package game.actors.enemies;
 
 
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.Status;
 import game.reset.Resettable;
 
 public class DefaultKoopa extends Koopa implements Resettable {
