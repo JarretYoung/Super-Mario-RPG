@@ -37,8 +37,10 @@ public class Fountain extends Ground implements WaterStorage {
      */
     public Fountain(char displayChar, String name) {
         super(displayChar);
+        this.addCapability(Status.FOUNTAIN);
         setName(name);
         MAX_CAPACITY = 10;
+        magicalWaterStack = new Stack<>();
         this.refill(new MagicalWater(this));
         counter = 0;
     }
@@ -50,7 +52,7 @@ public class Fountain extends Ground implements WaterStorage {
         if(actor.hasCapability(Status.BUFFABLE))
             actions.add(new DrinkAction(this));
 
-        if(actor.hasCapability(Status.HAS_BOTTLE))
+        if(actor.hasCapability(Status.HAS_BOTTLE) && !actor.hasCapability(Status.HAS_FULL_BOTTLE))
             actions.add(new FillUpAction(this));
 
         return actions;
@@ -71,11 +73,16 @@ public class Fountain extends Ground implements WaterStorage {
     public String DrinkedFrom(Buffable by){
         String ret = "";
 
-        if(!isEmpty()){
-            ret = by + " drinks from " + this + getCapacity() + magicalWaterStack.pop().drinked(by);
+        if(!isEmpty() && magicalWaterStack.size() > 5){
+            MagicalWater water = magicalWaterStack.pop();
+            for(int i = 0; i < 4; i++)
+                magicalWaterStack.pop();
+            ret = by + " drinks from " + this + getCapacity() + water.drinked(by);
         }
+        else if(magicalWaterStack.size() < 5)
+            ret = "Not enough water!";
         else
-            ret = "Fountain's empty!";
+            ret = "Fountain's empty!, come back later";
         return ret;
     }
 
@@ -107,8 +114,8 @@ public class Fountain extends Ground implements WaterStorage {
     }
 
     private void refill(MagicalWater water) {
-        for(int i = magicalWaterStack.size() - 1; i < MAX_CAPACITY; i++)
-            magicalWaterStack.push(water);
+            for(int i = 0; i < MAX_CAPACITY; i++)
+                magicalWaterStack.push(water);
     }
 
     public String getCapacity(){
@@ -119,7 +126,7 @@ public class Fountain extends Ground implements WaterStorage {
     public String peek(){
         String ret = "";
         if(!isEmpty())
-            ret = this.magicalWaterStack.peek() + "";
+            ret = this.magicalWaterStack.peek().toString() + "";
         else
             ret = "nothing";
         return ret;
@@ -132,7 +139,13 @@ public class Fountain extends Ground implements WaterStorage {
             counter += 1;
         else if(!isEmpty())
             counter = 0;
-        if(counter == 5)
+        if(counter > 5)
             refill(new MagicalWater(this));
     }
+
+    public String toString(){
+        return "Fountain " + getCapacity();
+    }
+
+
 }

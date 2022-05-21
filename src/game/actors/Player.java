@@ -7,6 +7,8 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.actions.DrinkAction;
+import game.items.Bottle;
 import game.reset.Resettable;
 import game.Status;
 import game.actions.AttackAction;
@@ -34,6 +36,7 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.RESET_AVAILABLE);
 		this.addCapability(Status.CAN_JUMP_ONTO_HIGH_GROUND);
+		this.makeBuffable();
 		// Registering instance as a resettable object
 		this.registerInstance();
 	}
@@ -64,6 +67,11 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 			actions.add(new ResetAction());
 		}
 
+		if(this.hasCapability(Status.HAS_BOTTLE)){
+			if(!getBottle().isEmpty())
+				actions.add(new DrinkAction(getBottle()));
+		}
+
 		// If reset is queued, this instance of player would be healed to max hp and all statuses will be purged
 		if(this.hasCapability(Status.RESET_QUEUED)) {
 			this.heal(getMaxHp());
@@ -80,6 +88,8 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		System.out.println(this + this.printHp() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
 		System.out.println("wallet: $" + this.getWallet().getBalance());
 		System.out.println(this.getInventory());
+		if(this.hasCapability(Status.HAS_BOTTLE))
+			System.out.println(getBottle().getStack());
 		return menu.showMenu(this, actions, display);
 	}
 
@@ -137,5 +147,15 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 	@Override
 	public void makeBuffable() {
 		this.addCapability(Status.BUFFABLE);
+	}
+
+	public Bottle getBottle(){
+		Bottle ret = null;
+		for(int i = 0; i < this.getInventory().size(); i++){
+			if(this.getInventory().get(i).hasCapability(Status.HAS_BOTTLE)){
+				ret = (Bottle) this.getInventory().get(i);
+			}
+		}
+		return ret;
 	}
 }
