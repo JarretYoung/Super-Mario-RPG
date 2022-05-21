@@ -39,8 +39,6 @@ public class Bowser extends Enemy implements Resettable {
 
         // add key to Bowser's inventory
         this.addItemToInventory(new HandCuffKey());
-//        // add capability to do a fire attack
-//        this.addCapability(Status.FIRE_ATTACK);
         // add the relevant Behaviors
         this.getBehaviour().put(9, new AttackBehaviour(new Fire(20, 3)));
 
@@ -128,6 +126,6 @@ public class Bowser extends Enemy implements Resettable {
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(80, "punch");
+        return new IntrinsicWeapon(80, "punches");
     }
 }
