@@ -7,10 +7,14 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.actions.DrinkAction;
+import game.items.Bottle;
 import game.reset.Resettable;
 import game.Status;
 import game.actions.AttackAction;
 import game.actions.ResetAction;
+
+import static game.Status.HAS_BOTTLE;
 
 
 /**
@@ -65,6 +69,9 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		if(this.hasCapability(Status.AMPHIBIOUS))
 			this.removeCapability(Status.AMPHIBIOUS);
 
+		if(this.hasCapability(HAS_BOTTLE) && !this.getBottle().isEmpty())
+			actions.add(new DrinkAction(this.getBottle()));
+
 		if (this.hasCapability(Status.RESET_AVAILABLE)) {
 			actions.add(new ResetAction());
 		}
@@ -85,6 +92,10 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		System.out.println(this + this.printHp() + " at (" + map.locationOf(this).x() + "," + map.locationOf(this).y() + ")");
 		System.out.println("wallet: $" + this.getWallet().getBalance());
 		System.out.println(this.getInventory());
+
+		if(this.hasCapability(HAS_BOTTLE))
+			System.out.println(getBottle().getStack());
+
 		return menu.showMenu(this, actions, display);
 	}
 
@@ -142,5 +153,14 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 	@Override
 	public void makeBuffable() {
 		this.addCapability(Status.BUFFABLE);
+	}
+
+	public Bottle getBottle(){
+		Bottle ret = null;
+		for(int i = 0; i < getInventory().size(); i++){
+			if(this.getInventory().get(i).hasCapability(HAS_BOTTLE))
+				ret = (Bottle) this.getInventory().get(i);
+		}
+		return ret;
 	}
 }

@@ -92,7 +92,7 @@ public class Fountain extends Ground implements WaterStorage {
         if(!isEmpty()){
             MagicalWater water = magicalWaterStack.pop();
             container.filled(by, water);
-            ret = by + " fills up from " + this + getCapacity() + water.drinked(by);
+            ret = by + " fills up from " + this + getCapacity();
         }
         else
             ret = "Fountain's empty!";
