@@ -27,7 +27,7 @@ import game.Status;
  * @version 2.0 26/4/2022
  *
  */
-abstract public class Koopa extends Enemy implements Resettable {
+abstract public class Koopa extends Enemy implements Resettable,Buffable {
 
     /**
      * Health (while active)
