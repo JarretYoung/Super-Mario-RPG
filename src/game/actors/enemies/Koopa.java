@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.AttackBehaviour;
+import game.behaviours.DrinkBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.items.SuperMushroom;
 import game.reset.Resettable;
@@ -43,6 +44,7 @@ abstract public class Koopa extends Enemy implements Resettable {
         // Adding standard behaviours to the enemy
         this.getBehaviour().put(10, new WanderBehaviour());
         this.getBehaviour().put(9, new AttackBehaviour());
+        this.getBehaviour().put(8, new DrinkBehaviour());
     }
 
     /**
