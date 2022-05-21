@@ -9,10 +9,11 @@ public class Ink extends Item {
     private int turnCounter;
     private int numTurnsLast;
 
-    public Ink(){
+    public Ink(int damage, int turnsToLast){
         super("Ink", '`', false);
         this.turnCounter = 0;
-        this.numTurnsLast = 5;
+        this.damage = damage;
+        this.numTurnsLast = turnsToLast;
     }
 
     @Override
@@ -20,6 +21,8 @@ public class Ink extends Item {
         if (this.turnCounter < numTurnsLast){
             this.turnCounter += 1;
             if(location.containsAnActor()){
+                if(turnCounter == 1)
+                    location.getActor().hurt(this.damage);
                 location.getActor().addCapability(Status.INK_ATTACK);
             }
         }
