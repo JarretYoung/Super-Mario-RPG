@@ -90,6 +90,7 @@ public class EatAbleItem extends SpecialItem {
         return result;
     }
 
+
     /**
      * Method called when consume action is performed on special item while item is in inventory
      * @param by actor that eats special item

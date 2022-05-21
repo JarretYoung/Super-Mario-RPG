@@ -30,6 +30,7 @@ public class Fountain extends Ground implements WaterStorage {
     public String getName() {
         return name;
     }
+
     /**
      * Constructor.
      *

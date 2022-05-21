@@ -55,6 +55,7 @@ public class Mimic extends Enemy{
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
         if (this.hasCapability(Status.ACTIVE)) {
             this.setDisplayChar('R');
             this.getBehaviour().put(10, new WanderBehaviour());

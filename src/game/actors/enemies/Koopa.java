@@ -46,6 +46,7 @@ abstract public class Koopa extends Enemy implements Resettable, Buffable {
         this.hitPoints_active = 100; //This the Koopa's hp when it is in an active state
         this.addCapability(Status.ACTIVE);
         this.addItemToInventory(new SuperMushroom());
+
         damage = 30;
         this.makeBuffable();
 

@@ -24,6 +24,7 @@ public class Goomba extends Enemy implements Resettable, Buffable {
 		damage = 10;
 
 		this.makeBuffable();
+
 		// Adding standard behaviours to the enemy
 		this.getBehaviour().put(10, new WanderBehaviour());
 		this.getBehaviour().put(9, new DrinkBehaviour());
