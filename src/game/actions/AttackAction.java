@@ -52,7 +52,12 @@ public class AttackAction extends Action {
 
 		final int MAX_DAMAGE = 9999;
 
-		if (!(rand.nextInt(100) <= weapon.chanceToHit()) && !actor.hasCapability(Status.INVINCIBLE)) {
+		int chanceToHitUpperBound = 100;
+
+		if(actor.hasCapability(Status.INK_ATTACK))
+			chanceToHitUpperBound += 50;
+
+		if (!(rand.nextInt(chanceToHitUpperBound) <= weapon.chanceToHit()) && !actor.hasCapability(Status.INVINCIBLE)) {
 			result = actor + " misses " + target + ".";
 		}
 
@@ -76,6 +81,8 @@ public class AttackAction extends Action {
 				map.locationOf(target).addItem(new Fire());
 
 			}
+
+
 			// cripple weapon attack action
 			if (actor.hasCapability(Status.CRIPPLE_WEAPON)) {
 				Crippleable crippleWeapon = (Crippleable) weapon;
