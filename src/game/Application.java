@@ -18,10 +18,7 @@ import game.actors.npc.PrincessPeach;
 import game.actors.npc.Toad;
 import game.actors.enemies.Bowser;
 import game.currency.Coin;
-import game.items.PowerStar;
-import game.items.Snorkel;
-import game.items.SuperMushroom;
-import game.items.Wrench;
+import game.items.*;
 import game.nature.Sprout;
 import game.surfaces.*;
 
@@ -85,7 +82,7 @@ public class Application {
 
         gameMap.at(42, 9).addItem(superMushroom);
         gameMap.at(42, 9).addItem(powerStar);
-        gameMap.at(42, 9).addItem(coin);
+        gameMap.at(42, 9).addItem(new Medpack());
         gameMap.at(41,9).addActor(toad);
         gameMap.at(41,10).setGround(new HealthFountain());
         gameMap.at(40,10).setGround(new PowerFountain());

@@ -106,7 +106,7 @@ public class EatAbleItem extends SpecialItem {
             }
             // Remove item from inventory
             if(!this.temporaryEffect())
-                actor.getInventory().remove(this);
+                actor.removeItemFromInventory(this);
 
             else if(temporaryEffect()) {
                 this.togglePortability();
