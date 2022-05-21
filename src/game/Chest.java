@@ -22,10 +22,8 @@ public class Chest extends Ground {
 
     /**
      * Constructor.
-     *
-     * @param displayChar character to display for this type of terrain
      */
-    public Chest(char displayChar) {
+    public Chest() {
         super('G');
         this.name = "Chest";
         this.addCapability(Status.CHEST_CLOSED);
@@ -104,7 +102,7 @@ public class Chest extends Ground {
             return "Chest dropped a Power Star";
         }
 
-        this.setDisplayChar('L');
+        this.setDisplayChar('E');
         this.removeCapability(Status.CHEST_CLOSED);
         return null;
     }

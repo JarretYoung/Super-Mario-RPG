@@ -17,13 +17,9 @@ import game.items.RendingScissors;
 public class Mimic extends Enemy{
     /**
      * Constructor.
-     *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     * @param hitPoints   the Actor's starting hit points
      */
-    public Mimic(String name, char displayChar, int hitPoints) {
-        super("Mimic", 'C', 200);
+    public Mimic() {
+        super("Mimic", 'G', 200);
         this.addCapability(Status.DORMANT);
     }
 
