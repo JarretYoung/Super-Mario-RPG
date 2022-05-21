@@ -41,6 +41,7 @@ public class WarpPipe extends HighGround implements Resettable {
      */
     public WarpPipe() {
         super('C', "Warp Pipe", 100, 0);
+        this.addCapability(Status.TELEPORTATION_GROUND);
         this.resetted = true;
         this.teleportAction = null;
         this.piranhaPlant = null;

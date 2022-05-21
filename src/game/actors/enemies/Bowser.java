@@ -22,7 +22,10 @@ import java.util.ArrayList;
 
 public class Bowser extends Enemy implements Resettable {
 
-    private Location SpawnLocation;
+    /**
+     * Bowsers origninal spawn location. this is set.
+     */
+    private final Location SpawnLocation;
 
     /**
      * Constructor for the Bowser class
@@ -67,11 +70,14 @@ public class Bowser extends Enemy implements Resettable {
 
         // If reset is queued then remove this instance of enemy from this location
         if (this.hasCapability(Status.RESET_QUEUED)) {
-            // Relocate this actor to their spawn location
-            map.moveActor(this, SpawnLocation);
 
-            // Heals this Actor
-            this.heal(this.getMaxHp());
+            if (!this.SpawnLocation.containsAnActor()){
+                // Relocate this actor to their spawn location
+                map.moveActor(this, SpawnLocation);
+                // Heals this Actor
+                this.heal(this.getMaxHp());
+            }
+
 
             //Remove Cripple debuff
             if (this.hasCapability(Status.CRIPPLED)) {
