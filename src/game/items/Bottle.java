@@ -1,14 +1,11 @@
 package game.items;
 
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.actions.DrinkAction;
 import game.actors.Buffable;
 
-import java.util.List;
 import java.util.Stack;
 
 public class Bottle extends Item implements WaterStorage{
@@ -23,6 +20,7 @@ public class Bottle extends Item implements WaterStorage{
         addCapability(Status.HAS_BOTTLE);
         magicalWaterStack = new Stack<>();
         MAX_CAPACITY = 10;
+        addAction(new DrinkAction(this));
     }
 
     public String filled(Buffable actor, MagicalWater water){
@@ -41,15 +39,14 @@ public class Bottle extends Item implements WaterStorage{
         String ret = "";
 
         if(!isEmpty()){
-            MagicalWater water = magicalWaterStack.pop();
-            ret = by + " drinks from " + this + getCapacity() + water.drinked(by);
+            ret = by + " drinks from " + this + getCapacity() + magicalWaterStack.pop().drinked(by);
         }
         else
             ret = "Bottle's empty!";
         return ret;
     }
 
-    public boolean isEmpty() {
+    private boolean isEmpty() {
         boolean flag = false;
         flag = magicalWaterStack.isEmpty();
         return flag;
@@ -64,7 +61,7 @@ public class Bottle extends Item implements WaterStorage{
     }
 
     private void refill(MagicalWater water) {
-        for(int i = magicalWaterStack.size(); i < MAX_CAPACITY; i++)
+        for(int i = magicalWaterStack.size() - 1; i < MAX_CAPACITY; i++)
             magicalWaterStack.push(water);
     }
 
@@ -72,16 +69,4 @@ public class Bottle extends Item implements WaterStorage{
         String ret = "(" + magicalWaterStack.size() + "/" + MAX_CAPACITY + ")";
         return ret;
     }
-
-    public String getStack(){
-        return this.magicalWaterStack.toString();
-    }
-
-    @Override
-    public void tick(Location currentLocation, Actor actor) {
-        if(isFull())
-            this.addCapability(Status.HAS_FULL_BOTTLE);
-        super.tick(currentLocation, actor);
-    }
-
 }

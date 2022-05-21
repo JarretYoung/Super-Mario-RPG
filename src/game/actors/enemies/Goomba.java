@@ -13,7 +13,6 @@ import game.behaviours.*;
  */
 public class Goomba extends Enemy implements Resettable {
 
-	private int damage;
 	/**
 	 * Constructor.
 	 */
@@ -23,7 +22,7 @@ public class Goomba extends Enemy implements Resettable {
 		// Adding standard behaviours to the enemy
 		this.getBehaviour().put(10, new WanderBehaviour());
 		this.getBehaviour().put(9, new AttackBehaviour());
-		//this.getBehaviour().put(7, new SuicideBehaviour(this, 10));
+		this.getBehaviour().put(7, new SuicideBehaviour(this, 10));
 	}
 
 	/** This method is used to assign a new intrinsic weapon to the Goomba
@@ -32,6 +31,6 @@ public class Goomba extends Enemy implements Resettable {
 	 */
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
-		return new IntrinsicWeapon(damage, "kick");
+		return new IntrinsicWeapon(10, "kick");
 	}
 }

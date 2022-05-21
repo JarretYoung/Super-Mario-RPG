@@ -36,7 +36,7 @@ public class Toad extends NPC {
         super("Toad", '0');
         this.tradeManager = TradeManager.getInstance();
         this.bottle = new Bottle();
-        this.addItemToInventory(bottle);
+        this.getInventory().add(bottle);
     }
 
 
