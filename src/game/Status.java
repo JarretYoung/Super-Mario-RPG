@@ -10,10 +10,10 @@ public enum Status {
     SUPER, // used when actor has 100% jumping success rate with no fall damage
     INVINCIBLE, // used to make actor immune, walk over walls and have infinite damage for 10 rounds
     RESET_AVAILABLE, // used to indicate if a reset was available
-    CRIPPLE_WEAPON, // used to indicate if a weapon is able to cripple an enemy
+    RESET_QUEUED, // used to indicate if a reset was requested and this entity was queued for reset action
+    CRIPPLE_ATTACK, // used to indicate if the attack is able to cripple an enemy
     CRIPPLED, // used to apply a status effect on an actor to imply they cannot move
     HEAL_OVER_TIME, // used to indicate an actor will heal over time
-    RESET_QUEUED, // used to indicate if a reset was requested and this entity was queued for reset action
     HAS_WRENCH, // used to indicate if the player has a wrench
     HAS_BOTTLE, // used to indicate if the player has a bottle
     HAS_FULL_BOTTLE, // used to indicate if the player has a full bottle

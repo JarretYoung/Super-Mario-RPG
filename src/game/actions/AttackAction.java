@@ -10,7 +10,6 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Status;
 import game.items.Crippleable;
-import game.items.Fire;
 
 /**
  * Special Action for attacking other Actors.
@@ -28,6 +27,11 @@ public class AttackAction extends Action {
 	protected String direction;
 
 	/**
+	 * The Special Effect left on the ground after attacking
+	 */
+	protected Item specialAttackEffect = null;
+
+	/**
 	 * Random number generator
 	 */
 	protected Random rand = new Random();
@@ -41,6 +45,19 @@ public class AttackAction extends Action {
 	public AttackAction(Actor target, String direction) {
 		this.target = target;
 		this.direction = direction;
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param target the Actor to attack
+	 * @param direction is the direction that the target is at
+	 * @param specialAttackEffect is the specialEffect that can be dropped ont he ground during attacking
+	 */
+	public AttackAction(Actor target, String direction, Item specialAttackEffect) {
+		this.target = target;
+		this.direction = direction;
+		this.specialAttackEffect = specialAttackEffect;
 	}
 
 	@Override
@@ -61,31 +78,27 @@ public class AttackAction extends Action {
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 			// non-crippling attack
-			if (target.hasCapability(Status.INVINCIBLE))
+			if (target.hasCapability(Status.INVINCIBLE)) {
 				target.hurt(0);
-
-			else if (actor.hasCapability(Status.INVINCIBLE))
+			} else if (actor.hasCapability(Status.INVINCIBLE)) {
 				target.hurt(MAX_DAMAGE);
-
-			else
+			} else {
 				target.hurt(damage);
 
-			// attack and drop fire
-			if (actor.hasCapability(Status.DROP_FIRE_WHEN_ATTACK)){
-				target.hurt(damage);
-				map.locationOf(target).addItem(new Fire());
-
-			}
-			// cripple weapon attack action
-			if (actor.hasCapability(Status.CRIPPLE_WEAPON)) {
-				Crippleable crippleWeapon = (Crippleable) weapon;
-				if ((rand.nextInt(100)) <= crippleWeapon.getChanceToCripple()) {
-					this.target.addCapability(Status.CRIPPLED);
+				// cripple weapon attack action
+				if (actor.hasCapability(Status.CRIPPLE_ATTACK)) {
+					Crippleable crippleWeapon = (Crippleable) weapon;
+					if ((rand.nextInt(100)) <= crippleWeapon.getChanceToCripple()) {
+						this.target.addCapability(Status.CRIPPLED);
+					}
+					result += System.lineSeparator() + target + " is crippled.";
 				}
-				result += System.lineSeparator() + target + " is crippled.";
 			}
 
-
+			// attack and drop any special effects
+			if (this.specialAttackEffect != null){
+				map.locationOf(target).addItem(this.specialAttackEffect);
+			}
 
 			if (target.hasCapability(Status.SUPER)) {
 				target.removeCapability(Status.SUPER);
