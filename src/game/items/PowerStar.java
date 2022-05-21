@@ -11,7 +11,7 @@ import game.Status;
  * @author Jastej Gill
  * @version 2.0 30/4/2022
  */
-public class PowerStar extends SpecialItem {
+public class PowerStar extends EatAbleItem {
     /**
      * Counter for number of turns that have passed
      */

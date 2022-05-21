@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 import game.actions.EatAction;
 import game.actions.DrinkAction;
 
-public class EatAbleItem extends Item {
+public class EatAbleItem extends SpecialItem {
     /**
      * Message returned when item is eaten
      */
@@ -21,10 +21,9 @@ public class EatAbleItem extends Item {
      * Constructor.
      *  @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
-     * @param portable true if and only if the Item can be picked up
      */
-    public EatAbleItem(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+    public EatAbleItem(String name, char displayChar) {
+        super(name, displayChar, true);
 
         setConsumeAction(new EatAction(this));
         addAction(getConsumeAction());

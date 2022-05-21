@@ -10,7 +10,7 @@ import game.actors.CurrencyCollector;
  * @version 2.0 29/4/2022
  *
  */
-public class SpecialItem extends EatAbleItem implements TradeableItem{
+public class SpecialItem extends Item implements TradeableItem{
     /**
      * Value of special item
      */
@@ -20,9 +20,10 @@ public class SpecialItem extends EatAbleItem implements TradeableItem{
      * Constructor.
      *  @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
+     * @param portable true if and only if the Item can be picked up
      */
-    public SpecialItem(String name, char displayChar) {
-        super(name, displayChar, true);
+    public SpecialItem(String name, char displayChar, boolean portable) {
+        super(name, displayChar, portable);
     }
 
     /**

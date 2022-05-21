@@ -34,6 +34,7 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.RESET_AVAILABLE);
 		this.addCapability(Status.CAN_JUMP_ONTO_HIGH_GROUND);
+		this.addCapability(Status.DROWNABLE);
 		// Registering instance as a resettable object
 		this.registerInstance();
 	}
@@ -59,6 +60,9 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		if (this.hasCapability(Status.GAME_COMPLETE)) {
 			map.removeActor(this);
 		}
+
+		if(this.hasCapability(Status.AMPHIBIOUS))
+			this.removeCapability(Status.AMPHIBIOUS);
 
 		if (this.hasCapability(Status.RESET_AVAILABLE)) {
 			actions.add(new ResetAction());

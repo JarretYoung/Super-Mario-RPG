@@ -9,7 +9,7 @@ import game.Status;
  * @author Jastej Gill
  * @version 2.0 30/4/2022
  */
-public class SuperMushroom extends SpecialItem {
+public class SuperMushroom extends EatAbleItem {
     /**
      * Value by which to increase consumers max HP
      */

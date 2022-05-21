@@ -11,7 +11,7 @@ import game.Status;
  * @author Garret Yong Shern Min
  * @version 1.0 20/5/2022
  */
-public class Syringe extends SpecialItem {
+public class Syringe extends EatAbleItem {
 
     /**
      * The amount that which the Syringe would heal the actor per turn

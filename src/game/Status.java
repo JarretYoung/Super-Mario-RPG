@@ -18,11 +18,16 @@ public enum Status {
     HAS_WRENCH, // used to indicate if the player has a wrench
     HAS_BOTTLE, // used to indicate if the player has a bottle
     BUFFABLE, // used to indicate if an actor is buffable
+    FOUNTAIN, // used to indicate a fountain
     ACTIVE, // used to indicate if an Enemy is in an active state
+    SWIMMABLE_ENEMY, // used to indicate aquatic enemies
+    DROWNABLE, // used to indicate ground where actors can drown
     DORMANT, // used to indicate if an Enemy is in a dormant state
     HIGH_GROUND, // used by grounds which are high grounds
+    AMPHIBIOUS, // used to indicate actor has snorkel
     CAN_JUMP_ONTO_HIGH_GROUND, // used by actors who can jump onto high ground
     NPC, // used for actors that don't attack the player
     FINAL_BOSS_CLEARED, // used to indicate that the final boss (Bowser has been defeated and the game can be ended)
     DROP_FIRE_WHEN_ATTACK, PLAYER, TELEPORTATION_GROUND, GAME_COMPLETE // used to indicate that the Princess is saved and the game is over
+    ;
 }

@@ -11,7 +11,7 @@ import game.Status;
  * @author Garret Yong
  * @version 2.0 19/5/2022
  */
-public class Medpack extends SpecialItem {
+public class Medpack extends EatAbleItem {
     /**
      * Value by which to increase consumers max HP
      */

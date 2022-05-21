@@ -147,5 +147,12 @@ public class Fountain extends Ground implements WaterStorage {
         return "Fountain " + getCapacity();
     }
 
+    @Override
+    public boolean canActorEnter(Actor actor) {
+        if(actor.hasCapability(Status.SWIMMABLE_ENEMY))
+            return false;
+        return true;
+    }
+
 
 }
