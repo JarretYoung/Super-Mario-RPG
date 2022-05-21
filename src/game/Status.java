@@ -13,6 +13,7 @@ public enum Status {
     RESET_QUEUED, // used to indicate if a reset was requested and this entity was queued for reset action
     CRIPPLE_ATTACK, // used to indicate if the attack is able to cripple an enemy
     CRIPPLED, // used to apply a status effect on an actor to imply they cannot move
+    INK_ATTACK, // used to indicate that an enemt can drop ink on the ground
     HEAL_OVER_TIME, // used to indicate an actor will heal over time
     HAS_WRENCH, // used to indicate if the player has a wrench
     HAS_BOTTLE, // used to indicate if the player has a bottle
