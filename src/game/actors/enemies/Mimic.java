@@ -61,28 +61,19 @@ public class Mimic extends Enemy{
         if (this.hasCapability(Status.ACTIVE)) {
             this.setDisplayChar('R');
             this.getBehaviour().put(10, new WanderBehaviour());
-            this.getBehaviour().put(9, new DrinkBehaviour());
             this.getBehaviour().put(8, new AttackBehaviour());
-        }
-
-        // If reset is queued then remove this instance of enemy from this location
-        if (this.hasCapability(Status.RESET_QUEUED)) {
-            map.removeActor(this);
-
-            // To be changed for string output is not appropriate
-            return new DoNothingAction();
-        }
-        else if (!this.isConscious()){
-            map.removeActor(this);
-        }
-
-        for (Exit exit : map.locationOf(this).getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.containsAnActor()) {
-                if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.getBehaviour().put(8, new FollowBehaviour(destination.getActor()));
+            for (Exit exit : map.locationOf(this).getExits()) {
+                Location destination = exit.getDestination();
+                if (destination.containsAnActor()) {
+                    if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                        this.getBehaviour().put(7, new FollowBehaviour(destination.getActor()));
+                    }
                 }
             }
+        }
+
+        if (!this.isConscious()){
+            map.removeActor(this);
         }
 
         for(game.behaviours.Behaviour Behaviour : getBehaviour().values()) {

@@ -9,7 +9,9 @@ import game.actions.AttackAction;
 import game.actions.JumpAction;
 import game.actions.OpenChestAction;
 import game.currency.Coin;
+import game.items.Medpack;
 import game.items.PowerStar;
+import game.items.Syringe;
 
 import java.util.Random;
 
@@ -90,11 +92,11 @@ public class Chest extends Ground {
             return "Chest dropped $" + value;
         } else if (chance == 1) {
             // Drop a syringe
-            //Add code to drop a syringe
+            location.addItem(new Syringe());
             return "Chest dropped a Syringe";
         } else if (chance == 2) {
             // Drop Medkit
-            //Add code to drop medkit
+            location.addItem(new Medpack());
             return "Chest dropped a Medkit";
         } else if (chance == 3) {
             // Drop a PowerStar

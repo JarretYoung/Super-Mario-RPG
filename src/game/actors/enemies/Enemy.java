@@ -90,7 +90,7 @@ public abstract class Enemy extends Actor implements Resettable {
             Location destination = exit.getDestination();
             if (destination.containsAnActor()) {
                 if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.behaviours.put(8, new FollowBehaviour(destination.getActor()));
+                    this.behaviours.put(7, new FollowBehaviour(destination.getActor()));
                 }
             }
         }
