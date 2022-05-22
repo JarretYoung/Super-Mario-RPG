@@ -45,7 +45,7 @@ public class PiranhaPlant extends Enemy implements Resettable {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        // If reset is queued then remove this instance of enemy from this location
+        // If reset is queued then increase this Enemy's hp by 50 hit points and heal it to max hp
         if (this.hasCapability(Status.RESET_QUEUED)) {
             this.increaseMaxHp(50);
             this.heal(this.getMaxHp());

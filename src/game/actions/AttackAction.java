@@ -102,8 +102,8 @@ public class AttackAction extends Action {
 					Crippleable crippleWeapon = (Crippleable) weapon;
 					if ((rand.nextInt(100)) <= crippleWeapon.getChanceToCripple()) {
 						this.target.addCapability(Status.CRIPPLED);
+						result += System.lineSeparator() + target + " is crippled.";
 					}
-					result += System.lineSeparator() + target + " is crippled.";
 				}
 			}
 
