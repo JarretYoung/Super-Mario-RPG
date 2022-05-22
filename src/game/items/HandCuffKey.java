@@ -11,10 +11,11 @@ import game.actions.EndGameAction;
 import java.util.List;
 
 /**
- * Syringe class that extends abstract class SpecialItem
- * Capabilities: Makes consumer heal over a period of time
+ * This is the Key to free Princess Key and end the game
+ * It is initially in Bowsers inventory. It is dropped when Bowser dies.
+ * Pick up this Key and talk to Princess Peach to end the game.
  *
- * @author Lup Hoong
+ * @author Clarissa Low Lup Hoong
  * @version 1.0 20/5/2022
  */
 public class HandCuffKey extends Item {
@@ -28,13 +29,6 @@ public class HandCuffKey extends Item {
         addCapability(Status.FINAL_BOSS_CLEARED);
     }
 
-    /**
-     * Inform a carried Item of the passage of time.
-     *
-     * This method is called once per turn, if the Item is being carried.
-     * @param currentLocation The location of the actor carrying this Item.
-     * @param actor The actor carrying this Item.
-     */
     @Override
     public void tick(Location currentLocation, Actor actor) {
     }

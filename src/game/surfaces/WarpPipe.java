@@ -119,9 +119,6 @@ public class WarpPipe extends HighGround implements Resettable {
         return piranhaPlant;
     }
 
-    @Override
-    public void resetInstance() {
-        this.addCapability(Status.RESET_QUEUED);
 
-    }
+
 }

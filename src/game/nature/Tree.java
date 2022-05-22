@@ -12,7 +12,7 @@ import java.util.Random;
 /**
  * Tree parent class to sprout, sapling, mature
  */
-public abstract class Tree extends HighGround implements Resettable {
+public abstract class Tree extends HighGround {
 
     /**
      * Age of tree, used for tree growth
@@ -60,11 +60,11 @@ public abstract class Tree extends HighGround implements Resettable {
         this.age = age;
     }
 
-    /**
-     * Method to queue a reset for all children extending the Tree class
-     */
-    @Override
-    public void resetInstance() {
-        this.addCapability(Status.RESET_QUEUED);
-    }
+//    /**
+//     * Method to queue a reset for all children extending the Tree class
+//     */
+//    @Override
+//    public void resetInstance() {
+//        this.addCapability(Status.RESET_QUEUED);
+//    }
 }

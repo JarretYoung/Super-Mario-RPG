@@ -6,11 +6,12 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.actions.JumpAction;
+import game.reset.Resettable;
 
 /**
  * This class is responsible for any grounds which are high grounds
  */
-public abstract class HighGround extends Ground {
+public abstract class HighGround extends Ground implements Resettable {
 
     /**
      * High Ground's name
@@ -38,6 +39,7 @@ public abstract class HighGround extends Ground {
         this.name = name;
         this.jumpSuccessRate = jumpSuccessRate;
         this.jumpDamagePoints = jumpDamagePoints;
+        registerInstance();
 
     }
 
@@ -95,7 +97,13 @@ public abstract class HighGround extends Ground {
         return name;
     }
 
-
+    /**
+     * Method to queue a reset for all children extending the Tree class
+     */
+    @Override
+    public void resetInstance() {
+        this.addCapability(Status.RESET_QUEUED);
+    }
 
 
 }
