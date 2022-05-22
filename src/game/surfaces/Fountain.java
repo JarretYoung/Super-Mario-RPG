@@ -12,23 +12,49 @@ import game.items.MagicalWater;
 import game.items.WaterStorage;
 
 import java.util.Stack;
-
+/**
+ * Class for fountain
+* @author Jastej Gill
+ * @version 2.0 21/5/2022
+ */
 public abstract class Fountain extends Ground implements WaterStorage {
 
+    /**
+     * Maximum capacity of fountain
+     */
     private final int MAX_CAPACITY;
 
+    /**
+     * Stack of magical water
+     */
     private Stack<MagicalWater> magicalWaterStack;
 
+    /**
+     * Counter for tick method
+     */
     private int counter;
 
+    /**
+     * Name of fountain
+     */
     private String name;
 
+    /**
+     * Amount of water drinked
+     */
     private final int DRINK_AMOUNT;
 
+    /**
+     * Sets name of fountain
+     * @param name name of fountain
+     */
     private void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets name of fountain
+     */
     public String getName() {
         return name;
     }
