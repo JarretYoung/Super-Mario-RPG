@@ -44,7 +44,7 @@ abstract public class Koopa extends Enemy implements Resettable,Buffable {
     public Koopa(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.ACTIVE);
-        this.addItemToInventory(new SuperMushroom());
+        this.addItemToInventory(new SuperMushroom(false));
 
         damage = 30;
         this.makeBuffable();

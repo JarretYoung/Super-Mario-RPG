@@ -66,7 +66,7 @@ public class Application {
         world.addPlayer(mario, gameMap.at(42, 10));
 
 
-        Item superMushroom = new SuperMushroom();
+        Item superMushroom = new SuperMushroom(true);
         Item powerStar = new PowerStar();
         Item wrench = new Wrench();
         Item coin = new Coin(10000);
