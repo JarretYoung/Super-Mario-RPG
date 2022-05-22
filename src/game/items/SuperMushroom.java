@@ -18,11 +18,13 @@ public class SuperMushroom extends EatAbleItem {
     /***
      * Constructor
      */
-    public SuperMushroom() {
+    public SuperMushroom(Boolean tradeable) {
 
         super("Super Mushroom", '^');
         this.setValue(400);
-        this.addToTradeManager();
+        if (tradeable == true) {
+            this.addToTradeManager();
+        }
     }
 
     /**

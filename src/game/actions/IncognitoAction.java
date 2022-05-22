@@ -40,6 +40,6 @@ public class IncognitoAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "?";
+        return "Something is watching you";
     }
 }
