@@ -20,7 +20,7 @@ public class Bottle extends Item implements WaterStorage{
      */
     public Bottle() {
         super("Bottle", 'b', false);
-        addCapability(Status.HAS_BOTTLE);
+        this.addCapability(Status.HAS_BOTTLE);
         magicalWaterStack = new Stack<>();
     }
 

@@ -20,8 +20,13 @@ public class DrinkAction extends Action {
     public String execute(Actor actor, GameMap map) {
         this.drinkedBy = actor;
         String str = "";
-        if(actor.hasCapability(Status.BUFFABLE) && !actor.hasCapability(Status.PLAYER))
-            str =  source.DrinkedFrom((Buffable) actor);
+        if(source.hasCapability(Status.FOUNTAIN)){
+            if(actor.hasCapability(Status.BUFFABLE) && !actor.hasCapability(Status.PLAYER))
+                str =  source.DrinkedFrom((Buffable) actor);
+        }
+        else if(actor.hasCapability(Status.BUFFABLE) && actor.hasCapability(Status.HAS_BOTTLE)){
+            str = source.DrinkedFrom((Buffable) actor);
+        }
         return str;
     }
 
