@@ -8,6 +8,13 @@ import game.actors.enemies.Mimic;
 
 import java.util.Random;
 
+/**
+ * OpenChestAction class that extends abstract class Action class
+ * Usage: Is used to open a mimic
+ *
+ * @author Garret Yong Shern Min
+ * @version 1.0 18/5/2022
+ */
 public class OpenMimicAction extends Action {
 
     /**
@@ -44,6 +51,11 @@ public class OpenMimicAction extends Action {
         return actor + " has awoken a mimic!";
     }
 
+    /** This method provides the description to be printed out on the menu when the time comes
+     *
+     * @param actor The actor performing the action.
+     * @return a String description to be printed out on the menu when the time comes
+     */
     @Override
     public String menuDescription(Actor actor) {
         int randomInt = rand.nextInt(3);

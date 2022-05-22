@@ -4,29 +4,30 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 
 /**
- * Fire item is sometimes dropped when an actor attacks.
+ * Fire class that extends abstract class Item
+ * Capabilities: Is an item to be dropped on the ground to burn any actor who stands on it
  *
- * @author Clarissa Low Lup Hoong
- * @version 1.0 20/5/2022
+ * @author Lup Hoong, Garret Yong Shern Min
+ * @version 2.0 20/5/2022
  */
 public class Fire extends Item {
     /**
-     * Damage done to actor when actor steps on Fire
+     * Is the damage of this instance of Fire
      */
     private int damage;
     /**
-     * counts number of turns already on the ground
+     * Is the timer till the duration of the Fire lasts
      */
     private int turnCounter;
     /**
-     * Number of turns Fire item lasts on the ground
+     * Is the duration of the Fire
      */
     private int numTurnsLast;
 
-    /**
-     * Constructor
-     * @param damage Damage done to actor, if actor steps on it
-     * @param numTurnsLast Number of turns Fire Item will be left on the ground
+    /** Constructor for the Fire class
+     *
+     * @param damage is the damage that this class of the Fire deals when an Actor is on it
+     * @param numTurnsLast is the duration of the Fire
      */
     public Fire(int damage, int numTurnsLast){
         super("Fire", 'v', false);
@@ -36,9 +37,9 @@ public class Fire extends Item {
     }
 
     /**
-     * Each turn, check if fire should be still on ground.
-     * If not, remove Fire item
-     * @param location location of Fire item
+     * Inform an Item on the ground of the passage of time.
+     * This method is called once per turn, if the item rests upon the ground.
+     * @param location The location of the ground on which we lie.
      */
     @Override
     public void tick(Location location) {

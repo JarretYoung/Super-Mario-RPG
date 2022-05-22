@@ -21,6 +21,7 @@ import static game.Status.HAS_BOTTLE;
  * Class representing the Player.
  *
  * @author Garret Yong Shern Min
+ * @version 2.0 21/5/2022
  */
 public class Player extends CurrencyCollector implements Resettable, Buffable {
 	private int damage = 5;
@@ -135,25 +136,41 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 		this.addCapability(Status.RESET_QUEUED);
 	}
 
+	/** This is an accessor to get the damage points of this Enemy
+	 *
+	 * @return an integer value of the damage points of this Enemy
+	 */
 	@Override
 	public int getDamage() {
 		return damage;
 	}
 
+	/** This is a setter to add upon the current damage points of this Enemy
+	 *
+	 * @param addedDamage as integer value of how many damage points to add upon the current
+	 */
 	@Override
 	public void addDamage(int addedDamage) {
 		damage += addedDamage;
 	}
 
+	/**
+	 * This method is used to add the capability: Buffable to the Enemy
+	 */
+	@Override
+	public void makeBuffable() {
+		this.addCapability(Status.BUFFABLE);
+	}
+
+	/** Is a method to get the intrinsic weapon of this Enemy
+	 *
+	 * @return an instance of IntrinsicWeapon native to this Enemy
+	 */
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(damage, "punches");
 	}
 
-	@Override
-	public void makeBuffable() {
-		this.addCapability(Status.BUFFABLE);
-	}
 
 	public Bottle getBottle(){
 		Bottle ret = null;

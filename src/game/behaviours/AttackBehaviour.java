@@ -12,6 +12,9 @@ import game.items.Fire;
 
 /**
  * This class represents the behaviour to attack others around in the surrounding
+ *
+ * @author Garret Yong Shern Min
+ * @version 2.0 20/5/2022
  */
 public class AttackBehaviour extends Action implements Behaviour{
 
@@ -20,9 +23,16 @@ public class AttackBehaviour extends Action implements Behaviour{
      */
     protected Item specialAttackEffect = null;
 
+    /**
+     * Basic constructor for when the enemy's attack does not have a Special Effect
+     */
     public AttackBehaviour() {
     }
 
+    /** Constructor for when an Actor is required to drop a Special Effect on the ground
+     *
+     * @param specialAttackEffect is the specialEffect that can be dropped ont he ground during attacking
+     */
     public AttackBehaviour(Item specialAttackEffect) {
         this.specialAttackEffect = specialAttackEffect;
     }
@@ -61,12 +71,23 @@ public class AttackBehaviour extends Action implements Behaviour{
 
     }
 
-
+    /**
+     * Perform the Action.
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description of what happened that can be displayed to the user.
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         return menuDescription(actor);
     }
 
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return the text we put on the menu
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "Tatake...";

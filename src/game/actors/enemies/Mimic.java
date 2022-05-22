@@ -17,6 +17,14 @@ import game.actions.OpenMimicAction;
 import game.behaviours.*;
 import game.items.RendingScissors;
 
+/**
+ * Mimic class that extends abstract class Enemy class
+ *
+ * This class is a mimic which acts as a chest until opened then attacks the player
+ *
+ * @author Garret Yong Shern Min
+ * @version 2.0 20/5/2022
+ */
 public class Mimic extends Enemy{
 
 
@@ -50,6 +58,15 @@ public class Mimic extends Enemy{
         return actions;
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to be performed
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
@@ -79,6 +96,10 @@ public class Mimic extends Enemy{
         return new IncognitoAction();
     }
 
+    /** Is a method to check if this Actor is conscious
+     *
+     * @return a boolean value to indicate if the Actor is conscious
+     */
     @Override
     public boolean isConscious() {
         if (super.isConscious() == false) {
@@ -87,6 +108,10 @@ public class Mimic extends Enemy{
         return super.isConscious();
     }
 
+    /** Is a method to get the intrinsic weapon of this Enemy
+     *
+     * @return an instance of IntrinsicWeapon native to this Enemy
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(50, "chomp");

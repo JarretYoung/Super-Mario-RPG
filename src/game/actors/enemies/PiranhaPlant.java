@@ -16,6 +16,14 @@ import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.reset.Resettable;
 
+/**
+ * PiranhaPlant class that extends abstract class Enemy class
+ *
+ * This class is an Enemy which will spawn near warp pipes and attacks the Player should they come close
+ *
+ * @author Garret Yong Shern Min
+ * @version 2.0 20/5/2022
+ */
 public class PiranhaPlant extends Enemy implements Resettable {
     /**
      * Constructor.
@@ -27,7 +35,13 @@ public class PiranhaPlant extends Enemy implements Resettable {
     }
 
     /**
-     * Figure out what to do next.
+     * Select and return an action to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to be performed
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {

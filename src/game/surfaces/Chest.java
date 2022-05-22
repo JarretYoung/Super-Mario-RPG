@@ -16,6 +16,19 @@ import game.items.Syringe;
 
 import java.util.Random;
 
+/**
+ * Chest class that extends abstract class Ground
+ * Capabilities: The player can interact with this class to get random loot
+ *
+ * Loot consists of:
+ *  - Coins
+ *  - Medpack
+ *  - Syringe
+ *  - Power Star
+ *
+ * @author Garret Yong Shern Min
+ * @version 1.0 18/5/2022
+ */
 public class Chest extends Ground {
 
     /**
@@ -58,13 +71,7 @@ public class Chest extends Ground {
                 }
             }
         }
-
-//        if ( location.containsAnActor() ){
-//            actions.add(new OpenChestAction(this, location));
-//        }
-
         return actions;
-
     }
 
     /**
