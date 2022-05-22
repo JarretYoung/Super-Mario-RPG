@@ -9,11 +9,14 @@ public class Ink extends Item {
     private int turnCounter;
     private int numTurnsLast;
 
-    public Ink(int damage, int turnsToLast){
+    /***
+     * Constructor.
+     */
+    public Ink(int damage, int numTurnsLast) {
         super("Ink", '`', false);
-        this.turnCounter = 0;
         this.damage = damage;
-        this.numTurnsLast = turnsToLast;
+        this.turnCounter = 0;
+        this.numTurnsLast = numTurnsLast;
     }
 
     @Override

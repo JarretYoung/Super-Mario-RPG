@@ -8,6 +8,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.Status;
+import game.actions.JumpAction;
+import game.surfaces.HighGround;
 
 /** This class represents the behaviour of wandering around aimlessly
  *
@@ -30,6 +33,9 @@ public class WanderBehaviour extends Action implements Behaviour {
 		if (actor.isConscious()) {
 			for (Exit exit : map.locationOf(actor).getExits()) {
 				Location destination = exit.getDestination();
+				if(actor.hasCapability(Status.CAN_JUMP_ONTO_HIGH_GROUND) && destination.getGround().hasCapability(Status.HIGH_GROUND))
+					actions.add(new JumpAction((HighGround) destination.getGround(), exit.getName(), destination));
+
 				if (destination.canActorEnter(actor)) {
 					actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
 				}

@@ -35,6 +35,7 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+		this.addCapability(Status.PLAYER);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.RESET_AVAILABLE);
 		this.addCapability(Status.CAN_JUMP_ONTO_HIGH_GROUND);
@@ -70,7 +71,7 @@ public class Player extends CurrencyCollector implements Resettable, Buffable {
 			this.removeCapability(Status.AMPHIBIOUS);
 
 		if(this.hasCapability(HAS_BOTTLE) && !this.getBottle().isEmpty())
-			actions.add(new DrinkAction(this.getBottle()));
+			actions.add(new DrinkAction(this.getBottle(), this));
 
 		if (this.hasCapability(Status.RESET_AVAILABLE)) {
 			actions.add(new ResetAction());

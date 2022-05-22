@@ -31,7 +31,6 @@ public class Bottle extends Item implements WaterStorage{
             ret = actor + " has filled up their bottle with " + water;
         }
         else if(magicalWaterStack.size() > 0){
-            magicalWaterStack.pop();
             magicalWaterStack.push(water);
             ret = actor + " has filled up their bottle with " + water;
         }
@@ -42,7 +41,7 @@ public class Bottle extends Item implements WaterStorage{
         String ret = "";
 
         if(!isEmpty()){
-            MagicalWater water = magicalWaterStack.peek();
+            MagicalWater water = magicalWaterStack.pop();
             ret = by + " drinks from " + this + water.drinked(by);
         }
         else

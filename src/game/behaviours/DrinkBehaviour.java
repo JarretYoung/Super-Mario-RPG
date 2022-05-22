@@ -21,14 +21,23 @@ public class DrinkBehaviour implements Behaviour{
      */
     public DrinkBehaviour() {
     }
+
+
     @Override
     public Action getAction(Actor actor, GameMap map) {
         ArrayList<Action> actions = new ArrayList<>();
-        if (actor.isConscious()) {
-            for (Exit exit : map.locationOf(actor).getExits()) {
-                Location destination = exit.getDestination();
-                if (destination.canActorEnter(actor) && destination.getGround().hasCapability(Status.FOUNTAIN)) {
-                   return new DrinkAction((WaterStorage) destination.getGround());
+
+        if (map.locationOf(actor) != null) {
+            // If actor is on fountain drink
+            if (map.locationOf(actor) != null && map.locationOf(actor).getGround().hasCapability(Status.FOUNTAIN)) {
+                return new DrinkAction((WaterStorage) map.locationOf(actor).getGround(), actor);
+            } else {
+                for (Exit exit : map.locationOf(actor).getExits()) {
+                    Location destination = exit.getDestination();
+                    // If exit has fountain move towards fountain
+                    if (destination.canActorEnter(actor) && destination.getGround().hasCapability(Status.FOUNTAIN)) {
+                        return new MoveActorAction(destination, exit.getName());
+                    }
                 }
             }
         }

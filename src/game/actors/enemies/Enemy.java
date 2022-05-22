@@ -41,6 +41,7 @@ public abstract class Enemy extends Actor implements Resettable {
     public Enemy(String name, char displayChar, int hitPoints) {
         super(name,displayChar,hitPoints);
 
+        this.getBehaviour().put(8, new DrinkBehaviour());
         // Registering instance as a resettable object
         this.registerInstance();
     }

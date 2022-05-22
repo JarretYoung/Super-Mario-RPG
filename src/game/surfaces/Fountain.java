@@ -23,6 +23,8 @@ public class Fountain extends Ground implements WaterStorage {
 
     private String name;
 
+    private final int DRINK_AMOUNT;
+
     private void setName(String name) {
         this.name = name;
     }
@@ -41,6 +43,7 @@ public class Fountain extends Ground implements WaterStorage {
         this.addCapability(Status.FOUNTAIN);
         setName(name);
         MAX_CAPACITY = 10;
+        DRINK_AMOUNT = 5;
         magicalWaterStack = new Stack<>();
         this.refill(new MagicalWater(this));
         counter = 0;
@@ -50,12 +53,14 @@ public class Fountain extends Ground implements WaterStorage {
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         ActionList actions = new ActionList();
 
-        if(actor.hasCapability(Status.BUFFABLE))
-            actions.add(new DrinkAction(this));
+        if(location.containsAnActor()){
+            if(actor.hasCapability(Status.BUFFABLE) && !actor.hasCapability(Status.PLAYER))
+                actions.add(new DrinkAction(this, actor));
 
-        if(actor.hasCapability(Status.HAS_BOTTLE) && !actor.hasCapability(Status.HAS_FULL_BOTTLE))
-            actions.add(new FillUpAction(this));
+            if(actor.hasCapability(Status.HAS_BOTTLE) && !actor.hasCapability(Status.HAS_FULL_BOTTLE))
+                actions.add(new FillUpAction(this));
 
+        }
         return actions;
     }
 
@@ -74,16 +79,16 @@ public class Fountain extends Ground implements WaterStorage {
     public String DrinkedFrom(Buffable by){
         String ret = "";
 
-        if(!isEmpty() && magicalWaterStack.size() > 5){
+        if(!isEmpty() && magicalWaterStack.size() >= DRINK_AMOUNT){
             MagicalWater water = magicalWaterStack.pop();
             for(int i = 0; i < 4; i++)
                 magicalWaterStack.pop();
             ret = by + " drinks from " + this + water.drinked(by);
         }
-        else if(magicalWaterStack.size() < 5)
+        else if(magicalWaterStack.size() < DRINK_AMOUNT)
             ret = "Not enough water!";
         else
-            ret = "Fountain's empty!, come back later";
+            ret = this + "'s empty!, come back later";
         return ret;
     }
 
