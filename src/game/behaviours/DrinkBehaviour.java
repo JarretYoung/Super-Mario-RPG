@@ -28,11 +28,10 @@ public class DrinkBehaviour implements Behaviour{
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        ArrayList<Action> actions = new ArrayList<>();
 
         if (map.locationOf(actor) != null) {
             // If actor is on fountain drink
-            if (map.locationOf(actor) != null && map.locationOf(actor).getGround().hasCapability(Status.FOUNTAIN)) {
+            if (map.locationOf(actor).getGround().hasCapability(Status.FOUNTAIN)) {
                 return new DrinkAction((WaterStorage) map.locationOf(actor).getGround(), actor);
             } else {
                 for (Exit exit : map.locationOf(actor).getExits()) {
@@ -46,5 +45,6 @@ public class DrinkBehaviour implements Behaviour{
         }
         return null;
     }
+
 
 }

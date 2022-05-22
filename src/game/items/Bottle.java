@@ -23,7 +23,6 @@ public class Bottle extends Item implements WaterStorage{
     private Stack<MagicalWater> magicalWaterStack;
     /***
      * Constructor.
-     *
      */
     public Bottle() {
         super("Bottle", 'b', false);
@@ -31,6 +30,12 @@ public class Bottle extends Item implements WaterStorage{
         magicalWaterStack = new Stack<>();
     }
 
+    /**
+     * Called when Player performs FillUpAction on WaterStorage
+     * @param actor Actor filling up from from WaterStorage
+     * @param water water by obtains
+     * @return String of result
+     */
     public String filled(Buffable actor, MagicalWater water){
         String ret = "";
         if(magicalWaterStack.size() == 0){
@@ -44,6 +49,11 @@ public class Bottle extends Item implements WaterStorage{
         return ret;
     }
 
+    /**
+     * Called when Player performs DrinkAction on WaterStorage
+     * @param by Actor drinking from WaterStorage
+     * @return String of result
+     */
     public String DrinkedFrom(Buffable by){
         String ret = "";
 
@@ -56,12 +66,20 @@ public class Bottle extends Item implements WaterStorage{
         return ret;
     }
 
+    /**
+     * Checks when water storage is empty
+     * @return boolean value, true if empty
+     */
     public boolean isEmpty() {
         boolean flag = false;
         flag = magicalWaterStack.isEmpty();
         return flag;
     }
 
+    /**
+     * Gets stack of magical water
+     * @return  magicalWaterStack
+     */
     public String getStack(){
         return this.magicalWaterStack.toString();
     }

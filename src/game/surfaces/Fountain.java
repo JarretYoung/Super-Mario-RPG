@@ -13,7 +13,7 @@ import game.items.WaterStorage;
 
 import java.util.Stack;
 
-public class Fountain extends Ground implements WaterStorage {
+public abstract class Fountain extends Ground implements WaterStorage {
 
     private final int MAX_CAPACITY;
 
@@ -35,7 +35,7 @@ public class Fountain extends Ground implements WaterStorage {
 
     /**
      * Constructor.
-     *
+     * @param  name of Fountain
      * @param displayChar character to display for this type of terrain
      */
     public Fountain(char displayChar, String name) {
@@ -49,6 +49,13 @@ public class Fountain extends Ground implements WaterStorage {
         counter = 0;
     }
 
+    /**
+     * Gets action actor can perform on Fountain
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return list of Actions
+     */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         ActionList actions = new ActionList();
@@ -64,6 +71,12 @@ public class Fountain extends Ground implements WaterStorage {
         return actions;
     }
 
+    /**
+     * Called when Player performs FillUpAction on WaterStorage
+     * @param actor Actor filling up from from WaterStorage
+     * @param water water by obtains
+     * @return String of result
+     */
     public String filled(Buffable actor, MagicalWater water){
         String ret = "";
         if(!isFull()){
@@ -76,6 +89,11 @@ public class Fountain extends Ground implements WaterStorage {
         return ret;
     }
 
+    /**
+     * Called when Player performs DrinkAction on WaterStorage
+     * @param by Actor drinking from from from WaterStorage
+     * @return String of result
+     */
     public String DrinkedFrom(Buffable by){
         String ret = "";
 
@@ -92,6 +110,12 @@ public class Fountain extends Ground implements WaterStorage {
         return ret;
     }
 
+    /**
+     * Called when Player performs FillUpAction on WaterStorage
+     * @param by Actor filling up from from WaterStorage
+     * @param container water storage player fills from
+     * @return String of result
+     */
     public String FilledUpFrom(Buffable by, WaterStorage container){
         String ret = "";
 
@@ -105,12 +129,20 @@ public class Fountain extends Ground implements WaterStorage {
         return ret;
     }
 
+    /**
+     * Checks when water storage is empty
+     * @return boolean value, true if empty
+     */
     public boolean isEmpty() {
         boolean flag = false;
         flag = magicalWaterStack.isEmpty();
         return flag;
     }
 
+    /**
+     * Checks when water storage is full
+     * @return boolean value, true if full
+     */
     public boolean isFull(){
         boolean flag = false;
         if(magicalWaterStack.size() ==  MAX_CAPACITY){
@@ -119,16 +151,28 @@ public class Fountain extends Ground implements WaterStorage {
         return flag;
     }
 
+    /**
+     * Refills Fountain
+     * @param water water to refill
+     */
     private void refill(MagicalWater water) {
             for(int i = 0; i < MAX_CAPACITY; i++)
                 magicalWaterStack.push(water);
     }
 
+    /**
+     * Gets capacity of Fountain
+     * @return String of fountain capacity
+     */
     public String getCapacity(){
         String ret = "(" + magicalWaterStack.size() + "/" + MAX_CAPACITY + ")";
         return ret;
     }
 
+    /**
+     * Checks top element of stack
+     * @return String of top element
+     */
     public String peek(){
         String ret = "";
         if(!isEmpty())
@@ -138,6 +182,10 @@ public class Fountain extends Ground implements WaterStorage {
         return ret;
     }
 
+    /**
+     * Called once per turn, so that Locations can experience the passage time. If that's
+     * important to them.
+     */
     @Override
     public void tick(Location location) {
         super.tick(location);
@@ -149,10 +197,21 @@ public class Fountain extends Ground implements WaterStorage {
             refill(new MagicalWater(this));
     }
 
+    /**
+     * Return String of Fountain object
+     * @return String of Fountain object
+     */
     public String toString(){
         return "Fountain " + getCapacity();
     }
 
+    /**
+     * Returns true if an Actor can enter this location.
+     *
+     * Prevent Swimmable enemies from entering
+     * @param actor the Actor who might be moving
+     * @return true if the Actor can enter this location
+     */
     @Override
     public boolean canActorEnter(Actor actor) {
         if(actor.hasCapability(Status.SWIMMABLE_ENEMY))
@@ -160,6 +219,10 @@ public class Fountain extends Ground implements WaterStorage {
         return true;
     }
 
+    /**
+     * Gets magicalWaterStack strin
+     * @return string of magical water stack
+     */
     public String getStack(){
         return this.magicalWaterStack.toString();
     }
