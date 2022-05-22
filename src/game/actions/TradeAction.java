@@ -8,6 +8,8 @@ import game.actors.CurrencyCollector;
 import game.items.TradeableItem;
 /**
  * Trade Action sells tradeable item
+ *
+ * @author Jastej Gill
  */
 public class TradeAction extends Action {
     /**

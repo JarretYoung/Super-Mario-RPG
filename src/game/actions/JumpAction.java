@@ -19,17 +19,17 @@ public class JumpAction extends Action {
     /**
      * The High Ground to be jumped onto
      */
-    private final HighGround target;
+    private final HighGround TARGET;
 
     /**
      * The direction of jump.
      */
-    private final String direction;
+    private final String DIRECTION;
 
     /**
      * Location of High Ground
      */
-    private final Location high_ground_location;
+    private final Location HIGH_GROUND_LOCATION;
 
     /**
      * constructor
@@ -38,9 +38,9 @@ public class JumpAction extends Action {
      * @param location locatino of high ground
      */
     public JumpAction(HighGround target, String direction, Location location) {
-        this.target = target;
-        this.direction = direction;
-        this.high_ground_location = location;
+        this.TARGET = target;
+        this.DIRECTION = direction;
+        this.HIGH_GROUND_LOCATION = location;
     }
 
     /**
@@ -53,33 +53,33 @@ public class JumpAction extends Action {
     public String execute(Actor jumper, GameMap map) {
         String ret = ""; // return message for fail or succesful jumps
         Random rand = new Random();
-        String coordinates = " (" + high_ground_location.x() + ", " + high_ground_location.y() + " )";
-        String success = jumper + " is now standing on " + target.getName() + coordinates + ". Look at all these angry Goombas. o.o ";
-        String fail = jumper + " slipped and hurt himself for " + target.getJumpDamagePoints() + " hitpoints";
+        String coordinates = " (" + HIGH_GROUND_LOCATION.x() + ", " + HIGH_GROUND_LOCATION.y() + " )";
+        String success = jumper + " is now standing on " + TARGET.getName() + coordinates + ". Look at all these angry Goombas. o.o ";
+        String fail = jumper + " slipped and hurt himself for " + TARGET.getJumpDamagePoints() + " hitpoints";
 
         //if actor has supermushroom jump with 100% + no damage
         if (jumper.hasCapability(Status.SUPER)){
-            map.moveActor(jumper, high_ground_location);
+            map.moveActor(jumper, HIGH_GROUND_LOCATION);
             ret = success;
         } // if actor is invincible, walk over and drop coin
         else if(jumper.hasCapability(Status.INVINCIBLE)){
-            map.moveActor(jumper, high_ground_location);
+            map.moveActor(jumper, HIGH_GROUND_LOCATION);
 
             // to ensure that Warp Pipe does not get set to Dirt
-            if (!this.target.hasCapability(Status.TELEPORTATION_GROUND)){
-                map.at(high_ground_location.x(), high_ground_location.y()).setGround(new Dirt());
+            if (!this.TARGET.hasCapability(Status.TELEPORTATION_GROUND)){
+                map.at(HIGH_GROUND_LOCATION.x(), HIGH_GROUND_LOCATION.y()).setGround(new Dirt());
             }
 
-            map.at(high_ground_location.x(), high_ground_location.y()).addItem(new Coin(5));
+            map.at(HIGH_GROUND_LOCATION.x(), HIGH_GROUND_LOCATION.y()).addItem(new Coin(5));
             ret = success;
         }
         else { // actor jump with a success rate
-            if ((rand.nextInt(100) <= target.getJumpSuccessRate())){
-                map.moveActor(jumper, high_ground_location);
+            if ((rand.nextInt(100) <= TARGET.getJumpSuccessRate())){
+                map.moveActor(jumper, HIGH_GROUND_LOCATION);
                 ret = success;
             }
             else { // failed jump, hurt jumper
-                jumper.hurt(target.getJumpDamagePoints());
+                jumper.hurt(TARGET.getJumpDamagePoints());
                 ret = fail;
             }
         }
@@ -98,9 +98,9 @@ public class JumpAction extends Action {
     public String menuDescription(Actor actor) {
         String ret = ""; // return message
         if(!actor.hasCapability(Status.INVINCIBLE))
-            ret = actor + " jumps onto " + direction + " " + target.getName() ;
+            ret = actor + " jumps onto " + DIRECTION + " " + TARGET.getName() ;
         else
-            ret = actor + " walks onto " + direction + " " + target.getName();
+            ret = actor + " walks onto " + DIRECTION + " " + TARGET.getName();
         return ret;
     }
 }

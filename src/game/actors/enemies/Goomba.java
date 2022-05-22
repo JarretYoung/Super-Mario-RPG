@@ -15,6 +15,9 @@ import game.behaviours.*;
  */
 public class Goomba extends Enemy implements Resettable, Buffable {
 
+	/**
+	 * Damage points
+	 */
 	private int damage;
 	/**
 	 * Constructor.

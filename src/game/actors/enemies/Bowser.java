@@ -34,7 +34,7 @@ public class Bowser extends Enemy implements Resettable {
     /**
      * Bowsers origninal spawn location. this is set.
      */
-    private final Location SpawnLocation;
+    private final Location SPAWNLOCATION;
 
     /**
      * Constructor for the Bowser class
@@ -51,7 +51,7 @@ public class Bowser extends Enemy implements Resettable {
         this.getBehaviour().put(9, new AttackBehaviour(new Fire(20, 3)));
 
         // Instantiating the spawn location of this Actor
-        SpawnLocation = new Location(map, spawn_x_coord, spawn_y_coord);
+        SPAWNLOCATION = new Location(map, spawn_x_coord, spawn_y_coord);
     }
 
     /**
@@ -89,9 +89,9 @@ public class Bowser extends Enemy implements Resettable {
         // If reset is queued then remove this instance of enemy from this location
         if (this.hasCapability(Status.RESET_QUEUED)) {
 
-            if (!this.SpawnLocation.containsAnActor()){
+            if (!this.SPAWNLOCATION.containsAnActor()){
                 // Relocate this actor to their spawn location
-                map.moveActor(this, SpawnLocation);
+                map.moveActor(this, SPAWNLOCATION);
                 // Heals this Actor
                 this.heal(this.getMaxHp());
             }

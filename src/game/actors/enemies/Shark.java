@@ -12,6 +12,14 @@ import game.Status;
 import game.behaviours.FollowBehaviour;
 import game.reset.Resettable;
 
+/**
+ * Shark class that extends abstract class Enemy class
+ *
+ * This class is a regular enemy that roams in the water
+ *
+ * @author Jastej Gill
+ * @version 1.0 17/5/2022
+ */
 public class Shark extends Enemy{
     /**
      * Constructor.
@@ -22,6 +30,15 @@ public class Shark extends Enemy{
         this.addCapability(Status.SWIMMABLE_ENEMY);
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to be performed
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // If reset is queued then remove this instance of enemy from this location

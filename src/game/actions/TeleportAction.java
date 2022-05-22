@@ -8,6 +8,8 @@ import game.surfaces.WarpPipe;
 
 /**
  * Teleports from source to destination
+ *
+ * @author Lup Hoong
  */
 public class TeleportAction extends Action {
 

@@ -7,7 +7,11 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.items.EatAbleItem;
 
 /**
- * Consume action consumes special items
+ * EatAction class that extends abstract class Action class
+ * Usage: It is used as a consume action to consume special items
+ *
+ * @author Jastej Gill
+ * @version 1.0 18/5/2022
  */
 public class EatAction extends Action {
     /**

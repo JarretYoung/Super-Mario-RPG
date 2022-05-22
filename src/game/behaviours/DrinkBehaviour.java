@@ -12,7 +12,10 @@ import game.actions.DrinkAction;
 import game.items.WaterStorage;
 
 import java.util.ArrayList;
-
+/** This class dictates the behaviour of an Enemy to be drawn towards a fountain to gain its buffs
+ *
+ * @author Jastej Gill
+ */
 public class DrinkBehaviour implements Behaviour{
 
     /**

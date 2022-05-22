@@ -6,6 +6,12 @@ import edu.monash.fit2099.engine.items.Item;
 import game.actions.EatAction;
 import game.actions.DrinkAction;
 
+/**
+ * This class is the generic class for all items that can be consumed
+ *
+ * @author Jastej Gill
+ * @version 1.0 18/5/2022
+ */
 public class EatAbleItem extends SpecialItem {
     /**
      * Message returned when item is eaten
@@ -29,10 +35,18 @@ public class EatAbleItem extends SpecialItem {
         addAction(getConsumeAction());
     }
 
+    /** Accessor for the consumeAction
+     *
+     * @return the consumeAction
+     */
     public Action getConsumeAction() {
         return consumeAction;
     }
 
+    /** Setter for the consumeAction
+     *
+     * @param consumeAction the action to consume a special item
+     */
     public void setConsumeAction(Action consumeAction) {
         this.consumeAction = consumeAction;
     }

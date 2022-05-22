@@ -7,6 +7,14 @@ import game.items.Fire;
 import game.items.Ink;
 import game.reset.Resettable;
 
+/**
+ * Squid class that extends abstract class Enemy class
+ *
+ * This class is a mini boss which resides in the water
+ *
+ * @author Jastej Gill
+ * @version 1.0 17/5/2022
+ */
 public class Squid extends Enemy{
     /**
      * Constructor.
