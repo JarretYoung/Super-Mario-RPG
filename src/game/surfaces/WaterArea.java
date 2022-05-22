@@ -28,6 +28,10 @@ public class WaterArea extends Ground {
         return flag;
     }
 
+    /**
+     * Called once per turn
+     * Damages Player if player doesn't have Snorkel to simulate drowning
+     */
     @Override
     public void tick(Location location) {
         if(location.containsAnActor()){
