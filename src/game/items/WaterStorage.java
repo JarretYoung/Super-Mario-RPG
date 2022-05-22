@@ -12,4 +12,6 @@ public interface WaterStorage {
     public boolean isEmpty();
 
     public String getStack();
+
+    public boolean hasCapability(Enum<?> capability);
 }
