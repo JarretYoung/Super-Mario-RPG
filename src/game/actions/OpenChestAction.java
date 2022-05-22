@@ -5,9 +5,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import game.Chest;
-import game.monologue.Monologue;
-import game.surfaces.Dirt;
+import game.surfaces.Chest;
 
 public class OpenChestAction extends Action {
 
