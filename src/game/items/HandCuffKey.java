@@ -10,6 +10,14 @@ import game.actions.EndGameAction;
 
 import java.util.List;
 
+/**
+ * This is the Key to free Princess Key and end the game
+ * It is initially in Bowsers inventory. It is dropped when Bowser dies.
+ * Pick up this Key and talk to Princess Peach to end the game.
+ *
+ * @author Clarissa Low Lup Hoong
+ * @version 1.0 20/5/2022
+ */
 public class HandCuffKey extends Item {
 
 

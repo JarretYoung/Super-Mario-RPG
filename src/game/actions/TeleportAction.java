@@ -61,7 +61,7 @@ public class TeleportAction extends Action {
         destinationLocation.map().removeActor(destinationWarpPipe.getPiranhaPlant());
 
 
-        // teleport player from source map location to destination map and location
+        // moves player from source map location to destination map and location
         map.moveActor(actor, destinationLocation );
 
 
