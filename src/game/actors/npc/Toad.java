@@ -26,18 +26,12 @@ public class Toad extends NPC {
     private TradeManager tradeManager;
 
     /**
-     * Bottle for toad
-     */
-    private Bottle bottle;
-
-    /**
      * Constructor for the Toad class
      */
     public Toad() {
         super("Toad", '0');
         this.tradeManager = TradeManager.getInstance();
-        this.bottle = new Bottle();
-        this.addItemToInventory(bottle);
+        this.addItemToInventory(new Bottle());
     }
 
 
@@ -56,10 +50,18 @@ public class Toad extends NPC {
            TradeableItem item = TradeManager.getInstance().getTradeableItems().get(i);
            actions.add(new TradeAction(item));
         }
-        if(otherActor.hasCapability(Status.BUFFABLE) && this.hasCapability(Status.HAS_BOTTLE))
-            actions.add(new GetItemAction(bottle, this));
+        if(otherActor.hasCapability(Status.BUFFABLE) && this.hasCapability(Status.HAS_BOTTLE) && !otherActor.hasCapability(Status.HAS_BOTTLE))
+            actions.add(new GetItemAction(this.getBottle(), this));
 
         actions.add(new TalkAction(this, new Monologue_Toad()));
         return actions;
+    }
+
+    private Bottle getBottle(){
+        for(int i =0; i < this.getInventory().size(); i++){
+            if(this.getInventory().get(i).hasCapability(Status.HAS_BOTTLE))
+                return (Bottle) this.getInventory().get(i);
+        }
+        return null;
     }
 }

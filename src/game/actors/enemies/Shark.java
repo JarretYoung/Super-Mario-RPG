@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
 import game.behaviours.FollowBehaviour;
+import game.reset.Resettable;
 
 public class Shark extends Enemy{
     /**

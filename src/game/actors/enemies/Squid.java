@@ -5,6 +5,7 @@ import game.Status;
 import game.behaviours.AttackBehaviour;
 import game.items.Fire;
 import game.items.Ink;
+import game.reset.Resettable;
 
 public class Squid extends Enemy{
     /**
