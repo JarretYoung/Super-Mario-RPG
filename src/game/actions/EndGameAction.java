@@ -11,6 +11,13 @@ import game.items.Crippleable;
 
 import java.util.Random;
 
+/**
+ * EndGameAction class that extends abstract class Action class
+ * Usage: Is used to end the game given certain requirements
+ *
+ * @author Garret Yong Shern Min
+ * @version 1.0 16/5/2022
+ */
 public class EndGameAction extends Action {
 
     /**
@@ -27,6 +34,12 @@ public class EndGameAction extends Action {
         this.usher = usher;
     }
 
+    /** Method run to execute this action
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a String which narrates what has occurred during execution
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
 
@@ -46,6 +59,11 @@ public class EndGameAction extends Action {
         return result;
     }
 
+    /** This method provides the description to be printed out on the menu when the time comes
+     *
+     * @param actor The actor performing the action.
+     * @return a String description to be printed out on the menu when the time comes
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " unlock and frees " + usher + "!";

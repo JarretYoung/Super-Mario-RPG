@@ -38,7 +38,7 @@ public class AttackAction extends Action {
 	protected Random rand = new Random();
 
 	/**
-	 * Constructor.
+	 * Basic constructor for when the enemy's attack does not have a Special Effect
 	 * 
 	 * @param target the Actor to attack
 	 * @param direction is the direction that the target is at
@@ -49,7 +49,7 @@ public class AttackAction extends Action {
 	}
 
 	/**
-	 * Constructor.
+	 * Constructor for when an Actor is required to drop a Special Effect on the ground
 	 *
 	 * @param target the Actor to attack
 	 * @param direction is the direction that the target is at
@@ -61,6 +61,12 @@ public class AttackAction extends Action {
 		this.specialAttackEffect = specialAttackEffect;
 	}
 
+	/** Method run to execute this action
+	 *
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return a String which narrates what has occurred during execution
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
@@ -127,6 +133,11 @@ public class AttackAction extends Action {
 		return result;
 	}
 
+	/** This method provides the description to be printed out on the menu when the time comes
+	 *
+	 * @param actor The actor performing the action.
+	 * @return a String description to be printed out on the menu when the time comes
+	 */
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target + " at " + direction;

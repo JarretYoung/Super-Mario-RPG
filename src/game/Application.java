@@ -12,7 +12,6 @@ import edu.monash.fit2099.engine.positions.World;
 import game.actions.TeleportAction;
 import game.actors.Player;
 import game.actors.enemies.Mimic;
-import game.actors.enemies.Enemy;
 import game.actors.enemies.Shark;
 import game.actors.enemies.Squid;
 import game.actors.npc.PrincessPeach;
@@ -93,7 +92,7 @@ public class Application {
         gameMap.at(40,10).setGround(new PowerFountain());
         gameMap.at(74,16).setGround(new Chest());
         gameMap.at(17,2).addActor(new Mimic());
-        gameMap.at(43,11).addItem(new SuperMushroom());
+        gameMap.at(43,11).addItem(new Medpack());
         gameMap.at(43,11).addItem(new Syringe());
 
 

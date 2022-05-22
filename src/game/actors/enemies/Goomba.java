@@ -23,6 +23,7 @@ public class Goomba extends Enemy implements Resettable, Buffable {
 		super("Goomba", 'g', 20);
 		damage = 10;
 
+		// Make this enemy buffable
 		this.makeBuffable();
 
 		// Adding standard behaviours to the enemy
@@ -43,16 +44,27 @@ public class Goomba extends Enemy implements Resettable, Buffable {
 		return new IntrinsicWeapon(damage, "kick");
 	}
 
+	/** This is an accessor to get the damage points of this Enemy
+	 *
+	 * @return an integer value of the damage points of this Enemy
+	 */
 	@Override
 	public int getDamage() {
 		return damage;
 	}
 
+	/** This is a setter to add upon the current damage points of this Enemy
+	 *
+	 * @param addedDamage as integer value of how many damage points to add upon the current
+	 */
 	@Override
 	public void addDamage(int addedDamage) {
 		damage += addedDamage;
 	}
 
+	/**
+	 * This method is used to add the capability: Buffable to the Enemy
+	 */
 	@Override
 	public void makeBuffable() {
 		this.addCapability(Status.BUFFABLE);

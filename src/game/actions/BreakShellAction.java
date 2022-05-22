@@ -34,6 +34,12 @@ public class BreakShellAction extends Action {
         this.direction = direction;
     }
 
+    /** Method run to execute this action
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a String which narrates what has occurred during execution
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
 
@@ -63,6 +69,11 @@ public class BreakShellAction extends Action {
         return result;
     }
 
+    /** This method provides the description to be printed out on the menu when the time comes
+     *
+     * @param actor The actor performing the action.
+     * @return a String description to be printed out on the menu when the time comes
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " destroy " + target + " shell";
