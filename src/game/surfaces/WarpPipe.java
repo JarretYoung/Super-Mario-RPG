@@ -13,6 +13,9 @@ import game.reset.Resettable;
  * Warp Pipe Class
  * Teleports Player from source location to destination location
  * Piranha Plant needs to be killed for player to jump onto, and then teleport
+ *
+ * @author Lup Hoong
+ * @version 1.0 18/5/2022
  */
 public class WarpPipe extends HighGround implements Resettable {
 

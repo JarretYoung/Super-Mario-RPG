@@ -5,6 +5,13 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 
+/**
+ * Water Area. Contains Shark and Squid Enenmies that follows and attacks player.
+ * Player that does not have Snorkel will deal damage.
+ *
+ * @author Jastej Gill
+ * @version 2.0 19/5/2022
+ */
 public class WaterArea extends Ground {
     /**
      * Constructor.

@@ -10,6 +10,7 @@ import game.monologue.Monologue;
  * Special Action for communicating (talking) with other Actors.
  *
  * @author Garret Yong Shern Min
+ * @version 1.0 21/4/2022
  */
 public class TalkAction extends Action {
 

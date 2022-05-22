@@ -74,7 +74,6 @@ public class Application {
         Item syringe = new Syringe();
         Item medPack = new Medpack();
 
-        Toad toad = new Toad();
 
         Squid squid = new Squid();
 

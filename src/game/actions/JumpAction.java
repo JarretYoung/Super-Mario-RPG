@@ -13,6 +13,9 @@ import java.util.Random;
 
 /**
  * Jump Action jumps onto high grounds
+ *
+ * @author Lup Hoong
+ * @version 1.0 21/4/2022
  */
 public class JumpAction extends Action {
 

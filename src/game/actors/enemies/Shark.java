@@ -99,7 +99,7 @@ public class Shark extends Enemy{
         return new DoNothingAction();
     }
 
-    /** This method is used to assign a new intrinsic weapon to the Koopa
+    /** This method is used to assign a new intrinsic weapon to the Shark
      *
      * @return a new instance of intrinsic weapon
      */

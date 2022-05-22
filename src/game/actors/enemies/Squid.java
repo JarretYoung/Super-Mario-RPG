@@ -26,7 +26,7 @@ public class Squid extends Enemy{
         this.getBehaviour().put(9, new AttackBehaviour(new Ink(20, 5)));
     }
 
-    /** This method is used to assign a new intrinsic weapon to the Koopa
+    /** This method is used to assign a new intrinsic weapon to the Squid
      *
      * @return a new instance of intrinsic weapon
      */

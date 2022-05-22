@@ -7,6 +7,8 @@ import game.Status;
 
 /**
  * Lava Ground class
+ * @author Lup Hoong
+ * @version 1.0 18/5/2022
  */
 public class Lava extends Ground {
     /**

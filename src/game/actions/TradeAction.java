@@ -10,6 +10,7 @@ import game.items.TradeableItem;
  * Trade Action sells tradeable item
  *
  * @author Jastej Gill
+ * @version 1.0 22/4/2022
  */
 public class TradeAction extends Action {
     /**

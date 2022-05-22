@@ -10,6 +10,7 @@ import game.reset.ResetManager;
  * Special Action for Resetting the map.
  *
  * @author Garret Yong Shern Min
+ * @version 1.0 21/4/2022
  */
 public class ResetAction extends Action {
 
