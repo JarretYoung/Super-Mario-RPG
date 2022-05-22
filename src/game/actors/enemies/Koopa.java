@@ -27,7 +27,7 @@ import game.Status;
  * @version 2.0 26/4/2022
  *
  */
-abstract public class Koopa extends Enemy implements Resettable, Buffable {
+abstract public class Koopa extends Enemy implements Resettable,Buffable {
 
     /**
      * Health (while active)
@@ -52,8 +52,8 @@ abstract public class Koopa extends Enemy implements Resettable, Buffable {
 
         // Adding standard behaviours to the enemy
         this.getBehaviour().put(10, new WanderBehaviour());
-        this.getBehaviour().put(9, new DrinkBehaviour());
-        this.getBehaviour().put(8, new AttackBehaviour());
+        this.getBehaviour().put(9, new AttackBehaviour());
+        this.getBehaviour().put(8, new DrinkBehaviour());
     }
 
     /**
@@ -106,7 +106,7 @@ abstract public class Koopa extends Enemy implements Resettable, Buffable {
         this.hitPoints_active = hitPoints_active;
     }
 
-    /** This method is used to assign a new intrinsic weapon to the Goomba
+    /** This method is used to assign a new intrinsic weapon to the Koopa
      *
      * @return a new instance of intrinsic weapon
      */

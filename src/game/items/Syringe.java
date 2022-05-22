@@ -105,29 +105,19 @@ public class Syringe extends EatAbleItem {
      */
     @Override
     public void tick(Location location, Actor actor) {
-        counter += 1;
-        if(actor.hasCapability(Status.HEAL_OVER_TIME))
+        if(actor.hasCapability(Status.HEAL_OVER_TIME)) {
+            counter += 1;
             actor.heal(this.getHealing_per_turn());
             System.out.println(actor + " consumed Syringe - " + getRemainingTurns() + " turns remaining");
-        if(getCounter() == 10) {
-            if(actor.getInventory().contains(this))
-                actor.removeItemFromInventory(this);
-            else if(actor.hasCapability(Status.HEAL_OVER_TIME)) {
-                actor.removeCapability(Status.HEAL_OVER_TIME);
-                actor.getInventory().remove(this);
+            if (getCounter() == 10) {
+                if (actor.getInventory().contains(this))
+                    actor.removeItemFromInventory(this);
+                else if (actor.hasCapability(Status.HEAL_OVER_TIME)) {
+                    actor.removeCapability(Status.HEAL_OVER_TIME);
+                    actor.getInventory().remove(this);
+                }
             }
         }
-    }
-
-    /**
-     * Inform a power star on the ground of the passage of time.
-     * This method is called once per turn, if the power star rests upon the ground.
-     * @param location The location of the ground on which we lie.
-     */
-    public void tick(Location location) {
-        counter += 1;
-        if(getCounter() == 10)
-            location.removeItem(this);
     }
 
     /** This method is a getter to obtain the healing to be delivered per turn

@@ -2,17 +2,19 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
 import game.actions.AttackAction;
 import game.actions.BreakShellAction;
+import game.actions.IncognitoAction;
 import game.actions.OpenMimicAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.DrinkBehaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.*;
 import game.items.RendingScissors;
 
 public class Mimic extends Enemy{
@@ -54,10 +56,27 @@ public class Mimic extends Enemy{
         if (this.hasCapability(Status.ACTIVE)) {
             this.setDisplayChar('R');
             this.getBehaviour().put(10, new WanderBehaviour());
-            this.getBehaviour().put(9, new DrinkBehaviour());
             this.getBehaviour().put(8, new AttackBehaviour());
+            for (Exit exit : map.locationOf(this).getExits()) {
+                Location destination = exit.getDestination();
+                if (destination.containsAnActor()) {
+                    if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                        this.getBehaviour().put(7, new FollowBehaviour(destination.getActor()));
+                    }
+                }
+            }
         }
-        return super.playTurn(actions, lastAction, map, display);
+
+        if (!this.isConscious()){
+            map.removeActor(this);
+        }
+
+        for(game.behaviours.Behaviour Behaviour : getBehaviour().values()) {
+            Action action = Behaviour.getAction(this, map);
+            if ((action != null) && this.isConscious())
+                return action;
+        }
+        return new IncognitoAction();
     }
 
     @Override
