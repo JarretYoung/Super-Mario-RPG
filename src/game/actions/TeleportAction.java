@@ -72,6 +72,6 @@ public class TeleportAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Player Teleports";
+        return "Player Teleports to Lava Zone";
     }
 }
