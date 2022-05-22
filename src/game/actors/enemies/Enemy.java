@@ -86,12 +86,20 @@ public abstract class Enemy extends Actor implements Resettable {
             map.removeActor(this);
         }
 
-        for (Exit exit : map.locationOf(this).getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.containsAnActor()) {
-                if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                    this.behaviours.put(7, new FollowBehaviour(destination.getActor()));
+        if (!this.hasCapability(Status.CRIPPLED))
+            for (Exit exit : map.locationOf(this).getExits()) {
+                Location destination = exit.getDestination();
+                if (destination.containsAnActor()) {
+                    if (destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                        this.getBehaviour().put(7, new FollowBehaviour(destination.getActor()));
+                    }
                 }
+            }
+        else {
+            // Checks to see if the Enemy have FollowBehavior
+            if (this.getBehaviour().containsKey(7)) {
+                // Removes FollowBehaviour
+                this.getBehaviour().remove(7);
             }
         }
 

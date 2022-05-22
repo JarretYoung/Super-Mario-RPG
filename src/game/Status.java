@@ -30,5 +30,7 @@ public enum Status {
     CHEST_CLOSED, // used to indicate closed chest
     NPC, // used for actors that don't attack the player
     FINAL_BOSS_CLEARED, // used to indicate that the final boss (Bowser has been defeated and the game can be ended)
-    DROP_FIRE_WHEN_ATTACK, PLAYER, TELEPORTATION_GROUND, GAME_COMPLETE // used to indicate that the Princess is saved and the game is over
+    PLAYER,
+    TELEPORTATION_GROUND,
+    GAME_COMPLETE // used to indicate that the Princess is saved and the game is over
 }
