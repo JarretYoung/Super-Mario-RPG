@@ -33,6 +33,11 @@ public class WaterArea extends Ground {
         if(location.containsAnActor()){
             if(location.getActor().hasCapability(Status.DROWNABLE) && !location.getActor().hasCapability(Status.AMPHIBIOUS)){
                 location.getActor().hurt(5);
+                for(int i = 0; i<location.getItems().size(); i++){
+                    if(!location.getItems().get(i).hasCapability(Status.INK_ATTACK)){
+                        location.getActor().removeCapability(Status.INK_ATTACK);
+                    }
+                }
             }
         }
     }
