@@ -32,6 +32,8 @@ public class Goomba extends Enemy implements Resettable, Buffable {
 		this.getBehaviour().put(6, new SuicideBehaviour(this, 10));
 	}
 
+
+
 	/** This method is used to assign a new intrinsic weapon to the Goomba
 	 *
 	 * @return a new instance of intrinsic weapon

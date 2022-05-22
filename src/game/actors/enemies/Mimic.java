@@ -19,18 +19,13 @@ import game.items.RendingScissors;
 
 public class Mimic extends Enemy{
 
-    /**
-     * Damage
-     */
-    private int damage;
 
     /**
      * Constructor.
      */
     public Mimic() {
         super("Mimic", 'G', 200);
-        damage = 50;
-        this.makeBuffable();
+
         this.addCapability(Status.DORMANT);
     }
 
@@ -94,18 +89,7 @@ public class Mimic extends Enemy{
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(damage, "chomp");
+        return new IntrinsicWeapon(50, "chomp");
     }
 
-    public int getDamage() {
-        return damage;
-    }
-
-    public void addDamage(int addedDamage) {
-        damage += addedDamage;
-    }
-
-    public void makeBuffable() {
-        this.addCapability(Status.BUFFABLE);
-    }
 }
