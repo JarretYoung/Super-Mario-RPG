@@ -23,6 +23,8 @@ import java.util.Map;
 
 /** This class is the generic class for an enemy class that would form the base for all enemies moving forwards
  *
+ * @author Garret Yong Shern Min
+ * @version 3.0 20/5/2022
  */
 public abstract class Enemy extends Actor implements Resettable {
 
@@ -209,7 +211,7 @@ public abstract class Enemy extends Actor implements Resettable {
     }
 
     /**
-     * Method to queue a reset for all children extending the Tree class
+     * Method to queue a reset for all children extending the Enemy class
      */
     @Override
     public void resetInstance() {

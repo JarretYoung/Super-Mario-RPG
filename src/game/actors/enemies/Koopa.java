@@ -24,7 +24,7 @@ import game.Status;
  * kill the Koopa and to make it drop a SuperMushroom
  *
  * @author Lup Hoong, Garret Yong Shern Min
- * @version 2.0 26/4/2022
+ * @version 3.0 21/5/2022
  *
  */
 abstract public class Koopa extends Enemy implements Resettable,Buffable {
@@ -43,7 +43,6 @@ abstract public class Koopa extends Enemy implements Resettable,Buffable {
      */
     public Koopa(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        this.hitPoints_active = 100; //This the Koopa's hp when it is in an active state
         this.addCapability(Status.ACTIVE);
         this.addItemToInventory(new SuperMushroom());
 
@@ -101,6 +100,10 @@ abstract public class Koopa extends Enemy implements Resettable,Buffable {
         return hitPoints_active;
     }
 
+    /** This method is used to set the active hit points
+     *
+     * @param hitPoints_active is the active hitpoints that the Koopa is to be instantiated with
+     */
     public void setHitPoints_active(int hitPoints_active) {
         this.hitPoints_active = hitPoints_active;
     }
@@ -114,16 +117,27 @@ abstract public class Koopa extends Enemy implements Resettable,Buffable {
         return new IntrinsicWeapon(damage, "punch");
     }
 
+    /** This is an accessor to get the damage points of this Enemy
+     *
+     * @return an integer value of the damage points of this Enemy
+     */
     @Override
     public int getDamage() {
         return damage;
     }
 
+    /** This is a setter to add upon the current damage points of this Enemy
+     *
+     * @param addedDamage as integer value of how many damage points to add upon the current
+     */
     @Override
     public void addDamage(int addedDamage) {
         damage += addedDamage;
     }
 
+    /**
+     * This method is used to add the capability: Buffable to the Enemy
+     */
     @Override
     public void makeBuffable() {
         this.addCapability(Status.BUFFABLE);

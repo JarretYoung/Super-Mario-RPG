@@ -11,9 +11,12 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actions.TeleportAction;
 import game.actors.Player;
-import game.actors.enemies.*;
+import game.actors.enemies.Mimic;
+import game.actors.enemies.Shark;
+import game.actors.enemies.Squid;
 import game.actors.npc.PrincessPeach;
 import game.actors.npc.Toad;
+import game.actors.enemies.Bowser;
 import game.currency.Coin;
 import game.items.*;
 import game.items.PowerStar;
@@ -69,7 +72,6 @@ public class Application {
         Item coin = new Coin(10000);
         Item snorkel = new Snorkel();
 
-
         Toad toad = new Toad();
 
         Squid squid = new Squid();
@@ -88,10 +90,8 @@ public class Application {
         gameMap.at(41,9).addActor(toad);
         gameMap.at(41,10).setGround(new HealthFountain());
         gameMap.at(40,10).setGround(new PowerFountain());
-        gameMap.at(74,16).addActor(new FlyingKoopa());
+        gameMap.at(74,16).setGround(new Chest());
         gameMap.at(17,2).addActor(new Mimic());
-        gameMap.at(43,11).addItem(new SuperMushroom());
-        gameMap.at(43,11).addItem(new Syringe());
 
 
         // Adding aquatic enemies

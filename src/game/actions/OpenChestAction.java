@@ -7,6 +7,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.surfaces.Chest;
 
+/**
+ * OpenChestAction class that extends abstract class Action class
+ * Usage: Is used to open a chest
+ *
+ * @author Garret Yong Shern Min
+ * @version 1.0 18/5/2022
+ */
 public class OpenChestAction extends Action {
 
     /**
@@ -46,6 +53,11 @@ public class OpenChestAction extends Action {
 
     }
 
+    /** This method provides the description to be printed out on the menu when the time comes
+     *
+     * @param actor The actor performing the action.
+     * @return a String description to be printed out on the menu when the time comes
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " opens Chest";

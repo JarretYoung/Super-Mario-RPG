@@ -21,6 +21,14 @@ import game.reset.Resettable;
 
 import java.util.ArrayList;
 
+/**
+ * Bowser class that extends abstract class Enemy class
+ *
+ * This class is Bowser, the final boss to the game which drops a key which releases Peach and allows for the game to end
+ *
+ * @author Garret Yong Shern Min
+ * @version 1.0 18/5/2022
+ */
 public class Bowser extends Enemy implements Resettable {
 
     /**
@@ -66,6 +74,15 @@ public class Bowser extends Enemy implements Resettable {
         return actions;
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to be performed
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
@@ -124,6 +141,10 @@ public class Bowser extends Enemy implements Resettable {
         return new DoNothingAction();
     }
 
+    /** Is a method to get the intrinsic weapon of this Enemy
+     *
+     * @return an instance of IntrinsicWeapon native to this Enemy
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(80, "punches");

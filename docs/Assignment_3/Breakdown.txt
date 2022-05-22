@@ -1,0 +1,29 @@
+FIT2099 Work Breakdown Agreement 
+
+
+Team Number : Lab 16 Team 2 
+Names :  
+1. Garret Yong Shern Min 31862616
+2. Jastej Singh Gill 31107974
+3. Low Lup Hoong 31167934 
+
+Date :	20/5/2022
+	
+
+
+
+
+
+Our team will break down our work by assigning tasks to each member. For each requirement, the assigned member will be responsible for creating the respective UML Class Diagram, UML interaction Diagram. 
+
+
+Task 		    Member 	 		        Date of completion
+Requirement 1 	Low Lup Hoong 		    18/5/2022
+Requirement 2	Garret Yong Shern Min   18/5/2022
+Requirement 3 	Jastej Singh Gill   	18/5/2022
+C.Requirement 1	Garret Yong Shern Min   20/5/2022
+C.Requirement 2	Jastej Singh Gill   	19/5/2022
+
+Reviewing	    All members		        20/4/2022
+
+I, Garret Yong Shern Min, accept this work breakdown agreement
