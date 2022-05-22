@@ -10,7 +10,7 @@ import game.actors.CurrencyCollector;
  * @version 2.0 29/4/2022
  *
  */
-public class SpecialItem extends Item implements TradeableItem{
+public abstract class SpecialItem extends Item implements TradeableItem{
     /**
      * Value of special item
      */

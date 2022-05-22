@@ -12,7 +12,7 @@ import game.actions.DrinkAction;
  * @author Jastej Gill
  * @version 1.0 18/5/2022
  */
-public class EatAbleItem extends SpecialItem {
+public abstract class EatAbleItem extends SpecialItem {
     /**
      * Message returned when item is eaten
      */

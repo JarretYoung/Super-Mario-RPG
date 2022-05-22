@@ -62,15 +62,17 @@ public class Application {
         GameMap gameMap = new GameMap(groundFactory, map);
         world.addGameMap(gameMap);
 
-        Actor mario = new Player("Player", 'm', 1000);
+        Actor mario = new Player("Player", 'm', 100);
         world.addPlayer(mario, gameMap.at(42, 10));
 
-
+        // Adding tradeable items
         Item superMushroom = new SuperMushroom(true);
         Item powerStar = new PowerStar();
         Item wrench = new Wrench();
-        Item coin = new Coin(10000);
+        Item coin = new Coin(5);
         Item snorkel = new Snorkel();
+        Item syringe = new Syringe();
+        Item medPack = new Medpack();
 
         Toad toad = new Toad();
 
@@ -87,7 +89,7 @@ public class Application {
         gameMap.at(42, 9).addItem(superMushroom);
         gameMap.at(42, 9).addItem(powerStar);
         gameMap.at(42, 9).addItem(coin);
-        gameMap.at(41,9).addActor(toad);
+
         gameMap.at(41,10).setGround(new HealthFountain());
         gameMap.at(40,10).setGround(new PowerFountain());
         gameMap.at(74,16).setGround(new Chest());
@@ -95,7 +97,6 @@ public class Application {
 
 
         // Adding aquatic enemies
-
         gameMap.at(8,3).addActor(squid);
         gameMap.at(15,4).addActor(new Shark());
         gameMap.at(0,6).addActor(new Shark());
@@ -105,7 +106,9 @@ public class Application {
         gameMap.at(6,2).addActor(new Shark());
         gameMap.at(6,3).addActor(new Shark());
         gameMap.at(4,7).addActor(new Shark());
-        //gameMap.at(24,9).addActor(new Toad());
+
+        // Adding toad
+        gameMap.at(24,9).addActor(new Toad());
 
 
 

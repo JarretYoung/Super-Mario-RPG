@@ -13,8 +13,7 @@ import game.items.WaterStorage;
 
 import java.util.Stack;
 
-
-public class Fountain extends Ground implements WaterStorage {
+public abstract class Fountain extends Ground implements WaterStorage {
 
     private final int MAX_CAPACITY;
 
