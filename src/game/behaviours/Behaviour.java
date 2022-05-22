@@ -6,6 +6,9 @@ import edu.monash.fit2099.engine.positions.GameMap;
 
 /**
  * This class is the interface for all behaviours that will be developed
+ *
+ *  @author Given
+ *  @version 1.0 18/5/2022
  */
 public interface Behaviour {
 	

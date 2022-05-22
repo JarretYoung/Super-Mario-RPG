@@ -5,6 +5,12 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
 import game.reset.Resettable;
 
+/**
+ * Default Koopa is an ordinary Koopa.
+ *
+ *  @author Garret Yong Shern Min
+ *  @version 1.0 18/5/2022
+ */
 public class DefaultKoopa extends Koopa implements Resettable {
 
     /**

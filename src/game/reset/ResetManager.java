@@ -10,6 +10,7 @@ import java.util.List;
  * What could be the drawbacks of this implementation?
  *
  * @author Garret Yong Shern Min
+ * @version 2.0 30/4/2022
  */
 public class ResetManager {
     /**

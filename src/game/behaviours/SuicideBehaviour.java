@@ -14,6 +14,7 @@ import java.util.Random;
 /** This class represents the suicidal tendency that can be incorporated into an Actor to cause random instant death
  *
  * @author Garret Yong Shern Min
+ * @version 1.0 18/5/2022
  */
 public class SuicideBehaviour implements Behaviour{
 

@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.surfaces.WarpPipe;
 
 /**
- * Teleports from source to destination
+ * Teleports actor from source to destination
  *
  * @author Lup Hoong
  */

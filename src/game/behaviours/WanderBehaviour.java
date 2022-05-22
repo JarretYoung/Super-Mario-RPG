@@ -13,7 +13,8 @@ import game.actions.JumpAction;
 import game.surfaces.HighGround;
 
 /** This class represents the behaviour of wandering around aimlessly
- *
+ * @author Garret Yong Shern Min
+ * @version 1.0 18/5/2022
  */
 public class WanderBehaviour extends Action implements Behaviour {
 

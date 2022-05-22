@@ -26,7 +26,7 @@ import java.util.ArrayList;
  *
  * This class is Bowser, the final boss to the game which drops a key which releases Peach and allows for the game to end
  *
- * @author Garret Yong Shern Min
+ * @author Garret Yong Shern Min, Clarissa Lup Hoong Low
  * @version 1.0 18/5/2022
  */
 public class Bowser extends Enemy implements Resettable {

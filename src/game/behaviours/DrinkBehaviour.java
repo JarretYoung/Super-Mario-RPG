@@ -15,6 +15,8 @@ import java.util.ArrayList;
 /** This class dictates the behaviour of an Enemy to be drawn towards a fountain to gain its buffs
  *
  * @author Jastej Gill
+ * @version 1.0 18/5/2022
+ *
  */
 public class DrinkBehaviour implements Behaviour{
 

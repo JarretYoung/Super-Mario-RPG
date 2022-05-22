@@ -27,7 +27,7 @@ public class OpenChestAction extends Action {
     protected Location location;
 
     /**
-     * Constructor for the TalkAction
+     * Constructor for the OpenChestAction
      *
      * @param target is the actor that is meant to be talked to
      */

@@ -4,6 +4,12 @@ package game.actors.enemies;
 import game.Status;
 import game.reset.Resettable;
 
+/**
+ * Flying Koopa are like can go onto High Grounds
+ *
+ * @author Garret Yong Shern Min
+ * @version 1.0 18/5/2022
+ */
 public class FlyingKoopa extends Koopa implements Resettable {
 
     /**

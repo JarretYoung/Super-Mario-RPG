@@ -12,6 +12,7 @@ import game.behaviours.*;
  * A little fungus guy.
  *
  * @author  Garret Yong Shern Min
+ * @version 1.0 18/5/2022
  */
 public class Goomba extends Enemy implements Resettable, Buffable {
 

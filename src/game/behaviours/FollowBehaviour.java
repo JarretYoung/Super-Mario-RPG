@@ -10,6 +10,9 @@ import edu.monash.fit2099.engine.actions.MoveActorAction;
 /**
  * A class that figures out a MoveAction that will move the actor one step 
  * closer to a target Actor.
+ *
+ * @author Garret Yong Shern Min
+ * @version 1.0 18/5/2022
  * @see edu.monash.fit2099.demo.mars.Application
  */
 public class FollowBehaviour implements Behaviour {

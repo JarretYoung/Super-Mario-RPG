@@ -8,10 +8,12 @@ import java.util.Random;
 /**This class represents the Monologue that is used by Toad to deliver speech lines to the player
  *
  * @author Garret Yong Shern Min
+ * @version 2.0 30/4/2022
  */
 public class Monologue_Toad extends Monologue{
 
-    /** A constructor for the Monologue_Toad class
+    /**
+     *  A constructor for the Monologue_Toad class
      *
      */
     public Monologue_Toad() {

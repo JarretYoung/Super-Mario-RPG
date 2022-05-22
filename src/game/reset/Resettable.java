@@ -1,7 +1,8 @@
 package game.reset;
 
 /** This class represents the interface to be implemented by all objects that are intended to be resetted
- *
+ * @author Garret Yong Shern Min
+ * @version 2.0 30/4/2022
  */
 public interface Resettable {
     /**

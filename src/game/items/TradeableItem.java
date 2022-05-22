@@ -5,6 +5,8 @@ import game.actors.CurrencyCollector;
 
 /**
  * Interface for all tradeable items
+ * @author Jastej Gill
+ * @version 2.0 30/4/2022
  */
 public interface TradeableItem{
     /**

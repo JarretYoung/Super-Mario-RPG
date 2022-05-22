@@ -2,7 +2,12 @@ package game.items;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.actors.Buffable;
-
+/**This class manages all tradeable items that can be traded
+ *
+ * @author Jastej Gill
+ * @version 2.0 28/4/2022
+ *
+ */
 public interface WaterStorage {
 
     /**

@@ -10,6 +10,7 @@ import java.util.Random;
 /**This class represents the generic Monologue that is used to deliver speech lines
  *
  * @author Garret Yong Shern Min
+ * @version 2.0 30/4/2022
  */
 public abstract class Monologue {
     /**
