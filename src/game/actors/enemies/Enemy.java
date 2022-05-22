@@ -89,7 +89,7 @@ public abstract class Enemy extends Actor implements Resettable {
             map.removeActor(this);
         }
 
-        if (!this.hasCapability(Status.CRIPPLED))
+        if (!this.hasCapability(Status.CRIPPLED)) {
             for (Exit exit : map.locationOf(this).getExits()) {
                 Location destination = exit.getDestination();
                 if (destination.containsAnActor()) {
@@ -98,7 +98,7 @@ public abstract class Enemy extends Actor implements Resettable {
                     }
                 }
             }
-        else {
+        } else {
             // Checks to see if the Enemy have FollowBehavior
             if (this.getBehaviour().containsKey(7)) {
                 // Removes FollowBehaviour
